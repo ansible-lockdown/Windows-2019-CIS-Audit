@@ -161,7 +161,7 @@ command:
     exit-status: 0
     stdout:
     - 'Not Defined'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.14
@@ -315,7 +315,7 @@ command:
     exit-status: 0
     stdout:
     - 'Not Defined'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.28

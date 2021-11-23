@@ -17,7 +17,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_2 }}
   disable_ip6_source_route:
     title: 18.4.2 | L1 | Ensure 'MSS - (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)' is set to 'Enabled- Highest protection, source routing is completely disabled's| reg_check
@@ -34,7 +33,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
   {{ end }}
   {{ if .Vars.win2019cis_18_4_3 }}
   disable_ip4_source_route:
@@ -53,7 +51,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_4 }}
   disable_icmp_ospf_redirects:
     title: 18.4.4 | L1 | Ensure 'MSS - (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes' is set to 'Disabled' | reg_check
@@ -70,7 +67,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
   {{ end }}
   {{ if .Vars.win2019cis_18_4_6 }}
   ignore_netbios_except_wins:
@@ -89,7 +85,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_8 }}
   enable_safe_dll:
     title: 18.4.8 | L1 | Ensure 'MSS - (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled' | reg_check
@@ -106,7 +101,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
   {{ end }}
   {{ if .Vars.win2019cis_18_4_9 }}
   screensaver_grace_secs:
@@ -125,7 +119,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_12 }}
   percent_sec_eventlog_warn:
     title: 18.4.12 | L1 | Ensure 'MSS - (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled - 90% or less's| reg_check
@@ -143,7 +136,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-{{ end }}
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_18_4_5 }}
   keepalive_ms_enabled:
@@ -162,7 +154,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_7 }}
   disable_router_discovery:
     title: 18.4.7 | L2 | Ensure 'MSS - (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)' is set to 'Disabled's| reg_check
@@ -179,7 +170,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-  {{ end }}
   {{ end }}
   {{ if .Vars.win2019cis_18_4_10 }}
   max_retransmit_ipv6:
@@ -198,7 +188,6 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
   {{ if .Vars.win2019cis_18_4_11 }}
   max_retransmit_ipv4:
     title: 18.4.11 | L2 | Ensure 'MSS - (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled - 3' | reg_check
@@ -216,5 +205,5 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ end }}
+{{ end }}
 {{ end }}

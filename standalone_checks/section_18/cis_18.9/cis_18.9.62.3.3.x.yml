@@ -59,7 +59,7 @@ command:
     exit-status: 0
     stdout:
     - '1'
-     meta:
+    meta:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.9.62.3.3.4

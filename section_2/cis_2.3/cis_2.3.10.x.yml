@@ -11,6 +11,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.1
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -27,6 +28,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.5
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -45,6 +47,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.8
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -77,6 +80,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.9
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -93,6 +97,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.10
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -109,6 +114,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.12
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -125,13 +131,12 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.10.13
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-{{ end }}
-
 ## Level 2
 {{ if .Vars.win2019cis_level_2}}
 no_passwd_store:
@@ -145,9 +150,11 @@ no_passwd_store:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 2.3.10.4
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
     {{ end }}
+{{ end }}
 {{ end }}

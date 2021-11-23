@@ -69,6 +69,7 @@ else
 
 
 # get metadata
+$os_name="Windows_2019_server"
 $machine_uuid=(Get-CimInstance -Class Win32_ComputerSystemProduct).UUID
 $epoch=$AUDIT_TIME
 $os_locale=(Get-TimeZone).Id
@@ -99,7 +100,10 @@ else {
 
 # run audit
 
-$AUDIT_BIN -g $AUDIT_CONTENT_DIR/$AUDIT_FILE --vars $AUDIT_CONTENT_DIR/$AUDIT_VARS  --vars-inline $AUDIT_JSON_VARS v -f json -o pretty > $AUDIT_OUT
+
+$AUDIT_PARAMS = "-g $AUDIT_CONTENT_DIR/$AUDIT_FILE --vars $AUDIT_CONTENT_DIR/$AUDIT_VARS  --vars-inline $AUDIT_JSON_VARS v -f json -o pretty | Out-File $AUDIT_OUT"
+
+& $AUDIT_BIN $AUDIT_PARAMS
 
 if ( Select-String $BENCHMARK $AUDIT_OUT )
 { 

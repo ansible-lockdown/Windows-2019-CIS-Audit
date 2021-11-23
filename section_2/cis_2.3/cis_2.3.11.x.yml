@@ -11,6 +11,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.1
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -27,6 +28,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.2
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -43,6 +45,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.3
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -59,6 +62,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.4
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -75,6 +79,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.5
+      CISv8:
       - 3.11
       CISv8_IG1: false
       CISv8_IG2: true
@@ -91,6 +96,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.6
+      CISv8:
       - 5.6
       CISv8_IG1: false
       CISv8_IG2: true
@@ -107,6 +113,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.7
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -123,6 +130,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.8
+      CISv8:
       - 3.10
       CISv8_IG1: false
       CISv8_IG2: true
@@ -139,15 +147,16 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.9
+      CISv8:
       - 3.10
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_11_10 }}
-  NTLM_128bit_server:
-    title: 2.3.11.10 | L1 | Ensure 'Network security - Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption' | reg_check
-    exec:  {{ .Vars.ps_regcheck }} {get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Lsa/MSV1_0' -Name NTLMMinServerSec
+NTLM_128bit_server:
+  title: 2.3.11.10 | L1 | Ensure 'Network security - Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Lsa/MSV1_0' -Name NTLMMinServerSec
     exit-status: 0
     stdout:
     - '537395200'
@@ -155,6 +164,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.11.10
+      CISv8:
       - 3.10
       CISv8_IG1: false
       CISv8_IG2: true

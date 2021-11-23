@@ -62,6 +62,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.9.4
+      CISv8:
       - 5.6
       CISv8_IG1: false
       CISv8_IG2: true

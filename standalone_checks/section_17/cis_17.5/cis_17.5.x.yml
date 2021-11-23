@@ -7,7 +7,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Failure/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.1
@@ -24,7 +24,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Success/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.2
@@ -41,7 +41,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Success/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.3
@@ -58,7 +58,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Success and Failure/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.4
@@ -75,7 +75,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Success and Failure/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.5
@@ -92,7 +92,7 @@ command:
     exit-status: 0
     stdout:
     - '/.*Success/'
-     meta:
+    meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 17.5.6

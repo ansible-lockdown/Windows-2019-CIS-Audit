@@ -462,7 +462,7 @@ win2019cis_18_8_22_1_13: true
 # 18.8.25 Kerberos
 win2019cis_18_8_25_1: true
 # 18.8.26 Kernel DMA Protection
-18.8.26.1: true
+win2019cis_18_8_26_1: true
 # 18.8.27 Locale Services
 win2019cis_18_8_27_1: true
 # 18.8.28 Login
@@ -658,7 +658,7 @@ win2019cis_18_9_55_1: true
 # 18.9.62.1 RD Licensing (formerly TS Licensing)
 # 18.9.62.2 Remote Desktop Connection Client
 # 18.9.62.2.1 RemoteFX USB Device Redirection
-win2019cis_18.9.62.2.2: true
+win2019cis_18_9_62_2_2: true
 # 18.9.62.3.1 Application Compatibility
 # 18.9.62.3.2 Connections
 win2019cis_18_9_62_3_2_1: true

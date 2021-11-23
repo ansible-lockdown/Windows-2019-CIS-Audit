@@ -11,6 +11,7 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.3.10.2
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -26,6 +27,7 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.3.10.3
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -41,6 +43,7 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.3.10.7
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
@@ -56,6 +59,7 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.3.10.11
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
