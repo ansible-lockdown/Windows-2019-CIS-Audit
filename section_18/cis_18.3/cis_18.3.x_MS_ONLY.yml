@@ -1,0 +1,21 @@
+{{ if not .Vars.is_domain_controller }}  
+  {{ if .Vars.win2019cis_level_1 }}
+    {{ if .Vars.win2019cis_18_3_1 }}
+command:
+  UAC_restrict_local:
+    title: 18.3.1 | L1 | Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name LocalAccountTokenFilterPolicy
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.3.1
+      CISv8:
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

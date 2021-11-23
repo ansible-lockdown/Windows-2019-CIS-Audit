@@ -1,0 +1,71 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_8_21_2 }}
+  conf_reg_policy_processing:
+    title: 18.8.21.2 | L1 | Ensure 'Configure registry policy processing - Do not apply during periodic background processing' is set to 'Enabled - FALSE' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path "'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Group Policy/{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'" -Name NoBackgroundPolicy 
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.8.21.2
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_8_21_3 }}
+  conf_reg_policy_processing_gpo_not_changed:
+    title: 18.8.21.3 | L1 | Ensure 'Configure registry policy processing - Process even if the Group Policy objects have not changed' is set to 'Enabled - TRUE' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path "'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Group Policy/{35378EAC-683F-11D2-A89A-00C04FBBCFA2}'" -Name NoGPOListChanges 
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.8.21.3
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_8_21_4 }}
+  disable_cont_experiences:
+    title: 18.8.21.4 | L1 | Ensure 'Continue experiences on this device' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name NoGPOListChanges 
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.8.21.4
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_8_21_5 }}
+  disable_turn_off_background_GPO_refresh:
+    title: 18.8.21.5 | L1 | Ensure 'Turn off background refresh of Group Policy' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name DisableBkGndGroupPolicy
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.8.21.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

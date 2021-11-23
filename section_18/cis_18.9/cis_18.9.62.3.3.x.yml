@@ -1,0 +1,73 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_62_3_3_2 }}
+  disallow_drive_redirect_terminal_services:
+    title: 18.9.62.3.3.2 | L1 | Ensure 'Do not allow drive redirection' is set to 'Enabled's| reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Terminal Services' -Name fDisableCdm
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.62.3.3.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ if .Vars.win2019cis_level_2 }}
+  {{ if .Vars.win2019cis_18_9_62_3_3_1 }}
+  disallow_comport_redirect_terminal_services:
+    title: 18.9.62.3.3.1 | L2 | Ensure 'Do not allow COM port redirection' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name fDisableCcm
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.62.3.3.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_62_3_3_3 }}
+  disallow_lptport_redirect_terminal_services:
+    title: 18.9.62.3.3.3 | L2 | Ensure 'Do not allow LPT port redirection' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name fDisableLPT
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.62.3.3.3
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_62_3_3_4 }}
+  disallow_PnP_redirect_terminal_services:
+    title: 18.9.62.3.3.4 | L2 | Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name fDisablePNPRedir
+    exit-status: 0
+    stdout:
+    - '1'
+     meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.62.3.3.4
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}
+{{ end }}

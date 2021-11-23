@@ -1,0 +1,7 @@
+command:
+  is_reboot_required:
+    exec: {{ .Vars.reboot_check }}
+    exit-status: 0
+  gpresult_user_permissions:
+    exec: powershell.exe -command 'gpresult.exe /SCOPE computer /r /v'
+    exit-status: 0

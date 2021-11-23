@@ -1,0 +1,37 @@
+{{ if .Vars.is_domain_controller }} 
+  {{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_17_4_1 }}
+  audit_dir_serv_access:
+    title: 17.4.1 | L1 | Ensure 'Audit Directory Service Access' is set to include 'Failure' (DC only) 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Directory Service Access'
+    exit-status: 0
+    stdout:
+    - '/.*Failure/'
+    meta:
+      Domain_Controller: 1
+      CIS_ID: 17.4.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_4_2 }}
+  audit_dir_serv_changes:
+    title: 17.4.2 | L1 | Ensure 'Audit Directory Service Changes' is set to include 'Success' (DC only)
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Directory Service Changes'
+    exit-status: 0
+    stdout:
+    - '/.*Success/'
+    meta:
+      Domain_Controller: 1
+      CIS_ID: 17.4.2
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

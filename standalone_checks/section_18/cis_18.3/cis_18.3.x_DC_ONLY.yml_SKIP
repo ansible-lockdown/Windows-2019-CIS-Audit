@@ -1,0 +1,21 @@
+{{ if .Vars.is_domain_controller }}  
+  {{ if .Vars.win2019cis_level_1 }}
+    {{ if .Vars.win2019cis_18_3_5 }}
+command:
+  UAC_restrict_local:
+    title: 18.3.5 | L1 | Ensure 'Extended Protection for LDAP Authentication (Domain Controllers only)' is set to 'Enabled - Enabled, always (recommended)' (DC Only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/NTDS/Parameters' -Name LdapEnforceChannelBinding
+    exit-status: 0
+    stdout:
+    - '2'
+    meta:
+      Domain_Controller: 1
+      CIS_ID: 18.3.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_8_14_1 }}
+command:
+  boot_start_driver_initial_policy:
+    title: 18.8.14.1 | L1 | Ensure 'Boot-Start Driver Initialization Policy' is set to 'Enabled - Good, unknown and bad but critical' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Policies/EarlyLaunch' -Name DriverLoadPolicy 
+    exit-status: 0
+    stdout:
+    - '3'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.8.14.1
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

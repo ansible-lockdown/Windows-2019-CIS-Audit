@@ -1,0 +1,35 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_9_80_1_1 }}
+command:
+  disable_smartscreen_defender:
+    title: 18.9.80.1.1 | L1 | Ensure 'Configure Windows Defender SmartScreen' is set to 'Enabled - Warn and prevent bypass's| reg_check - smartscreen
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name EnableSmartScreen
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.80.1.1
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  disable_smartscreen_level_defender:
+    title: 18.9.80.1.1 | L1 | Ensure 'Configure Windows Defender SmartScreen' is set to 'Enabled - Warn and prevent bypass's| reg_check - smartscreenlevel
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name ShellSmartScreenLevel
+    exit-status: 0
+    stdout:
+    - 'Block'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.80.1.1
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

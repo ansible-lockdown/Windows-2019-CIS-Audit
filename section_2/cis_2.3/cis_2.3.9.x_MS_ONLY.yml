@@ -1,0 +1,21 @@
+{{ if not .Vars.is_domain_controller}}
+  {{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_2_3_9_5 }}
+  digi_sign__server:
+    title: 2.3.9.5 | L1 |  Ensure 'Microsoft network server - Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only) | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name SMBServerNameHardeningLevel
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.3.9.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,54 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_17_2_1 }}
+  audit_group_mgmt:
+    title: 17.2.1 | L1 | Ensure 'Audit Application Group Management' is set to 'Success and Failure'
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Application Group Management'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.2.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_2_5 }}
+  audit_sec_group_mgmt:
+    title: 17.2.5 | L1 | Ensure 'Audit Security Group Management' is set to include 'Success' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Security Group Management'
+    exit-status: 0
+    stdout:
+    - '/.*Success/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.2.5
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_2_6 }}
+  audit_user_acct_mgmt:
+    title: 17.2.6 | L1 | Ensure 'Audit User Account Management' is set to 'Success and Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'User Account Management'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.2.6
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

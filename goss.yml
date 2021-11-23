@@ -1,0 +1,98 @@
+gossfile:
+
+# Test if reboot requires
+  prereq_check/*.yml: {}
+
+# Section 1 Account and Password
+
+  {{ if .Vars.win2019cis_section_1 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_1/cis_1.1/*.yml: {}
+  standalone_checks/section_1/cis_1.2/*.yml: {}
+    {{ end}}
+    {{ if not .Vars.is_standalone }}
+  section_1/cis_1.1/*.yml: {}
+  section_1/cis_1.2/*.yml: {}
+    {{ end}}
+  {{ end }}
+
+# Section 2 Local Policies
+  {{ if .Vars.win2019cis_section_2 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_2/cis_2.2/*.yml: {}
+  standalone_checks/section_2/cis_2.3/*.yml: {}
+    {{ end }}
+    {{ if not .Vars.is_standalone }}
+  section_2/cis_2.2/*.yml: {}
+  section_2/cis_2.3/*.yml: {}
+    {{ end }}
+  {{ end }}
+
+# Section 9 - Firewalls
+  {{ if .Vars.win2019cis_section_9 }}
+# Domain Firewall
+    {{ if .Vars.win2019_use_domain_firewall }}
+      {{ if .Vars.is_standalone }}
+  standalone_checks/section_9/cis_9.1/*.yml: {}
+      {{ end }}
+      {{ if not .Vars.is_standalone }}
+  section_9/cis_9.1/*.yml: {}
+      {{ end }}
+    {{ end }}
+# Private Firewall
+    {{ if .Vars.win2019_use_private_firewall }}
+      {{ if .Vars.is_standalone }}
+  standalone_checks/section_9/cis_9.2/*.yml: {}
+      {{ end }}
+      {{ if not .Vars.is_standalone }}
+  section_9/cis_9.2/*.yml: {}
+      {{ end }}
+    {{ end }}
+# Public Firewall
+    {{ if .Vars.win2019_use_public_firewall }}
+      {{ if .Vars.is_standalone }}
+  standalone_checks/section_9/cis_9.3/*.yml: {}
+      {{ end }}
+      {{ if not .Vars.is_standalone }}
+  section_9/cis_9.3/*.yml: {}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+# Section 17
+  {{ if .Vars.win2019cis_section_17 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_17/cis_*/*.yml: {}
+    {{ end }}
+    {{ if not .Vars.is_standalone }}
+  section_17/cis_*/*.yml: {}
+    {{ end }}
+  {{ end }}
+# Section 18
+  {{ if .Vars.win2019cis_section_18 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_18/cis_*/*.yml: {}
+    {{ end }}
+    {{ if not .Vars.is_standalone }}
+  section_18/cis_*/*.yml: {}
+    {{ end }}
+  {{ end }}
+# Section 19
+  {{ if .Vars.win2019cis_section_19 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_19/cis_*/*.yml: {}
+    {{ end }}
+    {{ if not .Vars.is_standalone }}
+  section_19/cis_*/*.yml: {}
+    {{ end }}
+  {{ end }}
+command:
+  output_meta:
+    title: Benchmark MetaData
+    exec: echo BenchMark MetaData
+    exit-status: 0
+    {{ range .Vars.win2019cis_benchmark }}
+    meta:
+      benchmark_{{ . }}
+    {{ end }}
+      host_os: {{ .Vars.win2019_os_distribution }}

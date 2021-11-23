@@ -1,0 +1,73 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_17_6_1 }}
+  audit_detailed_file_share:
+    title: 17.6.1 | L1 | Ensure 'Audit Detailed File Share' is set to include 'Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Detailed File Share'
+    exit-status: 0
+    stdout:
+    - '/.*Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.6.1
+      CISv8:
+      - 3.3
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_6_2 }}
+  audit_file_share:
+    title: 17.6.2 | L1 | Ensure 'Audit File Share' is set to 'Success and Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern '^\s+File Share'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.6.2
+      CISv8:
+      - 3.3
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_6_3 }}
+  audit_other_obj_access:
+    title: 17.6.3 | L1 | Ensure 'Audit Other Object Access Events' is set to 'Success and Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Other Object Access Events'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.6.3
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_6_4 }}
+  audit_removable_storage:
+    title: 17.6.4 | L1 | Ensure 'Audit Removable Storage' is set to 'Success and Failure 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Removable Storage'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.6.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_1_2_2 }}
+  disable_allow_online_speech:
+    title: 18.1.2.2 | L1 | Ensure 'Allow users to enable online speech recognition services' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/InputPersonalization' -Name AllowInputPersonalization
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.1.2.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,0 +1,19 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_2_3_13_1 }}
+  disable_shutdown_without_logon:
+    title: 2.3.13.1 | L1 | Ensure 'Shutdown - Allow system to be shut down without having to log on' is set to 'Disabled's| reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name ShutdownWithoutLogon"
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.13.1
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

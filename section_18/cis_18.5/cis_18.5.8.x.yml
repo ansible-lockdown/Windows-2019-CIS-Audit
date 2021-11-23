@@ -1,0 +1,20 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_5_8_1 }}
+command:
+  disable_insecure_guest:
+    title: 18.5.8.1 | L1 | Ensure 'Enable insecure guest logons' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LanmanWorkStation' -Name AllowInsecureGuestAuth
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.5.8.1
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

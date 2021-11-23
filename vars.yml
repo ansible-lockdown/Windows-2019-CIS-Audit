@@ -1,0 +1,915 @@
+## Variables file
+## metadata for benchmark
+win2019cis_benchmark:
+- "type: CIS"
+- "version: '1.2'"
+- "os: Windows2019"
+#- "epoch: {{ ansible_date_time.epoch }}" # To be populated via wrapper script using inline vars
+#- "hostname: {{ ansible_hostname }}" # To be populated via wrapper script using inline vars
+# - "server_type: Standalone Server" # To be populated via wrapper script using inline vars
+
+
+# Please change if trying on different release
+win2019_os_distribution: Windows2019
+######################
+## Server Variables ##
+######################
+is_domain_controller: false
+is_standalone: true
+reboot_required: false
+win2019cis_use_iis: false
+exchange_server_group: false
+
+###################
+# Reference files #
+###################
+gpresult_file: 'c:\goss\gpresult.txt'
+auditresult_file: 'c:\goss\audit_pol.txt'
+secedit_file: 'c:\goss\secedit_conf.txt'
+#########
+## CIS ##
+#########
+
+##############
+# CIS Levels #
+##############
+win2019cis_level_1: true
+win2019cis_level_2: true
+win2019cis_NG: true # Note this needs UEFI and virtualication enabled systems - rollback is very manual
+
+################
+# Server Roles #
+################
+# If a Server uses the following set to true
+# certification Authority role
+win2019cis_cert_auth_role: false
+# WINS server Feature Installed
+win2019cis_WINS_server: false
+win2019_use_domain_firewall: false
+win2019_use_private_firewall: false
+win2019_use_public_firewall: false
+
+
+
+################
+# CIS Sections #
+################
+win2019cis_section_1: true
+win2019cis_section_2: true
+win2019cis_section_9: true
+win2019cis_section_17: true
+win2019cis_section_18: true
+win2019cis_section_19: true
+
+########################
+## Section_1_Controls ##
+########################
+# 1.1 Password Policy
+win2019cis_1_1_1: true
+win2019cis_1_1_2: true
+win2019cis_1_1_3: true
+win2019cis_1_1_4: true
+win2019cis_1_1_5: true
+win2019cis_1_1_6: true
+# 1.2 Account Lockout Policy
+win2019cis_1_2_1: true
+win2019cis_1_2_2: true
+win2019cis_1_2_3: true
+
+########################
+## Section_2_Controls ##
+########################
+# 2.2 User Rights Assignment
+win2019cis_2_2_1: true
+win2019cis_2_2_2: true # DC_ONLY
+win2019cis_2_2_3: true # MS_ONLY
+win2019cis_2_2_4: true
+win2019cis_2_2_5: true # DC_ONLY
+win2019cis_2_2_6: true 
+win2019cis_2_2_7: true # DC & MS separate controls (see Section_2_Vars)
+win2019cis_2_2_8: true # DC_ONLY
+win2019cis_2_2_9: true # MS_ONLY
+win2019cis_2_2_10: true
+win2019cis_2_2_11: true
+win2019cis_2_2_12: true
+win2019cis_2_2_13: true
+win2019cis_2_2_14: true
+win2019cis_2_2_15: true
+win2019cis_2_2_16: true
+win2019cis_2_2_17: true # DC ONLY
+win2019cis_2_2_18: true # MS ONLY
+win2019cis_2_2_19: true
+win2019cis_2_2_20: true # DC ONLY
+win2019cis_2_2_21: true
+win2019cis_2_2_22: true
+win2019cis_2_2_23: true
+win2019cis_2_2_24: true
+win2019cis_2_2_25: true # DC ONLY
+win2019cis_2_2_26: true # MS ONLY
+win2019cis_2_2_27: true # DC ONLY
+win2019cis_2_2_28: true # MS ONLY
+win2019cis_2_2_29: true
+win2019cis_2_2_30: true
+win2019cis_2_2_31: true # DC ONLY
+win2019cis_2_2_32: true # MS ONLY
+win2019cis_2_2_33: true
+win2019cis_2_2_34: true
+win2019cis_2_2_35: true
+win2019cis_2_2_36: true # DC ONLY
+win2019cis_2_2_37: true # DC ONLY
+win2019cis_2_2_38: true # MS ONLY
+win2019cis_2_2_39: true
+win2019cis_2_2_40: true
+win2019cis_2_2_41: true
+win2019cis_2_2_42: true
+win2019cis_2_2_43: true
+win2019cis_2_2_44: true
+win2019cis_2_2_45: true
+win2019cis_2_2_46: true
+win2019cis_2_2_47: true # DC ONLY
+win2019cis_2_2_48: true
+# 2.3.1 Accounts
+win2019cis_2_3_1_1: true # MS Only
+win2019cis_2_3_1_2: true 
+win2019cis_2_3_1_3: true # MS Only
+win2019cis_2_3_1_4: true
+win2019cis_2_3_1_5: true
+win2019cis_2_3_1_6: true
+#A 2.3.2 udit
+win2019cis_2_3_2_1: true
+win2019cis_2_3_2_2: true
+# 2.3.3 DCOM
+# 2.3.4 Devices
+win2019cis_2_3_4_1: true
+win2019cis_2_3_4_2: true
+# 2.3.5 Domain Controller
+win2019cis_2_3_5_1: true
+win2019cis_2_3_5_2: true
+win2019cis_2_3_5_3: true
+# 2.3.6 Domain Member
+win2019cis_2_3_6_1: true
+win2019cis_2_3_6_2: true
+win2019cis_2_3_6_3: true
+win2019cis_2_3_6_4: true
+win2019cis_2_3_6_5: true
+win2019cis_2_3_6_6: true
+# 2.3.7 Interactive Login
+win2019cis_2_3_7_1: true
+win2019cis_2_3_7_2: true
+win2019cis_2_3_7_3: true
+win2019cis_2_3_7_4: true
+win2019cis_2_3_7_5: true
+win2019cis_2_3_7_6: true  # MS Only
+win2019cis_2_3_7_7: true
+win2019cis_2_3_7_8: true  # MS Only
+win2019cis_2_3_7_9: true
+# 2.3.8 Microsoft network client SMB
+win2019cis_2_3_8_1: true
+win2019cis_2_3_8_2: true
+win2019cis_2_3_8_3: true
+# 2.3.9 Microsoft network server SMB
+win2019cis_2_3_9_1: true
+win2019cis_2_3_9_2: true
+win2019cis_2_3_9_3: true
+win2019cis_2_3_9_4: true
+win2019cis_2_3_9_5: true
+# 2.3.10 Network Access
+win2019cis_2_3_10_1: true
+win2019cis_2_3_10_2: true
+win2019cis_2_3_10_3: true
+win2019cis_2_3_10_4: true
+win2019cis_2_3_10_5: true
+win2019cis_2_3_10_6: true
+win2019cis_2_3_10_7: true
+win2019cis_2_3_10_8: true
+win2019cis_2_3_10_9: true
+win2019cis_2_3_10_10: true
+win2019cis_2_3_10_11: true
+win2019cis_2_3_10_12: true
+win2019cis_2_3_10_13: true
+# 2.3.11 Network Security
+win2019cis_2_3_11_1: true
+win2019cis_2_3_11_2: true
+win2019cis_2_3_11_3: true
+win2019cis_2_3_11_4: true
+win2019cis_2_3_11_5: true
+win2019cis_2_3_11_6: true
+win2019cis_2_3_11_7: true
+win2019cis_2_3_11_8: true
+win2019cis_2_3_11_9: true
+win2019cis_2_3_11_10: true
+# 2.2.12 Recovery Console
+# 2.3.13 Shutdown
+win2019cis_2_3_13_1: true
+#2.3.14 Cryptography
+# 2.3.15 System Objects
+win2019cis_2_3_15_1: true
+win2019cis_2_3_15_2: true
+# 2.3.16 System Settings
+# 2.3.17 User Account Control
+win2019cis_2_3_17_1: true
+win2019cis_2_3_17_2: true
+win2019cis_2_3_17_3: true
+win2019cis_2_3_17_4: true
+win2019cis_2_3_17_5: true
+win2019cis_2_3_17_6: true
+win2019cis_2_3_17_7: true
+win2019cis_2_3_17_8: true
+
+##################
+# Section_2_Vars #
+##################
+win2019cis_DC_access_from_network: Administrators Authenticated Users ENTERPRISE DOMAIN CONTROLLERS
+win2019cis_MS_access_from_network: Administrators Authenticated Users
+win2019cis_DC_allow_logon_local_users: Administrators
+win2019cis_MS_allow_logon_local_users: Administrators
+win2019cis_DC_allow_logon_RDP_users: Administrators
+win2019cis_MS_allow_logon_RDP_users: Administrators Remote Desktop Users
+win2019_admin_renamed_as: renamed_admin
+win2019_guest_renamed_as: renamed_guest
+win2019cis_logon_text: 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.'
+win2019cis_logon_title: 'DoD Notice and Consent Banner'
+
+########################
+## Section_9_Controls ##
+########################
+# 9.1 Domain Profile Firewall
+win2019cis_9_1_1: true
+win2019cis_9_1_2: true
+win2019cis_9_1_3: true
+win2019cis_9_1_4: true
+win2019cis_9_1_5: true
+win2019cis_9_1_6: true
+win2019cis_9_1_7: true
+win2019cis_9_1_8: true
+# 9.2 Private Profile Firewall
+win2019cis_9_2_1: true
+win2019cis_9_2_2: true
+win2019cis_9_2_3: true
+win2019cis_9_2_4: true
+win2019cis_9_2_5: true
+win2019cis_9_2_6: true
+win2019cis_9_2_7: true
+win2019cis_9_2_8: true
+# 9.3 Public Profile Firewall
+win2019cis_9_3_1: true
+win2019cis_9_3_2: true
+win2019cis_9_3_3: true
+win2019cis_9_3_4: true
+win2019cis_9_3_5: true
+win2019cis_9_3_6: true
+win2019cis_9_3_7: true
+win2019cis_9_3_8: true
+win2019cis_9_3_9: true
+win2019cis_9_3_10: true
+
+##################
+# Section_9_Vars #
+##################
+
+#########################
+## Section_17_Controls ##
+#########################
+# Advanced Audit Policy Configuration
+# 17.1 Account Logon
+win2019cis_17_1_1: true
+win2019cis_17_1_2: true
+win2019cis_17_1_3: true  # DC_Only
+# 17.2 Account Management
+win2019cis_17_2_1: true
+win2019cis_17_2_2: true  # DC_Only
+win2019cis_17_2_3: true  # DC_Only
+win2019cis_17_2_4: true  # DC_Only
+win2019cis_17_2_5: true
+win2019cis_17_2_6: true
+# 17.3 Detailed Tracking
+win2019cis_17_3_1: true
+win2019cis_17_3_2: true
+# 17.4 DS Access
+win2019cis_17_4_1: true  # DC Only
+win2019cis_17_4_2: true  # DC Only
+# 17.5 logon/off
+win2019cis_17_5_1: true
+win2019cis_17_5_2: true
+win2019cis_17_5_3: true
+win2019cis_17_5_4: true
+win2019cis_17_5_5: true
+win2019cis_17_5_6: true
+# 17.6 Object Access
+win2019cis_17_6_1: true
+win2019cis_17_6_2: true
+win2019cis_17_6_3: true
+win2019cis_17_6_4: true
+# 17.7 Policy Change
+win2019cis_17_7_1: true
+win2019cis_17_7_2: true
+win2019cis_17_7_3: true
+win2019cis_17_7_4: true
+win2019cis_17_7_5: true
+# 17.8 Privilege Use
+win2019cis_17_8_1: true
+# 17.9 System
+win2019cis_17_9_1: true
+win2019cis_17_9_2: true
+win2019cis_17_9_3: true
+win2019cis_17_9_4: true
+win2019cis_17_9_5: true
+
+###################
+# Section_17_Vars #
+###################
+
+#########################
+## Section_18_Controls ##
+#########################
+# 18 Administrative Templates
+# 18.1 Control Panel
+# 18.1.1 Personalization
+win2019cis_18_1_1_1: true
+win2019cis_18_1_1_2: true
+# 18.1.2 Regional and Language Options
+# 18.1.2.1 Handwriting Personalization
+win2019cis_18_1_2_2: true
+win2019cis_18_1_3: true
+# 18.2 LAPS - Needs LAPS installed per host
+win2019cis_18_2_1: true
+win2019cis_18_2_2: true
+win2019cis_18_2_3: true
+win2019cis_18_2_4: true
+win2019cis_18_2_5: true
+win2019cis_18_2_6: true
+# 18.3 MS Security 
+win2019cis_18_3_1: true
+win2019cis_18_3_2: true
+win2019cis_18_3_3: true
+win2019cis_18_3_4: true
+win2019cis_18_3_5: true
+win2019cis_18_3_6: true
+win2019cis_18_3_7: true
+# 18.4 MSS Legacy
+win2019cis_18_4_1: true
+win2019cis_18_4_2: true
+win2019cis_18_4_3: true
+win2019cis_18_4_4: true
+win2019cis_18_4_5: true
+win2019cis_18_4_6: true
+win2019cis_18_4_7: true
+win2019cis_18_4_8: true
+win2019cis_18_4_9: true
+win2019cis_18_4_10: true
+win2019cis_18_4_11: true
+win2019cis_18_4_12: true
+# 18.5 Network
+# 18.5.1 Background Intelligent Transfer
+# 18.5.2 Branch Cache
+# 18.5.3 DirectAccess Client Experience Settings
+# 18 5.4 DNS Client
+win2019cis_18_5_4_1: true
+# 18.5.5 Fonts
+win2019cis_18_5_5_1: true
+# 18.5.6 Hotspot Authentication
+# 18.5.7 lanwamn Server
+# 18.5.8 Lanman WorkStation
+win2019cis_18_5_8_1: true
+# 18.5.9 Link-Layer Topology Discovery
+win2019cis_18_5_9_1: true
+win2019cis_18_5_9_2: true
+# 18.5.10 Microsoft Peer-To-Peer Networking Services
+# 18.5.10.1 Peer Name Resolution Protocol
+win2019cis_18_5_10_2: true
+# 18.5.11 Network Connections
+# 18.5.11.1 Windows Defender Firewall (formally Windows Firewall)
+win2019cis_18_5_11_2: true
+win2019cis_18_5_11_3: true
+win2019cis_18_5_11_4: true
+# 18.5.12 Network Connectivity Status Indicator
+# 18.5.13 Network Isolation
+# 18.5.14 Network Provider
+win2019cis_18_5_14_1: true  # NOte Network Paths will need to ne configured for this to pass
+# 18.5.15 Offline Files
+# 18.5.16 QoS Packet Scheduler
+# 18.5.17 SNMP
+# 18.5.18 SSL Configuration Settings
+# 18.15.9 TCPIP Settings
+# 18.5.19.1 IPv6 Transitoin Technologies
+# 18.5.19.2 Paranters
+win2019cis_18_5_19_2_1: true
+# 18.5 20 Windows Connect Now
+win2019cis_18_5_20_1: true
+win2019cis_18_5_20_2: true
+# 18.5.21 Windows Connection Manager
+win2019cis_18_5_21_1: true
+win2019cis_18_5_21_2: true
+# 18.5.6 Printers
+# 18.7.Start Menu and Taskbar
+# 18.7.1 Notifications
+win2019cis_18_7_1_1: true
+# 18.8 System
+# 18.8.1 Access-Denied Assistance
+# 18.8.2 App-V
+# 18.8.3 Audit Process Creation
+win2019cis_18_8_3_1: true
+# 18.8.4 Credential Delegation
+win2019cis_18_8_4_1: true
+win2019cis_18_8_4_2: true
+# 18.8.5 Device Guard
+win2019cis_18_8_5_1: true
+win2019cis_18_8_5_2: true
+win2019cis_18_8_5_3: true
+win2019cis_18_8_5_4: true
+win2019cis_18_8_5_5: true
+win2019cis_18_8_5_6: true
+win2019cis_18_8_5_7: true
+# 18.8.6 Device Health Attenstation Servic
+# 18.8.7 Device Installation
+# 18.8.8 Device Redirection
+# 18.8.9 Disk NV Cache
+# 18.8.10 Disk Quotas
+# 18.8.11 Display
+# 18.8.12 Distributed COM
+# 18.8.13 Driver Installation
+# 18.8.14 Early Launch AntiMalware
+win2019cis_18_8_14_1: true
+# 18.8.15 Enhanced Storage Access
+# 18.8.16 DFile Classification Infrastructure
+# 18.7.17 File Share Shadow Copy Agent
+# 18.8.18 File Share Shadow Copy Provider
+# 18.8.19 FileSystems (Formerly NTFS FileSystem)
+# 18.8.20 Folder Redirecion
+# 18.8.21 Group Policy
+# 18.8.21.1 Logging and Tracing
+win2019cis_18_8_21_2: true
+win2019cis_18_8_21_3: true
+win2019cis_18_8_21_4: true
+win2019cis_18_8_21_5: true
+# 18.8.22 Internet Communication Managemnet
+# 18.8.22.1 Internet Communication Settings
+win2019cis_18_8_22_1_1: true
+win2019cis_18_8_22_1_2: true
+win2019cis_18_8_22_1_3: true
+win2019cis_18_8_22_1_4: true
+win2019cis_18_8_22_1_5: true
+win2019cis_18_8_22_1_6: true
+win2019cis_18_8_22_1_7: true
+win2019cis_18_8_22_1_8: true
+win2019cis_18_8_22_1_9: true
+win2019cis_18_8_22_1_10: true
+win2019cis_18_8_22_1_11: true
+win2019cis_18_8_22_1_12: true
+win2019cis_18_8_22_1_13: true
+# 18.8.23 iSCSI
+# 18.8.24 KDC
+# 18.8.25 Kerberos
+win2019cis_18_8_25_1: true
+# 18.8.26 Kernel DMA Protection
+18.8.26.1: true
+# 18.8.27 Locale Services
+win2019cis_18_8_27_1: true
+# 18.8.28 Login
+win2019cis_18_8_28_1: true
+win2019cis_18_8_28_2: true
+win2019cis_18_8_28_3: true
+win2019cis_18_8_28_4: true
+win2019cis_18_8_28_5: true
+win2019cis_18_8_28_6: true
+win2019cis_18_8_28_7: true
+# 18.8.29 Mitigation Options
+# 18.8.30 Net Logon
+# 18.8.31 OS Policies
+win2019cis_18_8_31_1: true
+win2019cis_18_8_31_2: true
+# 18.8.32 Performance Control Panel
+# 18.8.33 PIN Complexity
+# 18.8.34 Power Management
+# 18.8.34.1 Button Settings
+# 18.8.34.2 Energy Saver Settings
+# 18.8.34.3 Hard Disk Settings
+# 18.8.34.4 Notification Settings
+# 18.8.34.5 Power Throttling Settings
+# 18.8.34.6 Sleep Settings
+win2019cis_18_8_34_6_1: true
+win2019cis_18_8_34_6_2: true
+win2019cis_18_8_34_6_3: true
+win2019cis_18_8_34_6_4: true
+# 18.8.35 Recovery
+# 18.8.36 Remote Assistance
+win2019cis_18_8_36_1: true
+win2019cis_18_8_36_2: true
+# 18.8.37 Remote Procedure Call
+win2019cis_18_8_37_1: true
+win2019cis_18_8_37_2: true
+# 18.8.38 Removable Storage Access
+# 18.8.39 Scripts
+# 18.8.40 Server Manager
+# 18.8.41 Service Control Manager Settings
+# 18.8.42 Shutdown
+# 18.8.43 Shutdown Options
+# 18.8.44 Storage Health
+# 18.8.45 Storage Sense
+# 18.8.46 System Restore
+# 18.8.47 Troubleshooting and Diagnostics
+# 18.8.47.1 Application Compatibility Diagnostics
+# 18.8.47.2 Corrupted File Recovery
+# 18.8.47.3 Disk Diagnostic
+# 18.8.47.4 Fault Tolerant Heap
+# 18.8.47.5 Microsoft Support Diagnostic Tool
+win2019cis_18_8_47_5_1: true
+# 18.8.47.6 MSI Corrupted File Recovery
+# 18.8.47.7 Scheduled Maintenance
+# 18.8.47.8 Scripted Diagnostics
+# 18.8.47.9 Windows Boot Performance Diagnostics
+# 18.8.47.10 Windows Memory Leak Diagnosis
+# 18.8.47.11 Windows Performance PerfTrack
+win2019cis_18_8_47_11_1: true
+# 18.8.48 Trusted Platform Module Services
+# 18.8.49 User Profiles
+win2019cis_18_8_49_1: true
+# 18.8.50 Windows File Protection
+# 18.8.51 Windows HotStart
+# 18.8.52 Windows Time Service
+# 18.8.52.1 Time Providers
+win2019cis_18_8_52_1_1: true
+win2019cis_18_8_52_1_2: true
+# 18.9 Windows Components
+# 18.9.1 Active Directory Federation Services
+# 18.9.2 ActiveX Installer Service
+# 18.9.3 Add features to Windows 8 / 8.1 / 10 (formerly Windows Anytime Upgrade)
+# 18.9.4 App Package Deployment
+win2019cis_18_9_4_1: true
+# 18.9.5 App Privacy
+# 18.9.6 App runtime
+win2019cis_18_9_6_1: true
+# 18.9.7 Application Compatibility
+# 18.9.8 AutoPlay Policies
+win2019cis_18_9_8_1: true
+win2019cis_18_9_8_2: true
+win2019cis_18_9_8_3: true
+# 18.9.9 Backup
+# 18.9.10 Biometrics
+# 18.9.10.1 Facial Features
+win2019cis_18_9_10_1_1: true
+# 18.9.11 BitLocker Drive Encryption
+# 18.9.12 Camera
+win2019cis_18_9_12_1: true
+# 18.9.13 Cloud Content
+win2019cis_18_9_13_1: true
+win2019cis_18_9_13_2: true
+# 18.9.14 Connect
+win2019cis_18_9_14_1: true
+# 18.9.15 Credential User Interface
+win2019cis_18_9_15_1: true
+win2019cis_18_9_15_2: true
+# 18.9.16 Data Collection and Preview Builds
+win2019cis_18_9_16_1: true
+win2019cis_18_9_16_2: true
+win2019cis_18_9_16_3: true
+win2019cis_18_9_16_4: true
+# 18.9.17 Delivery Optimization
+# 18.9.18 Desktop Gadgets
+# 18.9.19 Desktop Window Manager
+# 18.9.20 Device and Driver Compatibility
+# 18.9.21 Device Registration (formerly Workplace Join)
+# 18.9.22 Digital Locker
+# 18.9.23 Edge UI
+# 18.9.24 EMET
+# 18.9.25 Event Forwarding
+# 18.9.26 Event Log Service
+# 18.9.26.1 Application
+win2019cis_18_9_26_1_1: true
+win2019cis_18_9_26_1_2: true
+# 18.9.26.2 Security
+win2019cis_18_9_26_2_1: true
+win2019cis_18_9_26_2_2: true
+# 18.9.26.3 Setup
+win2019cis_18_9_26_3_1: true
+win2019cis_18_9_26_3_2: true
+# 18.9.26.4 System
+win2019cis_18_9_26_4_1: true
+win2019cis_18_9_26_4_2: true
+# 18.9.27 Event Logging
+# 18.9.28 Event Viewer
+# 18.9.29 Family Safety (formerly Parental Controls)
+# 18.9.30 File Explorer (formerly Windows Explorer)
+# 18.9.30.1 Previous Versions
+win2019cis_18_9_30_2: true
+win2019cis_18_9_30_3: true
+win2019cis_18_9_30_4: true
+# 18.9.31 File History
+# 18.9.32 Find My Device
+# 18.9.33 Game Explorer
+# 18.9.34 Handwriting
+# 18.9.35 HomeGroup
+# 18.9.36 Import Video
+# 18.9.37 Internet Explorer
+# 18.9.38 Internet Information Services
+# 18.9.39 Location and Sensors
+win2019cis_18_9_39_1: true
+# 18.9.40 Maintenance Scheduler
+# 18.9.41 Maps
+# 18.9.42 MDM
+# 18.9.43 Messaging
+win2019cis_18_9_43_1: true
+# 18.9.44 Microsoft account
+win2019cis_18_9_44_1: true
+# 18.9.45.3 MAPS
+win2019cis_18_9_45_3_1: true
+win2019cis_18_9_45_3_2: true
+# 18.9.45.4.1.x Attack Surface Reduction
+win2019cis_18_9_45_4_1_1: true
+win2019cis_18_9_45_4_1_2: true
+# 18.9.45.4.3.x Network Protection
+win2019cis_18_9_45_4_3_1: true
+# 18.9.45.5 MpEngine
+win2019cis_18_9_45_5_1: true
+# 18.9.45.8 Real-time Protection
+win2019cis_18_9_45_8_1: true
+win2019cis_18_9_45_8_2: true
+win2019cis_18_9_45_8_3: true
+# 18.9.45.9 Remediation
+# 18.9.45.10 Reporting
+win2019cis_18_9_45_10_1: true
+# 18.9.45.11 Scan
+win2019cis_18_9_45_11_1: true
+win2019cis_18_9_45_11_2: true
+# 18.9.45.12 Security Intelligence Updates (formerly Signature Updates)
+# 18.9.45.13 Threats
+win2019cis_18_9_45_14: true
+win2019cis_18_9_45_15: true
+# 18.9.46 Microsoft Defender Application Guard (formerly Windows Defender Application Guard)
+# 18.9.47 Microsoft Defender Exploit Guard (formerly Windows Defender Exploit Guard)
+# 18.9.48 Microsoft Edge
+# 18.9.49 Microsoft FIDO Authentication
+# 18.9.50 Microsoft Secondary Authentication Factor
+# 18.9.51 Microsoft User Experience Virtualization
+# 18.9.52 NetMeeting
+
+# 18.9.53 Network Access Protection
+# 18.9.54 Network Projector
+# 18.9.55 OneDrive (formerly SkyDrive)
+win2019cis_18_9_55_1: true
+# 18.9.56 Online Assistance
+# 18.9.57 OOBE
+# 18.9.58 Password Synchronization
+# 18.9.59 Portable Operating System
+# 18.9.60 Presentation Settings
+# 18.9.61 Push To Install
+
+# 18.9.62 Remote Desktop Services (formerly Terminal Services)
+# 18.9.62.1 RD Licensing (formerly TS Licensing)
+# 18.9.62.2 Remote Desktop Connection Client
+# 18.9.62.2.1 RemoteFX USB Device Redirection
+win2019cis_18.9.62.2.2: true
+# 18.9.62.3.1 Application Compatibility
+# 18.9.62.3.2 Connections
+win2019cis_18_9_62_3_2_1: true
+# 18.9.62.3.3 Device and Resource Redirection
+win2019cis_18_9_62_3_3_1: true
+win2019cis_18_9_62_3_3_2: true
+win2019cis_18_9_62_3_3_3: true
+win2019cis_18_9_62_3_3_4: true
+# 18.9.62.3.4 Licensing
+# 18.9.62.3.5 Printer Redirection
+# 18.9.62.3.6 Profiles
+# 18.9.62.3.7 RD Connection Broker (formerly TS Connection Broker)
+# 18.9.62.3.8 Remote Session Environment
+# 18.9.62.3.9 Security
+win2019cis_18_9_62_3_9_1: true
+win2019cis_18_9_62_3_9_2: true
+win2019cis_18_9_62_3_9_3: true
+win2019cis_18_9_62_3_9_4: true
+win2019cis_18_9_62_3_9_5: true
+# 18.9.62.3.10 Session Time Limits
+win2019cis_18_9_62_3_10_1: true
+win2019cis_18_9_62_3_10_2: true
+# 18.9.62.3.11 Temporary folders
+win2019cis_18_9_62_3_11_1: true
+win2019cis_18_9_62_3_11_2: true
+# 18.9.63 RSS Feeds
+win2019cis_18_9_63_1: true
+# 18.9.64 Search
+# 18.9.64.1 OCR
+win2019cis_18_9_64_2: true
+win2019cis_18_9_64_3: true
+# 18.9.65 Security Center
+# 18.9.66 Server for NIS
+# 18.9.67 Shutdown options
+# 18.9.68 Smart card
+# 18.9.69 Software Protection Platform
+win2019cis_18_9_69_1: true
+# 18.9.70 Sound Recorder
+# 18.9.71 Speech
+# 18.9.72 Store
+# 18.9.73 Sync your settings
+# 18.9.74 Tablet PC
+# 18.9.75 Task Scheduler
+# 18.9.76 Text Input
+# 18.9.77 Windows Calendar
+# 18.9.78 Windows Color System
+# 18.9.79 Windows Customer Experience Improvement Program
+# 18.9.80 Windows Defender SmartScreen
+win2019cis_18_9_80_1_1: true
+# 18.9.81 Windows Error Reporting
+# 18.9.82 Windows Game Recording and Broadcasting
+# 18.9.83 Windows Hello for Business (formerly Microsoft Passport for Work)
+# 18.9.84 Windows Ink Workspace
+win2019cis_18_9_84_1: true
+win2019cis_18_9_84_2: true
+# 18.9.85 Windows Installer
+win2019cis_18_9_85_1: true
+win2019cis_18_9_85_2: true
+win2019cis_18_9_85_3: true
+# 18.9.86 Windows Logon Options
+win2019cis_18_9_86_1: true
+# 18.9.87 Windows Mail
+# 18.9.88 Windows Media Center
+# 18.9.89 Windows Media Digital Rights Management
+# 18.9.90 Windows Media Player
+# 18.9.91 Windows Meeting Space
+# 18.9.92 Windows Messenger
+# 18.9.93 Windows Mobility Center
+# 18.9.94 Windows Movie Maker
+# 18.9.95 Windows PowerShell
+win2019cis_18_9_95_1: true
+win2019cis_18_9_95_2: true
+# 18.9.96 Windows Reliability Analysis
+# 18.9.97 Windows Remote Management (WinRM)
+# 18.9.97.1 WinRM Client
+win2019cis_18_9_97_1_1: true
+win2019cis_18_9_97_1_2: true
+win2019cis_18_9_97_1_3: true
+# 18.9.97.2 WinRM Service
+win2019cis_18_9_97_2_1: true
+win2019cis_18_9_97_2_2: true
+win2019cis_18_9_97_2_3: true
+win2019cis_18_9_97_2_4: true
+# 18.9.98 Windows Remote Shell
+win2019cis_18_9_98_1: true
+# 18.9.99 Windows Security (formerly Windows Defender Security Center)
+# 18.9.99.1 Account protection
+# 18.9.99.2 App and browser protection
+win2019cis_18_9_99_2_1: true
+# 18.9.100 Windows SideShow
+# 18.9.101 Windows System Resource Manager
+# 18.9.102 Windows Update
+# 18.9.102.1 Windows Update for Business (formerly Defer Windows Updates)
+win2019cis_18_9_102_1_1: true
+win2019cis_18_9_102_1_2: true
+win2019cis_18_9_102_1_3: true
+win2019cis_18_9_102_2: true
+win2019cis_18_9_102_3: true
+win2019cis_18_9_102_4: true
+
+###################
+# Section_18_Vars #
+###################
+win2019_eventlog_app_max_size: 65538
+win2019_eventlog_sec_max_size: 196608
+win2019_eventlog_setup_max_size: 32768
+win2019_eventlog_sys_max_size: 65538
+win2019cis_autoupdate_enabled: '0'
+win2019cis_autoupdate_option: '0'  # 2 - Notify for download and auto install # 3 -Auto download and notify for instal # 4 - Auto download and schedule the install
+win2019cis_autoupdate_day: 0 # 0 - everyday
+
+##############
+# Section_19 #
+##############
+# 19 Administrative Templates (User)
+# 19.1 Control Panel
+# 19.1.1 Add or Remove Programs
+# 19.1.2 Display
+# 19.1.3 Personalization (formerly Desktop Themes)
+win2019cis_19_1_3_1: true
+win2019cis_19_1_3_2: true
+win2019cis_19_1_3_3: true
+win2019cis_19_1_3_4: true
+# 19.2 Desktop
+# 19.3 Network
+# 19.4 Shared Folders
+# 19.5 Start Menu and Taskbar
+# 19.5.1 Notifications
+win2019cis_19_5_1_1: true
+# 19.6 System
+# 19.6.1 Ctrl+Alt+Del Options
+# 19.6.2 Display
+# 19.6.3 Driver Installation
+# 19.6.4 Folder Redirection
+# 19.6.5 Group Policy
+# 19.6.6 Internet Communication Management
+# 19.6.6.1 Internet Communication settings
+win2019cis_19_6_6_1_1: true
+# 19.7 Windows Components
+# 19.7.1 Add features to Windows 8 / 8.1 / 10 (formerly Windows Anytime Upgrade)
+# 19.7.2 App runtime
+# 19.7.3 Application Compatibility
+# 19.7.4 Attachment Manager
+win2019cis_19_7_4_1: true
+win2019cis_19_7_4_2: true
+# 19.7.5 AutoPlay Policies
+# 19.7.6 Backup
+# 19.7.7 Calculator
+# 19.7.8 Cloud Content
+win2019cis_19_7_8_1: true
+win2019cis_19_7_8_2: true
+win2019cis_19_7_8_3: true
+win2019cis_19_7_8_4: true
+# 19.7.9 Credential User Interface
+# 19.7.10 Data Collection and Preview Builds
+# 19.7.11 Desktop Gadgets
+# 19.7.12 Desktop Window Manager
+# 19.7.13 Digital Locker
+# 19.7.14 Edge UI
+# 19.7.15 File Explorer (formerly Windows Explorer)
+# 19.7.16 File Revocation
+# 19.7.17 IME
+# 19.7.18 Import Video
+# 19.7.19 Instant Search
+# 19.7.20 Internet Explorer
+# 19.7.21 Location and Sensors
+# 19.7.22 Microsoft Edge
+# 19.7.23 Microsoft Management Console
+# 19.7.24 Microsoft User Experience Virtualization
+# 19.7.25 Multitasking
+# 19.7.26 Netmeeting
+# 19.7.27 Network Projector
+# 19.7.28 Network Sharing
+win2019cis_19_7_28_1: true
+# 19.7.29 OOBE
+# 19.7.30 Presentation Settings
+# 19.7.31 Remote Desktop Services (formerly Terminal Services)
+# 19.7.32 RSS Feeds
+# 19.7.33 Search
+# 19.7.34 Sound Recorder
+# 19.7.35 Store
+# 19.7.36 Tablet PC
+# 19.7.37 Task Scheduler
+# 19.7.38 Windows Calendar
+# 19.7.39 Windows Color System
+# 19.7.40 Windows Defender SmartScreen
+# 19.7.41 Windows Error Reporting
+# 19.7.42 Windows Hello for Business (formerly Microsoft Passport for Work)
+# 19.7.43 Windows Installer
+win2019cis_19_7_43_1: true
+# 19.7.44 Windows Logon Options
+# 19.7.45 Windows Mail
+# 19.7.46 Windows Media Center
+# 19.7.47 Windows Media Player
+# 19.7.47.1 Networking
+# 19.7.47.2 Playback
+win2019cis_19_7_47_2_1: true
+
+
+###################
+# Section_19_Vars #
+###################
+win2019cis_screensaver_file: scrnsave.scr
+win2019cis_screensaver_timeout: '900'
+##############################
+## Global command Variables ##
+##############################
+# powershell commands
+reboot_check: 'powershell -c (./scripts/pending_reboot.ps1 localhost).IsPendingReboot'
+ps_regcheck: 'powershell -noprofile -noninteractive -command'
+gpo_regex_script: 'powershell ./scripts/gpo_regex.ps1'
+standalone_script: 'powershell ./scripts/standalone.ps1'
+audit_ps_cmd: Select-String -Path
+# Registry_paths
+# CurrentControlSet/Lsa
+
+# Get Parameter
+HKLM_CCS_LANWORK: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LanmanWorkStation/Parameters'
+HKLM_CCS_LANSERVER: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LanmanServer/Parameters'
+HKLM_CCS_LDAP: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LDAP/'
+HKLM_CCS_LSA: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Lsa/'
+HKLM_CCS_NETLOGON: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Netlogon/Parameters'
+HKLM_CV_SYSTEM: get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/'
+HKLM_KERB: get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/Kerberos/Parameters'
+HKLM_NT_WINLOGON: get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Winlogon'
+HKLM_WIN_PERSON: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Personalization'
+HKLM_MS_SVCS: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd'
+HKLM_TCPIP4: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Tcpip/Parameters'
+HKLM_TCPIP6: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Tcpip6/Parameters'
+HKLM_DEV_GUARD: get-ItempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DeviceGuard'
+HKLM_WIN_SYSTEM: get-ItempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System'
+HKLM_EXPLORER: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Explorer'
+HKLM_CV_EXPLORER: get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/Explorer'
+HKLM_TERM_SVCS: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Terminal Services'
+HKLM_WINRM_CLT: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WinRM/Client'
+HKLM_WINRM_SVC: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WinRM/Service'
+HKLM_WIN_UPDATE: get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WindowsUpdate'
+HKCU_CP_PERSONAL: get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/Personalization/'
+HKCU_CP_DESKTOP: get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/Control Panel/Desktop'
+HKLM_POL_FW_DOM: get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/DomainProfile'
+HKLM_POL_FW_PRV: get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PrivateProfile'
+HKLM_POL_FW_PUB: get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PublicProfile'
+# Known Security identified names 
+## https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/security-identifiers-in-windows
+everyone_sid: '*S-1-1-0'
+auth_users_sid: '*S-1-5-11'
+local_svc_sid: '*S-1-5-19'
+local_net_sid: '*S-1-5-20'
+admin_sid: '*S-1-5-32-544'
+user_sid: '*S-1-5-32-545'
+guest_sid: '*S-1-5-32-546'
+backup_sid: '*S-1-5-32-551'
+remote_desktop_sid: '*S-1-5-32-555'
+nt_svc_sid: '*S-1-5-80-'

@@ -1,0 +1,153 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_2_3_10_1 }}
+  disable_anon_sid_name:
+    title: 2.3.10.1 | L1 | Ensure 'Network access - Allow anonymous SID/Name translation' is set to 'Disabled' | 
+    exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }}  LSAAnonymousNameLookup
+    exit-status: 0
+    stdout:
+    - 'LSAAnonymousNameLookup = 0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.1
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_5 }}
+  disable_everyone_inc_anon:
+    title: 2.3.10.5 | L1 | Ensure 'Network access - Let Everyone permissions apply to anonymous users' is set to 'Disabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name EveryoneIncludesAnonymous
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.5
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_8 }}
+  remote_access_reg_paths:
+    title: 2.3.10.8 | L1 | Configure 'Network access - Remotely accessible registry paths' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/SecurePipeServers/winreg/AllowedExactPaths' -Name Machine
+    exit-status: 0
+    stdout:
+    - 'System\CurrentControlSet\Control\ProductOptions'
+    - 'System\CurrentControlSet\Control\Server Applications'
+    - 'Software\Microsoft\Windows NT\CurrentVersion'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.8
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_9 }}
+  remote_access_reg_paths_subpaths:
+    title: 2.3.10.9 | L1 |  Configure 'Network access - Remotely accessible registry paths and sub-paths' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/SecurePipeServers/winreg/AllowedPaths' -Name Machine
+    exit-status: 0
+    stdout:
+    - 'System\CurrentControlSet\Control\Print\Printers'
+    - 'System\CurrentControlSet\Services\Eventlog'
+    - 'Software\Microsoft\OLAP Server' 
+    - 'Software\Microsoft\Windows NT\CurrentVersion\Print'
+    - 'Software\Microsoft\Windows NT\CurrentVersion\Windows' 
+    - 'System\CurrentControlSet\Control\ContentIndex'
+    - 'System\CurrentControlSet\Control\Terminal Server' 
+    - 'System\CurrentControlSet\Control\Terminal Server\UserConfig'
+    - 'System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration'
+    - 'Software\Microsoft\Windows NT\CurrentVersion\Perflib'
+    - 'System\CurrentControlSet\Services\SysmonLog'
+    {{ if .Vars.win2019cis_cert_auth_role }}
+    - 'System\CurrentControlSet\Services\CertSvc'
+    {{ end }}
+    {{ if .Vars.win2019cis_WINS_server }}
+    - 'System\CurrentControlSet\Services\WINS'
+    {{ end }}
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.9
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_10 }}
+  restrict_anon_names_pipes:
+    title: 2.3.10.10 | L1 | Ensure 'Network access - Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name RestrictNullSessAccess
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.10
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_12 }}
+  anon_share_access_none:
+    title: 2.3.10.12 | L1 | Ensure 'Network access - Shares that can be accessed anonymously' is set to 'None' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name NullSessionShares
+    exit-status: 0
+    stdout:
+    - '/\s*/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.12
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_13 }}
+  classic_local_users:
+    title: 2.3.10.13 | L1 | Ensure 'Network access - Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name ForceGuest
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.10.13
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}
+
+## Level 2
+{{ if .Vars.win2019cis_level_2}}
+no_passwd_store:
+    {{ if .Vars.win2019cis_2_3_10_4 }}
+    title: 2.3.10.4 | L2 | Ensure 'Network access - Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name DisableDomainCreds
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 2.3.10.4
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+{{ end }}

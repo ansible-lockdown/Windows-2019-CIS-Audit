@@ -1,0 +1,118 @@
+{{ if not .Vars.is_domain_controller }}  
+  {{ if .Vars.win2019cis_level_1 }}
+file:
+  {{ if .Vars.win2019cis_18_2_1 }}
+  C:\Program Files\LAPS\CSE\AdmPwd.dll:
+  
+    title: 18.2.1 | L1 | Ensure LAPS AdmPwd GPO Extension / CSE is installed (MS only)  Check_file_exists
+    exists: true
+    filetype: file
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.1
+      CISv8:
+      - 5.2
+      - 5.6
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+command:
+  LAPS_AdmPwd_GPO:
+    title: 18.2.1 | L1 | Ensure LAPS AdmPwd GPO Extension / CSE is installed (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Winlogon/GPExtensions/{D76B9641-3288-4f75-942D-087DE603E3EA}' -Name DllName
+    exit-status: 0
+    stdout:
+    - 'C:\Program Files\LAPS\CSE\AdmPwd.dll'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.1
+      CISv8:
+      - 5.2
+      - 5.6
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_2_2 }}
+  dont_allow_pwd_expire_longer:
+    title: 18.2.2 | L1 | Ensure 'Do not allow password expiration time longer than required by policy' is set to 'Enabled' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd' -Name PwdExpirationProtectionEnabled
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.2
+      CISv8:
+      - 5.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_2_3 }}
+  enable_lap_mgmt:
+    title: 18.2.3 | L1 | Ensure 'Enable Local Admin Password Management' is set to 'Enabled' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd' -Name AdmPwdEnabled
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.3
+      CISv8:
+      - 5.2
+      - 5.6
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_2_4 }}
+  enable_lap_complex:
+    title: 18.2.4 | L1 | Ensure 'Password Settings - Password Complexity' is set to 'Enabled - Large letters + small letters + numbers + special characters' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd' -Name PasswordComplexity
+    exit-status: 0
+    stdout:
+    - '4'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.4
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_2_5 }}
+  enable_lap_length:
+    title: 18.2.5 | L1 | Ensure 'Password Settings - Password Length' is set to 'Enabled - 15 or more' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd' -Name PasswordLength
+    exit-status: 0
+    stdout:
+    - '/\b(1[5-9]|[2-6][0-9])\b/'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.5
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_2_6 }}
+  enable_lap_age:
+    title: 18.2.6 | L1 | Ensure 'Password Settings- Password Age (Days)' is set to 'Enabled- 30 or fewer' (MS only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft Services/AdmPwd' -Name PasswordLength
+    exit-status: 0
+    stdout:
+    - '/^\b([1-9]|[1-2][0-9]|30)\b/'
+    meta:
+      Member_Server: 1
+      CIS_ID: 18.2.6
+      CISv8:
+      - 5.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ end }}
+{{ end }}

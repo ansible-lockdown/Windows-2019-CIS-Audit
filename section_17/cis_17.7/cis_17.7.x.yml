@@ -1,0 +1,88 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_17_7_1 }}
+  audit_audit_policy_change:
+    title: 17.7.1 | L1 | Ensure 'Audit Audit Policy Change' is set to include 'Success' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Audit Policy Change'
+    exit-status: 0
+    stdout:
+    - '/.*Success/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.7.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_7_2 }}
+  audit_auth_pol_change:
+    title: 17.7.2 | L1 | Ensure 'Audit Authentication Policy Change' is set to include 'Success' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Authentication Policy Change'
+    exit-status: 0
+    stdout:
+    - '/.*Success/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.7.2
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_7_3 }}
+  audit_auth_pol_change:
+    title: 17.7.3 | L1 | Ensure 'Audit Authorization Policy Change' is set to include 'Success' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Authorization Policy Change'
+    exit-status: 0
+    stdout:
+    - '/.*Success/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.7.3
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_7_4 }}
+  audit_MPSSVC_rule_change:
+    title: 17.7.4 | L1 |  Ensure 'Audit MPSSVC Rule-Level Policy Change' is set to 'Success and Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'MPSSVC Rule-Level Policy Change'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.7.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_17_7_5 }}
+  audit_other_policy_change:
+    title: 17.7.5 | L1 | Ensure 'Audit Other Policy Change Events' is set to include 'Failure'  
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Other Policy Change Events'
+    exit-status: 0
+    stdout:
+    - '/.*Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.7.5
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

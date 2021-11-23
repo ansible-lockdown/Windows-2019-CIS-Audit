@@ -1,0 +1,65 @@
+{{ if not .Vars.is_domain_controller }}
+  {{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_2_3_10_2 }}
+  no_enum_anon_sam:
+    title: 2.3.10.2 | L1 | Ensure 'Network access - Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only) | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name restrictanonymoussam
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.3.10.2
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_3 }}
+  no_anon_enum:
+    title: 2.3.10.3 | L1 | Ensure 'Network access - Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only) | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name restrictanonymous
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.3.10.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_7 }}
+  named_pipes_anon:
+    title: 2.3.10.7 | L1 | Configure 'Network access - Named Pipes that can be accessed anonymously' (MS only) | reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name NullSessionPipes
+    exit-status: 0
+    stdout:
+    - '/\s*/'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.3.10.7
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_10_11 }}
+  restrict_client_remote_SAM:
+    title: 2.3.10.11 | L1 | Ensure 'Network access - Restrict clients allowed to make remote calls to SAM' is set to 'Administrators - Remote access - Allow' (MS Only)| reg_check
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name restrictremotesam
+    exit-status: 0
+    stdout:
+    - 'O:BAG:BAD:(A;;RC;;;BA)'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.3.10.11
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+ {{ end }}
+{{ end }}

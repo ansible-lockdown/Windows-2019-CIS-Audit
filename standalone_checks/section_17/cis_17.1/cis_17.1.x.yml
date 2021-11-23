@@ -1,0 +1,20 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_17_1_1 }}
+  audit_cred_valuation:
+    title: 17.1.1 | L1 | Ensure 'Audit Credential Validation' is set to 'Success and Failure' 
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Credential Validation'
+    exit-status: 0
+    stdout:
+    - '/.*Success and Failure/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 17.1.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,0 +1,35 @@
+{{ if .Vars.win2019cis_level_2 }}
+  {{ if .Vars.win2019cis_18_8_25_1 }}
+command:
+  device_auth_using_cert_behaviour:
+    title: 18.8.25.1 | L2 | Ensure 'Support device authentication using certificate' is set to 'Enabled - Automatic' | reg_check - behaviour
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_KERB }} -Name DevicePKInitBehavior
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.8.25.1
+      CISv8:
+      - 13.9
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+  device_auth_using_cert_enabled:
+    title: 18.8.25.1 | L2 | Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled' | reg_check - enabled
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_KERB }} -Name DevicePKInitEnabled
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.8.25.1
+      CISv8:
+      - 13.9
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

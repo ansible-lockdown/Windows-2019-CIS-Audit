@@ -1,0 +1,37 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_62_3_11_1 }}
+  del_tmpdirs_on_exit:
+    title: 18.9.62.3.11.1 | L1 | Ensure 'Do not delete temp folders upon exit' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name DeleteTempDirsOnExit
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.62.3.11.1
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_62_3_11_2 }}
+  disable_temp_folders_per_session:
+    title: 18.9.62.3.11.2 | L1 | Ensure 'Do not use temporary folders per session' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name fEncryptRPCTraffic
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.62.3.11.2
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

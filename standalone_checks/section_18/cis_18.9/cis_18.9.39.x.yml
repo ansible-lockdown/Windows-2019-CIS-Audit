@@ -1,0 +1,20 @@
+{{ if .Vars.win2019cis_level_2 }}
+command:
+  disable_location:
+    {{ if .Vars.win2019cis_18_9_39_1 }}
+    title: 18.9.39.1 | L2 | Ensure 'Turn off location' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LocationAndSensors' -Name DisableLocation
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.39.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+{{ end }}

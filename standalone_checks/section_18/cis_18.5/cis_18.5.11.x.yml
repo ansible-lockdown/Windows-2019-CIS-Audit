@@ -1,0 +1,54 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_5_11_2 }}
+  prohibit_network_bridge_dns:
+    title: 18.5.11.2 | L1 | Ensure 'Prohibit installation and configuration of Network Bridge on your DNS domain network' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Network Connections' -Name NC_AllowNetBridge_NLA
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.5.11.2
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_5_11_3 }}
+  prohibit_int_connect_share_dns:
+    title: 18.5.11.3 | L1 | Ensure 'Prohibit use of Internet Connection Sharing on your DNS domain network' is set to 'Enabled's| reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Network Connections' -Name NC_ShowSharedAccessUI
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.5.11.3
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_5_11_4 }}
+  elevate_req_network_setting_location:
+    title: 18.5.11.4 | L1 | Ensure 'Require domain users to elevate when setting a network's location' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Network Connections' -Name NC_StdDomainUserSetLocation
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.5.11.4
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

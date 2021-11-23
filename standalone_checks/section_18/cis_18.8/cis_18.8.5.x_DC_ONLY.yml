@@ -1,0 +1,20 @@
+{{ if .Vars.is_domain_controller }}  
+  {{ if .Vars.win2019cis_NG }}
+    {{ if .Vars.win2019cis_18_8_5_6 }}
+command:
+  credential_guard_conf_uefi_lock_DC_ONLY:
+    title: 18.8.5.6 | NG | Ensure 'Turn On Virtualization Based Security - Credential Guard Configuration' is set to 'Disabled' (DC Only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name LsaCfgFlags
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: NG
+      CIS_ID: 18.8.5.6
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

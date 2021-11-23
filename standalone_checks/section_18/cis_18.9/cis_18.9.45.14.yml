@@ -1,0 +1,21 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_9_45_14 }}
+command:
+  enable_unwanted_app_protection:
+    title: 18.9.45.14 | L1 | Ensure 'Configure detection for potentially unwanted applications' is set to 'Enabled - Block' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender' -Name PUAProtection
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.45.14
+      CISv8:
+      - 2.5
+      - 10.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

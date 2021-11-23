@@ -1,0 +1,131 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_2_3_17_1 }}
+  enable_admin_approval:
+    title: 2.3.17.1 | L1 | Ensure 'User Account Control - Admin Approval Mode for the Built-in Administrator account' is set to 'Enabled's| reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name FilterAdministratorToken"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.1
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_2 }}
+  UAC_prompt_admins:
+    title: 2.3.17.2 | L1 | Ensure 'User Account Control - Behavior of the elevation prompt for administrators in Admin Approval Mode' is set to 'Prompt for consent on the secure desktop | reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name ConsentPromptBehaviorAdmin"
+    exit-status: 0
+    stdout:
+    - '2'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.2
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_3 }}
+  UAC_deny_user:
+    title: 2.3.17.3 | L1 | Ensure 'User Account Control - Behavior of the elevation prompt for standard users' is set to 'Automatically deny elevation requests' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name ConsentPromptBehaviorUser"
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.3
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_4 }}
+  UAC_enable_app_install_elevate_prompt:
+    title: 2.3.17.4 | L1 | Ensure 'User Account Control - Detect application installations and prompt for elevation' is set to 'Enabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name EnableInstallerDetection"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.4
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_5 }}
+  UAC_secure_locations:
+    title: 2.3.17.5 | L1 | Ensure 'User Account Control - Only elevate UIAccess applications that are installed in secure locations' is set to 'Enabled's| reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name EnableSecureUIAPaths"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.5
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_6 }}
+  UAC_enable_admin_approval_mode:
+    title: 2.3.17.6 | L1 | Ensure 'User Account Control - Run all administrators in Admin Approval Mode' is set to 'Enabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name EnableLUA"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.6
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_11_7 }}
+  UAC_prompt_secure_desktop:
+    title: 2.3.11.7 | L1 | Ensure 'User Account Control - Switch to the secure desktop when prompting for elevation' is set to 'Enabled' | reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name PromptOnSecureDesktop"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.7
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_3_17_8 }}
+  UAC_virt_reg_write_fail:
+    title: 2.3.17.8 | L1 | Ensure 'User Account Control - Virtualize file and registry write failures to per-user locations' is set to 'Enabled's| reg_check
+    exec:  {{ .Vars.ps_regcheck }} "{{ .Vars.HKLM_CV_SYSTEM }} -name EnableVirtualization"
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 2.3.17.8
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

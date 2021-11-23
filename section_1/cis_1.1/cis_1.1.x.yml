@@ -1,0 +1,111 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_1_1_1 }}
+  passwd_history:
+    title: 1.1.1 | L1 | Ensure 'Enforce password history' is set to '24 or more passwords 
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname PasswordHistorySize
+    exit-status: 0
+    stdout:
+    - '/Policy:.*:\s[24:99]/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.1
+      CISv8:
+      - 5.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_1_1_2 }}
+  passwd_age_max:
+    title: 1.1.2 | L1 | Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' 
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MaximumPasswordAge
+    exit-status: 0
+    stdout:
+    - '/Policy:.*:\s[1-60]/'
+    - '!/Policy:.*:\s0/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.2
+      CISv8:
+      - 5.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_1_1_3 }}
+  passwd_age_min:
+    title: 1.1.3 | L1 | Ensure 'Minimum password age' is set to '1 or more day(s)' 
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MinimumPasswordAge
+    exit-status: 0
+    stdout:
+    - '/Policy:.*:\s[1-180]/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.3
+      CISv8:
+      - 5.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_1_1_4 }}
+  passwd_min_length:
+    title: 1.1.4 | L1 |  Ensure 'Minimum password length' is set to '14 or more characters 
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MinimumPasswordLength
+    exit-status: 0
+    stdout:
+    - '/Policy:.*:\s[14:100]/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.4
+      CISv8:
+      - 5.2
+      - 5.6
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_1_1_5 }}
+  passwd_complex:
+    title: 1.1.5 | L1 |  Ensure 'Password must meet complexity requirements'
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname PasswordComplexity
+    exit-status: 0
+    stdout:
+    - '/Enabled/'
+    - '!/Not\sEnabled/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.5
+      CISv8:
+      - 5.2
+      - 5.6
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ if .Vars.win2019cis_1_1_6 }}
+  passwd_rev_encrypt:
+    title: 1.1.6 | L1 | Ensure 'Store passwords using reversible encryption' is set to 'Disabled' 
+    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ClearTextPassword
+    exit-status: 0
+    stdout:
+    - '/Policy:.*:\sNot\sEnabled/'
+    - '!/Policy:.*:\sEnabled/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 1.1.6
+      CISv8:
+      - 3.11
+      - 5.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

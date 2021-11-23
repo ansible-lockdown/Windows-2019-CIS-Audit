@@ -1,0 +1,37 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_1_1_1 }}
+  prevent_lock_screen_cam:
+    title: 18.1.1.1 | L1 | Ensure 'Prevent enabling lock screen camera' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_PERSON }} -Name NoLockScreenCamera
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.1.1.1
+      CISv8:
+      - 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_1_1_2 }}
+  prevent_lock_screen_slide:
+    title: 18.1.1.2 | L1 | Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled's| reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_PERSON }} -Name NoLockScreenSlideshow
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.1.1.2
+      CISv8:
+      - 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}
