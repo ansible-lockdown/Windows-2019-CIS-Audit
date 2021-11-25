@@ -96,3 +96,11 @@ command:
       benchmark_{{ . }}
     {{ end }}
       host_os: {{ .Vars.win2019_os_distribution }}
+    {{ if eq .Vars.audit_run "wrapper" }}
+      benchmark_epoch: {{ .Vars.epoch }}
+      benchmark_host_os_version: {{ .Vars.os_release }}
+      benchmark_hostname: {{ .Vars.os_hostname }}
+      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
+      benchmark_os_locale: {{ .Vars.os_locale }}
+      benchmark_automation_group: {{ .Vars.auto_group }}
+    {{ end }}
