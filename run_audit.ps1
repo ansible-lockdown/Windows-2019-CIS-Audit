@@ -88,7 +88,7 @@ $secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$AUDIT_TIME.txt"
 # Probably the ugliest thing ever with so much room to go wrong :)
 
 
-$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`', 'epoch': `'$epoch`', 'audit_run': `'wrapper`', 'os_locale': `'$os_locale'`, 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$AUDIT_CONTENT_LOCATION\gpresult_$AUDIT_TIME.txt`', 'auditresult_file': `'$AUDIT_CONTENT_LOCATION\auditpol_$AUDIT_TIME.txt`', 'secedit_file': `'$AUDIT_CONTENT_LOCATION\secedit_$AUDIT_TIME.txt`'}"
+$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`', 'epoch': `'$epoch`', 'audit_run': `'wrapper`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$AUDIT_CONTENT_LOCATION\gpresult_$AUDIT_TIME.txt`', 'auditresult_file': `'$AUDIT_CONTENT_LOCATION\auditpol_$AUDIT_TIME.txt`', 'secedit_file': `'$AUDIT_CONTENT_LOCATION\secedit_$AUDIT_TIME.txt`'}"
 
 
 # Set up AUDIT_OUT
