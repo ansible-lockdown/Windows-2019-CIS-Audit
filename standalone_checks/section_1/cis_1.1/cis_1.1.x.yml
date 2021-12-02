@@ -2,11 +2,12 @@
 command:
   {{ if .Vars.win2019cis_1_1_1 }}
   passwd_history:
-    title: 1.1.1 | L1 | Ensure 'Enforce password history' is set to '24 or more passwords 
+    title: 1.1.1 | L1 | Ensure 'Enforce password history' is set to '24 or more passwords
     exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname PasswordHistorySize
     exit-status: 0
     stdout:
-    - '/PasswordHistorySize = [24:99]/'
+    - '/PasswordHistorySize = (2[4-9]|[3-9][0-9])/'
+    - '!/PasswordHistorySize = ([0-9]|1[0-4])/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -23,7 +24,8 @@ command:
     exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname MaximumPasswordAge
     exit-status: 0
     stdout:
-    - '/MaximumPasswordAge = [1-60]/'
+    - '/MaximumPasswordAge = ([1-9]|[1-5][0-9]|60)/'
+    - '!/MaximumPasswordAge = ([6-9][0-9]$|[1-9][0-9]{2,})/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -36,11 +38,12 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_1_1_3 }}
   passwd_age_min:
-    title: 1.1.3 | L1 | Ensure 'Minimum password age' is set to '1 or more day(s)' 
+    title: 1.1.3 | L1 | Ensure 'Minimum password age' is set to '1 or more day(s)'
     exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname MinimumPasswordAge
     exit-status: 0
     stdout:
-    - '/MinimumPasswordAge = [1-180]/'
+    - '/MinimumPasswordAge = ([1-9]$|[1-9][0-9]{1,})/'
+    - '!/MinimumPasswordAge = (0|-)/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -53,11 +56,12 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_1_1_4 }}
   passwd_min_length:
-    title: 1.1.4 | L1 |  Ensure 'Minimum password length' is set to '14 or more characters 
+    title: 1.1.4 | L1 | Ensure 'Minimum password length' is set to '14 or more characters
     exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname MinimumPasswordLength
     exit-status: 0
     stdout:
-    - '/MinimumPasswordLength = [14:100]/'
+    - '/MinimumPasswordLength = (14|1[5-9]|[2-5][0-9])/'
+    - '!/MinimumPasswordLength = ([1-9]$|1[0-3])/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -76,6 +80,7 @@ command:
     exit-status: 0
     stdout:
     - '/PasswordComplexity = 1/'
+    - '!/PasswordComplexity = 0/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -89,7 +94,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_1_1_6 }}
   passwd_rev_encrypt:
-    title: 1.1.6 | L1 | Ensure 'Store passwords using reversible encryption' is set to 'Disabled' 
+    title: 1.1.6 | L1 | Ensure 'Store passwords using reversible encryption' is set to 'Disabled'
     exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname ClearTextPassword
     exit-status: 0
     stdout:
