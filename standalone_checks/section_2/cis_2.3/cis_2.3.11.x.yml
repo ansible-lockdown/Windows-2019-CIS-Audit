@@ -27,8 +27,8 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CISv8:
       CIS_ID: 2.3.11.2
+      CISv8:
       - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
