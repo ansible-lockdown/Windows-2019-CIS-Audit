@@ -88,7 +88,7 @@ command:
   {{ if .Vars.win2019cis_2_3_11_6 }}
   enable_force_logoff_hrs:
     title: 2.3.11.6 | L1 | Ensure 'Network security - Force logoff when logon hours expire' is set to 'Enabled' | reg_check
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ForceLogoffWhenHourExpire
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ForceLogoffWhenHourExpire
     exit-status: 0
     stdout:
     - 'Enabled'

@@ -73,7 +73,7 @@ Else{
 if ( $servertype = 2 )
 {
   $OS_TYPE="StandAlone Server"
-  Write-Host "$OS_TYPE system discovered running relavant checks"
+  Write-Host "$OS_TYPE system discovered running relevant checks"
   $secedit_cmd = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
   Try {
       "$secedit_cmd" 
@@ -86,6 +86,7 @@ if ( $servertype = 2 )
   }
   Else{
       Write-Host "Successfully ran secedit report - created $secedit_file"
+      Write-Host ""
   }
 }
 Else 
@@ -105,7 +106,7 @@ Else
       else {
         $OS_TYPE="Workstation"
        }
-  Write-Host "$OS_TYPE system discovered running relavant checks"
+  Write-Host "$OS_TYPE system discovered running relevant checks"
   powershell.exe -noninteractive -noprofile -command gpresult /v /r $gpresult_file
 
 }
@@ -121,19 +122,25 @@ $system_type="$OS_TYPE"
 
 
 # Output files
-$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$audit_time.txt"
-$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$audit_time.txt"
-$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$audit_time.txt"
+#$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$audit_time.txt"
+#$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$audit_time.txt"
+#$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$audit_time.txt"
 
 # allow audit_run variable to be run from external script providing different vars
 if ([string]::IsNullOrEmpty($audit_run)){
     $audit_run="wrapper"
 }
 
+
+# Set the audit_content dir assist in fault finding due to go and windows \ / path differences
+
+$audit_content="$AUDIT_CONTENT_DIR"
+
 # Probably the ugliest thing ever with so much room to go wrong :)
 # Has to be a better way
 
-$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`'}"
+
+$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
 
 
 # Set up AUDIT_OUT

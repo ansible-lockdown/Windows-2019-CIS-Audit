@@ -4,7 +4,7 @@ command:
   {{ if .Vars.win2019cis_2_3_1_1 }}
   access_dc_admins:
     title: 2.3.1.1 | L1 | Ensure 'Accounts - Administrator account status' is set to 'Disabled' (MS only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableAdminAccount
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableAdminAccount
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sNot Enabled/'
@@ -21,7 +21,7 @@ command:
   {{ if .Vars.win2019cis_2_3_1_3}}
   guest_account_disabled:
     title: 2.3.1.3 | L1 | Ensure 'Accounts - Guest account status' is set to 'Disabled' (MS only) | GPO
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableGuestAccount
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableGuestAccount
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sNot Enabled/'

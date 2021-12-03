@@ -1,0 +1,8 @@
+command: 
+  passwd_complex:
+    title: 1.1.5 | L1 |  Ensure 'Password must meet complexity requirements'
+    exec: powershell.exe c:/vagrant/win2019-CIS-Audit/scripts/standalone.ps1 -filename ..\secedit_1638445159.txt -localname PasswordComplexity
+    exit-status: 0
+    stdout:
+    - '/PasswordComplexity = 1/'
+    - '!/PasswordComplexity = 0/'

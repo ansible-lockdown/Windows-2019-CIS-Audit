@@ -4,7 +4,7 @@ command:
   {{ if .Vars.win2019cis_2_2_2 }}
   access_dc_admins:
     title: 2.2.2 | L1 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname NetworkLogonRight
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname NetworkLogonRight
     exit-status: 0
     stdout:
     - '/^Policy:.*:\s{{ .Vars.win2019cis_DC_access_from_network}}/'
@@ -20,7 +20,7 @@ command:
   {{ if .Vars.win2019cis_2_2_5 }}
   add_workstations_to_domain:
     title: 2.2.5 | L1 | Ensure 'Add workstations to domain' is set to 'Administrators' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MachineAccountPrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MachineAccountPrivilege
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'
@@ -52,7 +52,7 @@ command:
   {{ if .Vars.win2019cis_2_2_8 }}
   allow_logon_RDP_DC:
     title: 2.2.8 | L1 |  Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
     - '/Policy:.*:\s{{ .Vars.win2019cis_DC_allow_logon_RDP_users }}/'
@@ -68,7 +68,7 @@ command:
   {{ if .Vars.win2019cis_2_2_17 }}
   symlink_users_DC:
     title: 2.2.17 | L1 | Ensure 'Create symbolic links' is set to 'Administrators' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateSymbolicLinkPrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateSymbolicLinkPrivilege
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'
@@ -84,7 +84,7 @@ command:
   {{ if .Vars.win2019cis_2_2_20 }}
   deny_network_access_DC:
     title: 2.2.20 | L1 | Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyNetworkLogonRight
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyNetworkLogonRight
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sGuests/'
@@ -100,7 +100,7 @@ command:
   {{ if .Vars.win2019cis_2_2_25 }}
   deny_login_RDP_users_DC:
     title: 2.2.25 | L1 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sGuests/'
@@ -116,7 +116,7 @@ command:
   {{ if .Vars.win2019cis_2_2_27 }}
   trusted_deleg_DC:
     title: 2.2.27 | L1 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators'  (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableDelegationPrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableDelegationPrivilege
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'
@@ -132,7 +132,7 @@ command:
   {{ if .Vars.win2019cis_2_2_31 }}
   impersonate_client_DC:
     title: 2.2.31 | L1 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'  (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ImpersonatePrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ImpersonatePrivilege
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators LOCAL SERVICE NETWORK SERVICE SERVICE/'
@@ -148,7 +148,7 @@ command:
   {{ if .Vars.win2019cis_2_2_37 }}
   manage_audit_log_DC:
     title: 2.2.37 | L1 | Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SecurityPrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SecurityPrivilege
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'
@@ -167,7 +167,7 @@ command:
   {{ if .Vars.win2019cis_2_2_47 }}
   sync_dir_service_data_DC:
     title: 2.2.47 | L1 | Ensure 'Synchronize directory service data' is set to 'No One' (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SyncAgentPrivilege
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SyncAgentPrivilege
     exit-status: 0
     stdout:
     - 'Not Defined'
@@ -188,7 +188,7 @@ command:
   {{ if .Vars.win2019cis_2_2_36 }}
   logon_as_batch_job_DC:
     title: 2.2.36 | L2 | Ensure 'Log on as a batch job' is set to 'Administrators'  (DC only) 
-    exec: {{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname BatchLogonRight
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname BatchLogonRight
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'

@@ -3,7 +3,7 @@ command:
   {{ if .Vars.win2019cis_2_3_10_1 }}
   disable_anon_sid_name:
     title: 2.3.10.1 | L1 | Ensure 'Network access - Allow anonymous SID/Name translation' is set to 'Disabled' | 
-    exec: {{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }}  LSAAnonymousNameLookup
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }}  LSAAnonymousNameLookup
     exit-status: 0
     stdout:
     - 'LSAAnonymousNameLookup = 0'
