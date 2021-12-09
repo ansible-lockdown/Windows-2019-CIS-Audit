@@ -50,7 +50,7 @@ command:
       CISv8_IG3: true
   ASR_Rules_obfuscated_scripts:
     title: 18.9.45.4.1.2 | L1 | Ensure 'Configure Attack Surface Reduction rules - Set the state for each ASR rule' is configured - Block office apps potentialy obfuscated scripts | reg_check 
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Windows Defender Exploit Guard/ASR/Rules' -Name 5beb7efe-fd9a-4556-801d-275e5ffc04cc
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Windows Defender Exploit Guard/ASR/Rules' -Name 5beb7efe-fd9a-4556-801d-275e5ffc04cc4
     exit-status: 0
     stdout:
     - '1'

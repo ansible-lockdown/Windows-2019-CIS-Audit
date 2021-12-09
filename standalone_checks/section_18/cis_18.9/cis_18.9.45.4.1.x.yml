@@ -65,7 +65,7 @@ command:
       CISv8_IG3: true
   ASR_Rules_office_code_injections:
     title: 18.9.45.4.1.2 | L1 | Ensure 'Configure Attack Surface Reduction rules - Set the state for each ASR rule' is configured - Block office apps injecting code to processes | reg_check 
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Windows Defender Exploit Guard/ASR/Rules' -Name 75668c1f-73b5-4cf0-bb93-3ecf5cb7cc8
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Windows Defender Exploit Guard/ASR/Rules' -Name 75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84
     exit-status: 0
     stdout:
     - '1'
