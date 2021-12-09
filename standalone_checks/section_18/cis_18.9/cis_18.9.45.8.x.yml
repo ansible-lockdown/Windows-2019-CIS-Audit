@@ -24,7 +24,7 @@ command:
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableRealtimeMonitoring
     exit-status: 0
     stdout:
-    - '0'
+    - '1'
     meta:
       Domain_Controller: 1
       Member_Server: 1
