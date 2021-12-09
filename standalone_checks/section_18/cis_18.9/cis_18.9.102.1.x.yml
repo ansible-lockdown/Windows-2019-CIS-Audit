@@ -6,7 +6,7 @@ command:
     exec: {{ .Vars.ps_regcheck }} {{.Vars.HKLM_WIN_UPDATE }} -Name ManagePreviewBuilds
     exit-status: 0
     stdout:
-    - '0'
+    - '1'
     meta:
       Domain_Controller: 1
       Member_Server: 1
