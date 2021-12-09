@@ -37,7 +37,7 @@ command:
   {{ if .Vars.win2019cis_18_8_21_4 }}
   disable_cont_experiences:
     title: 18.8.21.4 | L1 | Ensure 'Continue experiences on this device' is set to 'Disabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name NoGPOListChanges 
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name EnableCdp
     exit-status: 0
     stdout:
     - '0'
