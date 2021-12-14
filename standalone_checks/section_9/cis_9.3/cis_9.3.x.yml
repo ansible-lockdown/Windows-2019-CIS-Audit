@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_9_3_2 }}
   Public_firewall_block_inbound:
-    title: 9.3.1 | L1 | Ensure 'Windows Firewall - Public - Inbound connections' is set to 'Block (default)' | reg_check
+    title: 9.3.2 | L1 | Ensure 'Windows Firewall - Public - Inbound connections' is set to 'Block (default)' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DefaultInboundAction
     exit-status: 0
     stdout:
@@ -35,7 +35,7 @@ command:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_3 }}
-  Public_firewall_block_inbound:
+  Public_firewall_block_outbound:
     title: 9.3.3 | L1 | Ensure 'Windows Firewall - Public - Outbound connections' is set to 'Allow (default)'s| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DefaultOutboundAction
     exit-status: 0
@@ -52,7 +52,7 @@ command:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_4 }}
-  Public_firewall_ldisable_notify:
+  Public_firewall_disable_notify:
     title: 9.3.4 | L1 | Ensure 'Windows Firewall - Public - Settings - Display a notification' is set to 'No's| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DisableNotifications
     exit-status: 0
