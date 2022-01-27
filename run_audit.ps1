@@ -15,8 +15,42 @@ $AUDIT_CONTENT_VERSION = "Win2019-$BENCHMARK-Audit"
 $AUDIT_CONTENT_DIR = "$AUDIT_CONTENT_LOCATION\$AUDIT_CONTENT_VERSION"
 
 
+# Check file exists
+
+$files = @( "$AUDIT_BIN", "$AUDIT_CONTENT_DIR\$AUDIT_VARS","$AUDIT_CONTENT_DIR\$AUDIT_FILE" )
+
+Write-host "Pre checks - Ensure files exist"
+foreach ($file in $files) {
+  try {
+     if (Test-Path -Path $file){
+         write-host "OK - ""$file"" exists" -ForeGroundColor green
+     }
+     else{
+          $file_missing = 'true'
+          throw
+     }  
+  }
+  catch {
+     Write-host "Fail - ""$file"" Not found" -ForegroundColor red
+     
+  }
+}
+
+if ($file_missing){
+    Write-Warning "Please Ensure variables are set correctly"
+    Exit
+    }
+else{
+    Write-Host "Ok - Files Exist" -ForegroundColor green
+}
+
 # Allow Alpha version to run
+# Until 0.4 is official when not required.
 $env:GOSS_USE_ALPHA=1
+
+
+# Check content exists before continuing
+
 
 <# 
 Determine Server type -e.g. standalone, domain member , PDC etc
@@ -50,6 +84,7 @@ else {
 
 $Error.Clear()
 
+Write-Host "Running Audit commands"
 
 $audit_cmd = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
 
@@ -64,7 +99,7 @@ If ($LASTEXITCODE -ne "0"){
     exit
 }
 Else{
-    Write-Host "Successfully ran auditpol report - created $auditresult_file"
+    Write-Host "OK - ran auditpol report - created $auditresult_file" -ForegroundColor green
     Write-Host ""
 }
 
@@ -85,8 +120,7 @@ if ( $servertype = 2 )
     exit
   }
   Else{
-      Write-Host "Successfully ran secedit report - created $secedit_file"
-      Write-Host ""
+      Write-Host "OK - secedit report - created $secedit_file" -ForegroundColor green
   }
 }
 Else 
@@ -120,17 +154,10 @@ $os_version=(([System.Environment]::OSVersion.Version).build)
 $os_hostname=(hostname)
 $system_type="$OS_TYPE"
 
-
-# Output files
-#$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$audit_time.txt"
-#$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$audit_time.txt"
-#$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$audit_time.txt"
-
 # allow audit_run variable to be run from external script providing different vars
 if ([string]::IsNullOrEmpty($audit_run)){
     $audit_run="wrapper"
 }
-
 
 # Set the audit_content dir assist in fault finding due to go and windows \ / path differences
 
@@ -139,9 +166,7 @@ $audit_content="$AUDIT_CONTENT_DIR"
 # Probably the ugliest thing ever with so much room to go wrong :)
 # Has to be a better way
 
-
-$AUDIT_JSON_VARS = "{ 'benchmark':`'$BENCHMARK`','machine_uuid': `'$machine_uuid`','epoch': `'$epoch`', 'os_deployment_type': `'$system_type`',  'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
-
+$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
 
 # Set up AUDIT_OUT
 #$outfile
@@ -156,42 +181,10 @@ $AUDIT_ERR = "$AUDIT_CONTENT_LOCATION\audit_$os_hostname_$epoch.err"
 
 # create empty file - dont output
 New-Item -ItemType file $AUDIT_OUT | Out-Null
-New-Item -ItemType file $AUDIT_ERR | Out-Null
+#New-Item -ItemType file $AUDIT_ERR | Out-Null
 
 
 # run audit
-# appears when parent job exits before children - the goss run is typical of this behaviour
-# the way its tracked does not work as expected https://github.com/PowerShell/PowerShell/issues/15555
-
-
-#$AUDIT_PARAMS="`"--g $AUDIT_CONTENT_DIR\$AUDIT_FILE --vars $AUDIT_CONTENT_DIR\$AUDIT_VARS  --vars-inline `"$AUDIT_JSON_VARS`" v --format json --format-options pretty`""
-
-#Start-Process -NoNewWindow -Wait  -FilePath $AUDIT_BIN -ArgumentList $AUDIT_PARAMS
-
-# The following is the output of the run_audit variable and works as expected when run manually
-# C:\vagrant\goss.exe --gossfile C:\vagrant\Win2019-CIS-Audit\goss.yml --vars C:\vagrant\Win2019-CIS-Audit\vars\CIS.yml --vars-inline "{ 'machine_uuid': '1D63E47F-C00E-48C2-8093-1C84645C18F7', 'epoch': '1637835028', 'audit_run': 'wrapper', 'os_release': '17763', 'windows2019cis_os_distribution': 'Windows_2019_server', 'os_hostname': 'win2019mem', 'auto_group': 'ungrouped', 'gpresult_file': 'C:\vagrant\gpresult_1637835028.txt', 'auditresult_file': 'C:\vagrant\auditpol_1637835028.txt', 'secedit_file': 'C:\vagrant\secedit_1637835028.txt'}" v --format json --format-options pretty | Format-Table -Autosize | Out-File C:\vagrant\audit_1637835028.json
-
-# run audit 2
-#$run_audit = @"
-#$AUDIT_BIN --gossfile $AUDIT_CONTENT_DIR\$AUDIT_FILE --vars $AUDIT_CONTENT_DIR\$AUDIT_VARS --vars-inline `"$AUDIT_JSON_VARS`" v --format json --format-options pretty | Format-Table -Autosize | Out-File $AUDIT_OUT
-#"@
-#$run_audit
-
-# The following is the output of the run_audit variable and works when run manually
-# C:\vagrant\goss.exe --gossfile C:\vagrant\Win2019-CIS-Audit\goss.yml --vars C:\vagrant\Win2019-CIS-Audit\vars\CIS.yml --vars-inline "{ 'machine_uuid': '1D63E47F-C00E-48C2-8093-1C84645C18F7', 'epoch': '1637835028', 'audit_run': 'wrapper', 'os_release': '17763', 'windows2019cis_os_distribution': 'Windows_2019_server', 'os_hostname': 'win2019mem', 'auto_group': 'ungrouped', 'gpresult_file': 'C:\vagrant\gpresult_1637835028.txt', 'auditresult_file': 'C:\vagrant\auditpol_1637835028.txt', 'secedit_file': 'C:\vagrant\secedit_1637835028.txt'}" v --format json --format-options pretty | Format-Table -Autosize | Out-File C:\vagrant\audit_1637835028.json
-
-# Run audit 3
-#$run_audit = "C:\vagrant\goss.exe --gossfile C:\vagrant\Win2019-CIS-Audit\goss.yml --vars C:\vagrant\Win2019-CIS-Audit\vars\CIS.yml --vars-inline `"{ 'machine_uuid': '1D63E47F-C00E-48C2-8093-1C84645C18F7', 'epoch': '1637834060', 'audit_run': 'wrapper', 'os_release': '17763', 'windows2019cis_os_distribution': 'Windows_2019_server', 'os_hostname': 'win2019mem', 'auto_group': 'ungrouped', 'gpresult_file': 'C:\vagrant\gpresult_1637834060.txt', 'auditresult_file': 'C:\vagrant\auditpol_1637834060.txt', 'secedit_file': 'C:\vagrant\secedit_1637834060.txt'}`" v --format json --format-options pretty | Format-Table -Autosize | Out-File $AUDIT_OUT"
-#$run_audit
-
-# The following works when run alone and is the output of the run_audit variable number 3
-# C:\vagrant\goss.exe --gossfile C:\vagrant\Win2019-CIS-Audit\goss.yml --vars C:\vagrant\Win2019-CIS-Audit\vars\CIS.yml --vars-inline "{ 'machine_uuid': '1D63E47F-C00E-48C2-8093-1C84645C18F7', 'epoch': '1637834060', 'audit_run': 'wrapper', 'os_release': '17763', 'windows2019cis_os_distribution': 'Windows_2019_server', 'os_hostname': 'win2019mem', 'auto_group': 'ungrouped', 'gpresult_file': 'C:\vagrant\gpresult_1637834060.txt', 'auditresult_file': 'C:\vagrant\auditpol_1637834060.txt', 'secedit_file': 'C:\vagrant\secedit_1637834060.txt'}" v --format json --format-options pretty | Format-Table -Autosize | Out-File C:\vagrant\audit_1637834559.json
-
-
-# Run audit 4
-#$job =  { Start-Process -NoNewWindow -Passthru -Wait -FilePath "$AUDIT_BIN" -ArgumentList "$AUDIT_PARAMS" -RedirectStandardOutput "$AUDIT_OUT" -RedirectStandardError error >> "$AUDIT_OUT"  }
-#Invoke-Command -ScriptBlock $job
-
 
 # This runs the job, waits for its children to complete and outputs to file
 $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -209,22 +202,19 @@ $p.WaitForExit()
 
 # Write to relevant output to file
 Write-Output "$stdout" | Out-File -FilePath "$AUDIT_OUT"
-Write-Output "$stderr" | Out-File -FilePath "$AUDIT_ERR"
-
-
-#Write-Host "exit code: " + $p.ExitCode
 
 
 # Summary of Output
 
 if ( Select-String $BENCHMARK $AUDIT_OUT )
     { 
+       
        $audit_summary=Get-Content "$AUDIT_OUT" -tail 8
-       Write-Host "Audit Successful`n"
+       Write-Host "Audit Successful`n" -ForegroundColor green
        Write-Host "$audit_summary"
        Write-Host "`nComplete audit file can be found at $AUDIT_OUT"
     }
 else
     {
-       Write-Host "Fail Audit - There were issues when running the audit please investigate $AUDIT_OUT" 
+       Write-Host "Fail Audit - There were issues when running the audit please investigate" 
     }
