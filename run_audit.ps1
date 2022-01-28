@@ -86,37 +86,36 @@ $Error.Clear()
 
 Write-Host "Creating files to audit"
 
-$audit_cmd = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
+$auditpol_report = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
 
 Try {
-      "$audit_cmd" 
+      "$auditpol_report" 
 }
 Catch {  
 }
 
 If ($LASTEXITCODE -ne "0"){
-    Write-Host "Unable to run auditpol.exe command"
+    Write-Host "Fail - Unable to run auditpol.exe command" -ForegroundColor red
     exit
 }
 Else{
-    Write-Host "OK - ran auditpol report - created $auditresult_file" -ForegroundColor green
-    Write-Host ""
+    Write-Host "OK - auditpol report - created $auditresult_file" -ForegroundColor green
 }
 
 
 
-if ( $servertype = 2 )
+if ( [int]$servertype -eq 2 )
 {
   $OS_TYPE="StandAlone Server"
   Write-Host "$OS_TYPE system discovered running relevant checks"
-  $secedit_cmd = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
+  $secedit_report = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
   Try {
-      "$secedit_cmd" 
+      "$secedit_report" 
   }
   Catch {
   }
   If ($LASTEXITCODE -ne "0"){
-    Write-Host "Unable to run secedit.exe command"
+    Write-Host "Fail - Unable to run secedit.exe command" -ForegroundColor red
     exit
   }
   Else{
@@ -125,24 +124,35 @@ if ( $servertype = 2 )
 }
 Else 
 {
-      if ( $servertype = 3 )
+      if ( [int]$servertype -eq 3 )
        {
         $OS_TYPE="Member Server"
        }
-      elif ( $servertype = 4 )
+      elif ( [int]$servertype -eq 4 )
        {
         $OS_TYPE="Primary Domain Controller"
        }
-      elif ( $servertype = 5 )
+      elif ( [int]$servertype -eq 5 )
        {
         $OS_TYPE="Backup Domain Controller"
-       }
+       }]
       else {
         $OS_TYPE="Workstation"
        }
   Write-Host "$OS_TYPE system discovered running relevant checks"
-  powershell.exe -noninteractive -noprofile -command gpresult /v /r $gpresult_file
-
+  $gpresult_report = powershell.exe -noninteractive -noprofile -command gpresult /v /r > $gpresult_file
+  Try {
+    "$gpresult_report" 
+  }
+  Catch {  
+  }
+  If ($LASTEXITCODE -ne "0"){
+    Write-Host "Unable to run gpresult command" -ForegroundColor red
+  exit
+  }
+  Else{
+      Write-Host "OK - ran gpresult report - created $gpresultresult_file`n" -ForegroundColor green
+  }
 }
 
 # get metadata
