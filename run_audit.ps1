@@ -135,7 +135,7 @@ Else
       elif ( [int]$servertype -eq 5 )
        {
         $OS_TYPE="Backup Domain Controller"
-       }]
+       }
       else {
         $OS_TYPE="Workstation"
        }
