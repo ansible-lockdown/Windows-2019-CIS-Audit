@@ -84,7 +84,7 @@ else {
 
 $Error.Clear()
 
-Write-Host "Running Audit commands"
+Write-Host "Creating files to audit"
 
 $audit_cmd = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
 
