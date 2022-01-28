@@ -186,6 +186,8 @@ New-Item -ItemType file $AUDIT_OUT | Out-Null
 
 # run audit
 
+Write-Host "`nRunning Audit"
+
 # This runs the job, waits for its children to complete and outputs to file
 $pinfo = New-Object System.Diagnostics.ProcessStartInfo
 $pinfo.FileName = "$AUDIT_BIN"
