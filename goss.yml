@@ -87,17 +87,21 @@ gossfile:
     {{ end }}
   {{ end }}
 command:
-  benchmark_meta:
+  output_meta:
     title: Benchmark MetaData
     exec: echo BenchMark MetaData
     exit-status: 0
+    {{ range .Vars.win2019cis_benchmark }}
     meta:
-      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
+      benchmark_{{ . }}
+    {{ end }}
+      host_os: {{ .Vars.win2019_os_distribution }}
+    {{ if eq .Vars.audit_run "wrapper" }}
       benchmark_epoch: {{ .Vars.epoch }}
-      benchmark_os_locale: {{ .Vars.os_locale }}
-      benchmark_os_release: {{ .Vars.os_release }}
-      benchmark_type: {{ .Vars.benchmark }}
-      benchmark_os_distribution: {{ .Vars.os_distribution }}
-      benchmark_automation_group: {{ .Vars.auto_group }}
+      benchmark_host_os_version: {{ .Vars.os_release }}
       benchmark_hostname: {{ .Vars.os_hostname }}
-      benchmark_version: {{ .Vars.benchmark_version }}
+      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
+      benchmark_os_locale: {{ .Vars.os_locale }}
+      benchmark_os_deployment_type: {{ .Vars.os_deployment_type }}
+      benchmark_automation_group: {{ .Vars.auto_group }}
+    {{ end }}
