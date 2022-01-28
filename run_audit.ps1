@@ -216,5 +216,5 @@ if ( Select-String $BENCHMARK $AUDIT_OUT )
     }
 else
     {
-       Write-Host "Fail Audit - There were issues when running the audit please investigate" 
+       Write-Host "Fail Audit - There were issues when running the audit please investigate" -ForegroundColor red
     }
