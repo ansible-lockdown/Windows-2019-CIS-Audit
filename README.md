@@ -1,5 +1,9 @@
 # Example of a windows goss setup
 
+Detailed:
+
+[How To Guide](Docs/how_to.MD)
+
 ## Requirements
 
 - download goss (current version 0.3.6 - Alpha for windows)
