@@ -151,7 +151,7 @@ Else
   exit
   }
   Else{
-      Write-Host "OK - ran gpresult report - created $gpresultresult_file`n" -ForegroundColor green
+      Write-Host "OK - ran gpresult report - created $gpresult_file`n" -ForegroundColor green
   }
 }
 
@@ -176,7 +176,7 @@ $audit_content="$AUDIT_CONTENT_DIR"
 # Probably the ugliest thing ever with so much room to go wrong :)
 # Has to be a better way
 
-$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
+$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
 
 # Set up AUDIT_OUT
 #$outfile
