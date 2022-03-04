@@ -1,18 +1,78 @@
-[CmdletBinding()]
+# Initial Powershell script
+# 04/03/2022 - Beta release - ukbolly mindpointgroup
+
+
+<#
+.SYNOPSIS
+Wrapper script to run an audit
+
+.DESCRIPTION
+Wrapper script to run an audit on the system using goss.
+This allows for bespoke variables to be set
+
+.PARAMETER varsfile
+default: $AUDIT_VARS
+Ability to set a variable file defined with the settings to match your requirements
+
+.PARAMETER group
+default: none
+Ability to set a group that the system belongs to
+Can be used when matching similar system in that same group
+
+.PARAMETER outfile
+default: $AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.json
+Ability to set an outfile to send the full audit output to
+Requires path to be set
+
+
+.EXAMPLE
+./run_audit.ps1
+./run_audit.ps1 -varsfile myvars.yml
+./run_audit.ps1 -outfile path/to/audit/output.json
+./run_audit.ps1 -group webserver
+
+.NOTES
+
+
+.LINK
+https://github.com/ansible-lockdown/Windows-2019-CIS-Audit/blob/devel/Docs/Security_remediation_and_auditing.md
+
+#>
+
 param (
-      [string] $group,
-      [string] $outfile
+      [string]$varsfile,
+      [string]$group,
+      [string]$outfile
 )
 
 
-# Set Variables for Audit
+## Variables
+
+# Benchmark variables
 $BENCHMARK = "CIS"
+$BENCHMARK_VER  = "1.2.1"
+$BENCHMARK_OS   = "Windows 2019"
+
+# Set Variables for Audit
+
 $AUDIT_BIN = "C:\vagrant\goss.exe"
-$AUDIT_FILE = "goss.yml"
-$AUDIT_VARS = "$BENCHMARK.yml"
 $AUDIT_CONTENT_LOCATION = "C:\vagrant"
-$AUDIT_CONTENT_VERSION = "Windows-2019-$BENCHMARK-Audit"
+
+# Unless you know what your doing probably dont need to change these.
+$AUDIT_FILE = "goss.yml"  
+$AUDIT_VARS = "$BENCHMARK.yml" # This can be changed using cli option
+$AUDIT_CONTENT_VERSION = "Win2019-$BENCHMARK-Audit"
 $AUDIT_CONTENT_DIR = "$AUDIT_CONTENT_LOCATION\$AUDIT_CONTENT_VERSION"
+
+### Shouldnt need to change anything past this point apart from tidy up the code
+
+#$varsfile
+if ([string]::IsNullOrEmpty($varsfile)){
+    $AUDIT_VARS = "$BENCHMARK.yml"
+    }
+else {
+    $AUDIT_VARS = "$varsfile"
+    }
 
 
 # Check file exists
@@ -41,12 +101,13 @@ if ($file_missing){
     Exit
     }
 else{
-    Write-Host "Ok - Files Exist" -ForegroundColor green
+    Write-Host "OK - Files Exist" -ForegroundColor green
 }
 
 # Allow Alpha version to run
 # Until 0.4 is official when not required.
 $env:GOSS_USE_ALPHA=1
+$env:GOSS_TIMEOUT=10
 
 
 # Check content exists before continuing
@@ -63,12 +124,12 @@ $serverrole = (wmic.exe ComputerSystem get DomainRole | Select-String -Pattern "
 $servertype = ($serverrole) -replace '\D+(\d+)','$1'
 
 # Epoch time is required (as per Unix based from UTC)
-$audit_time = ([Math]::Floor([decimal](Get-Date(Get-Date).ToUniversalTime()-uformat "%s")))
+$host_audit_time = ([Math]::Floor([decimal](Get-Date(Get-Date).ToUniversalTime()-uformat "%s")))
 
 # Output files
-$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$audit_time.txt"
-$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$audit_time.txt"
-$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$audit_time.txt"
+$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$host_audit_time.txt"
+$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$host_audit_time.txt"
+$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$host_audit_time.txt"
 
 # $group - ability to add a group to the metadata to compare same group server results
 if ([string]::IsNullOrEmpty($group)){
@@ -84,38 +145,39 @@ else {
 
 $Error.Clear()
 
-Write-Host "Creating files to audit"
+Write-Host "Running Audit commands"
 
-$auditpol_report = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
+$audit_cmd = Invoke-Command -Script { auditpol.exe /get /category:* > $auditresult_file } -ErrorAction SilentlyContinue
 
 Try {
-      "$auditpol_report" 
+      "$audit_cmd" 
 }
 Catch {  
 }
 
 If ($LASTEXITCODE -ne "0"){
-    Write-Host "Fail - Unable to run auditpol.exe command" -ForegroundColor red
+    Write-Host "Unable to run auditpol.exe command"
     exit
 }
 Else{
-    Write-Host "OK - auditpol report - created $auditresult_file" -ForegroundColor green
+    Write-Host "OK - ran auditpol report - created $auditresult_file" -ForegroundColor green
+    Write-Host ""
 }
 
 
 
-if ( [int]$servertype -eq 2 )
+if ( $servertype = 2 )
 {
   $OS_TYPE="StandAlone Server"
   Write-Host "$OS_TYPE system discovered running relevant checks"
-  $secedit_report = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
+  $secedit_cmd = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
   Try {
-      "$secedit_report" 
+      "$secedit_cmd" 
   }
   Catch {
   }
   If ($LASTEXITCODE -ne "0"){
-    Write-Host "Fail - Unable to run secedit.exe command" -ForegroundColor red
+    Write-Host "Unable to run secedit.exe command"
     exit
   }
   Else{
@@ -124,15 +186,15 @@ if ( [int]$servertype -eq 2 )
 }
 Else 
 {
-      if ( [int]$servertype -eq 3 )
+      if ( $servertype = 3 )
        {
         $OS_TYPE="Member Server"
        }
-      elif ( [int]$servertype -eq 4 )
+      elif ( $servertype = 4 )
        {
         $OS_TYPE="Primary Domain Controller"
        }
-      elif ( [int]$servertype -eq 5 )
+      elif ( $servertype = 5 )
        {
         $OS_TYPE="Backup Domain Controller"
        }
@@ -140,29 +202,18 @@ Else
         $OS_TYPE="Workstation"
        }
   Write-Host "$OS_TYPE system discovered running relevant checks"
-  $gpresult_report = powershell.exe -noninteractive -noprofile -command gpresult /v /r > $gpresult_file
-  Try {
-    "$gpresult_report" 
-  }
-  Catch {  
-  }
-  If ($LASTEXITCODE -ne "0"){
-    Write-Host "Unable to run gpresult command" -ForegroundColor red
-  exit
-  }
-  Else{
-      Write-Host "OK - ran gpresult report - created $gpresult_file`n" -ForegroundColor green
-  }
+  powershell.exe -noninteractive -noprofile -command gpresult /v /r $gpresult_file
+
 }
 
 # get metadata
-$os_name=((Get-CimInstance -ClassName CIM_OperatingSystem).Caption ) -replace ' ','_'
-$machine_uuid=(Get-CimInstance -Class Win32_ComputerSystemProduct).UUID
-$epoch=$audit_time
-$os_locale=((Get-TimeZone).Id) -replace ' ','_'
-$os_version=(([System.Environment]::OSVersion.Version).build)
-$os_hostname=(hostname)
-$system_type="$OS_TYPE"
+$host_os_name=((Get-CimInstance -ClassName CIM_OperatingSystem).Caption ) -replace ' ','_'
+$host_machine_uuid=(Get-CimInstance -Class Win32_ComputerSystemProduct).UUID
+$host_epoch=$host_audit_time
+$host_os_locale=((Get-TimeZone).Id) -replace ' ','_'
+$host_os_version=Get-WmiObject Win32_OperatingSystem | Select-Object -ExpandProperty Caption
+$host_os_hostname=(hostname)
+$host_system_type="$OS_TYPE"
 
 # allow audit_run variable to be run from external script providing different vars
 if ([string]::IsNullOrEmpty($audit_run)){
@@ -176,18 +227,18 @@ $audit_content="$AUDIT_CONTENT_DIR"
 # Probably the ugliest thing ever with so much room to go wrong :)
 # Has to be a better way
 
-$AUDIT_JSON_VARS = "{ 'machine_uuid': `'$machine_uuid`','os_deployment_type': `'$system_type`', 'epoch': `'$epoch`', 'audit_run': `'$audit_run`', 'os_locale': `'$os_locale`', 'os_release': `'$os_version`', 'windows2019cis_os_distribution': `'$os_name`', 'os_hostname': `'$os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
+$AUDIT_JSON_VARS = "{ 'benchmark_type': `'$BENCHMARK`', 'benchmark_version': `'$BENCHMARK_VER`', 'benchmark_os': `'$BENCHMARK_OS`', 'machine_uuid': `'$host_machine_uuid`','os_deployment_type': `'$host_system_type`', 'epoch': `'$host_epoch`', 'os_locale': `'$host_os_locale`', 'os_release': `'$host_os_version`', 'host_os_distribution': `'$host_os_name`', 'os_hostname': `'$host_os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
 
 # Set up AUDIT_OUT
 #$outfile
 if ([string]::IsNullOrEmpty($outfile)){
-    $AUDIT_OUT = "$AUDIT_CONTENT_LOCATION\audit_$os_hostname_$epoch.json"
+    $AUDIT_OUT = "$AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.json"
     }
 else {
     $AUDIT_OUT = "$outfile"
     }
 
-$AUDIT_ERR = "$AUDIT_CONTENT_LOCATION\audit_$os_hostname_$epoch.err"
+$AUDIT_ERR = "$AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.err"
 
 # create empty file - dont output
 New-Item -ItemType file $AUDIT_OUT | Out-Null
@@ -197,7 +248,6 @@ New-Item -ItemType file $AUDIT_OUT | Out-Null
 # run audit
 
 Write-Host "`nRunning Audit"
-
 # This runs the job, waits for its children to complete and outputs to file
 $pinfo = New-Object System.Diagnostics.ProcessStartInfo
 $pinfo.FileName = "$AUDIT_BIN"
@@ -228,5 +278,5 @@ if ( Select-String $BENCHMARK $AUDIT_OUT )
     }
 else
     {
-       Write-Host "Fail Audit - There were issues when running the audit please investigate" -ForegroundColor red
+       Write-Host "Fail Audit - There were issues when running the audit please investigate" 
     }

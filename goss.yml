@@ -91,17 +91,15 @@ command:
     title: Benchmark MetaData
     exec: echo BenchMark MetaData
     exit-status: 0
-    {{ range .Vars.win2019cis_benchmark }}
     meta:
-      benchmark_{{ . }}
-    {{ end }}
-      host_os: {{ .Vars.win2019_os_distribution }}
-    {{ if eq .Vars.audit_run "wrapper" }}
-      benchmark_epoch: {{ .Vars.epoch }}
-      benchmark_host_os_version: {{ .Vars.os_release }}
-      benchmark_hostname: {{ .Vars.os_hostname }}
-      benchmark_machine_uuid: {{ .Vars.machine_uuid }}
-      benchmark_os_locale: {{ .Vars.os_locale }}
-      benchmark_os_deployment_type: {{ .Vars.os_deployment_type }}
-      benchmark_automation_group: {{ .Vars.auto_group }}
-    {{ end }}
+      benchmark_type: {{ .Vars.benchmark_type }}
+      benchmark_version: {{ .Vars.benchmark_version }}
+      benchmark_os: {{ .Vars.benchmark_os }}
+      host_epoch: {{ .Vars.epoch }}
+      host_os_release: {{ .Vars.os_release }}
+      host_hostname: {{ .Vars.os_hostname }}
+      host_machine_uuid: {{ .Vars.machine_uuid }}
+      host_os_locale: {{ .Vars.os_locale }}
+      host_automation_group: {{ .Vars.auto_group }}
+      host_os_distribution: "Microsoft Windows"
+      host_system_type: Server
