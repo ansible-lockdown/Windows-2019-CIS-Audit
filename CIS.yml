@@ -9,8 +9,6 @@ win2019cis_benchmark:
 # - "server_type: Standalone Server" # To be populated via wrapper script using inline vars
 
 
-# Please change if trying on different release
-win2019_os_distribution: Windows2019
 ######################
 ## Server Variables ##
 ######################
