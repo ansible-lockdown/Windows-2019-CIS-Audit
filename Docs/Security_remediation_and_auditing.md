@@ -309,7 +309,7 @@ Similar to the Linux variables that can be set within the script
 
 ```sh
 NAME
-    C:\remediation_audit_logs\Windows-2016-CIS-Audit\run_audit.ps1
+    C:\remediation_audit_logs\Windows-2019-CIS-Audit\run_audit.ps1
 
 SYNOPSIS
     Wrapper script to run an audit
