@@ -2,7 +2,7 @@
 ## metadata for benchmark
 win2019cis_benchmark:
 - "type: CIS"
-- "version: '1.2'"
+- "version: '1.2.1'"
 - "os: Windows2019"
 #- "epoch: {{ ansible_date_time.epoch }}" # To be populated via wrapper script using inline vars
 #- "hostname: {{ ansible_hostname }}" # To be populated via wrapper script using inline vars
