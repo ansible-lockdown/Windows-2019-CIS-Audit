@@ -1,5 +1,6 @@
 # Initial Powershell script
 # 04/03/2022 - Beta release - ukbolly mindpointgroup
+# 07/03/2022 - Extended cli options and docs
 
 
 <#
@@ -10,8 +11,21 @@ Wrapper script to run an audit
 Wrapper script to run an audit on the system using goss.
 This allows for bespoke variables to be set
 
+
+.PARAMETER auditdir
+default: $DEFAULT_CONTENT_DIR
+Ability to change the location of where the content can be found
+This is where the audit content is stored
+e.g. c:/windows_audit
+
+.PARAMETER binpath
+default: $DEFAULT_AUDIT_BIN
+Ability to change the location of where the audit binary can be found
+This is where the audit content is stored
+e.g. c:/$DEFAULT_CONTENT_DIR/goss.exe
+
 .PARAMETER varsfile
-default: $AUDIT_VARS
+default: $DEFAULT_VARS_FILE
 Ability to set a variable file defined with the settings to match your requirements
 
 .PARAMETER group
@@ -20,26 +34,31 @@ Ability to set a group that the system belongs to
 Can be used when matching similar system in that same group
 
 .PARAMETER outfile
-default: $AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.json
+default: $AUDIT_CONTENT_DIR\audit_$host_os_hostname_$host_epoch.json
 Ability to set an outfile to send the full audit output to
-Requires path to be set
+Requires path to be set.
+e.g. c:/windows_audit_reports
 
 
 .EXAMPLE
 ./run_audit.ps1
+./run_audit.ps1 -auditbin c:\path_to\binary.name
+./run_audit.ps1 -auditdir c:\somepath_for _audit_content
 ./run_audit.ps1 -varsfile myvars.yml
-./run_audit.ps1 -outfile path/to/audit/output.json
+./run_audit.ps1 -outfile path\to\audit\output.json
 ./run_audit.ps1 -group webserver
 
 .NOTES
 
 
 .LINK
-https://github.com/ansible-lockdown/Windows-2019-CIS-Audit/blob/devel/Docs/Security_remediation_and_auditing.md
+https://github.com/ansible-lockdown/Windows-2016-CIS-Audit/blob/devel/Docs/Security_remediation_and_auditing.md
 
 #>
 
 param (
+      [string]$auditbin,
+      [string]$auditdir,
       [string]$varsfile,
       [string]$group,
       [string]$outfile
@@ -55,20 +74,37 @@ $BENCHMARK_OS   = "Windows 2019"
 
 # Set Variables for Audit
 
-$AUDIT_BIN = "C:\vagrant\goss.exe"
-$AUDIT_CONTENT_LOCATION = "C:\vagrant"
+$DEFAULT_CONTENT_DIR = "C:\remediation_audit_logs"  # This can be changed using cli
+$DEFAULT_VARS_FILE = "$BENCHMARK.yml"  # This can be changed using cli option
+$DEFAULT_AUDIT_BIN = "$DEFAULT_CONTENT_DIR\goss.exe"  # This can be changed using cli option
 
-# Unless you know what your doing probably dont need to change these.
-$AUDIT_FILE = "goss.yml"  
-$AUDIT_VARS = "$BENCHMARK.yml" # This can be changed using cli option
-$AUDIT_CONTENT_VERSION = "Win2019-$BENCHMARK-Audit"
-$AUDIT_CONTENT_DIR = "$AUDIT_CONTENT_LOCATION\$AUDIT_CONTENT_VERSION"
+### Shouldn't need to change anything past this point apart from tidy up the code
+$AUDIT_CONTENT_VERSION = "Windows-2016-$BENCHMARK-Audit"
+$DEFAULT_AUDIT = "goss.yml"
 
-### Shouldnt need to change anything past this point apart from tidy up the code
 
-#$varsfile
+# $binpath
+if ([string]::IsNullOrEmpty($auditbin)){
+    $AUDIT_BIN = "$DEFAULT_AUDIT_BIN"
+    }
+else {
+    $AUDIT_BIN = "$auditbin"
+    }
+
+# $auditdir
+if ([string]::IsNullOrEmpty($auditdir)){
+    $AUDIT_CONTENT_DIR = "$DEFAULT_CONTENT_DIR"
+    }
+else {
+    $AUDIT_CONTENT_DIR = "$auditdir"
+    }
+
+$AUDIT_CONTENT_FULLPATH = "$AUDIT_CONTENT_DIR\$AUDIT_CONTENT_VERSION"
+
+
+# $varsfile
 if ([string]::IsNullOrEmpty($varsfile)){
-    $AUDIT_VARS = "$BENCHMARK.yml"
+    $AUDIT_VARS = "$DEFAULT_VARS_FILE"
     }
 else {
     $AUDIT_VARS = "$varsfile"
@@ -77,7 +113,7 @@ else {
 
 # Check file exists
 
-$files = @( "$AUDIT_BIN", "$AUDIT_CONTENT_DIR\$AUDIT_VARS","$AUDIT_CONTENT_DIR\$AUDIT_FILE" )
+$files = @( "$AUDIT_BIN", "$AUDIT_CONTENT_FULLPATH\$AUDIT_VARS", "$AUDIT_CONTENT_FULLPATH\$DEFAULT_AUDIT" )
 
 Write-host "Pre checks - Ensure files exist"
 foreach ($file in $files) {
@@ -127,9 +163,9 @@ $servertype = ($serverrole) -replace '\D+(\d+)','$1'
 $host_audit_time = ([Math]::Floor([decimal](Get-Date(Get-Date).ToUniversalTime()-uformat "%s")))
 
 # Output files
-$gpresult_file="$AUDIT_CONTENT_LOCATION\gpresult_$host_audit_time.txt"
-$auditresult_file="$AUDIT_CONTENT_LOCATION\auditpol_$host_audit_time.txt"
-$secedit_file="$AUDIT_CONTENT_LOCATION\secedit_$host_audit_time.txt"
+$gpresult_file="$AUDIT_CONTENT_DIR\gpresult_$host_audit_time.txt"
+$auditresult_file="$AUDIT_CONTENT_DIR\auditpol_$host_audit_time.txt"
+$secedit_file="$AUDIT_CONTENT_DIR\secedit_$host_audit_time.txt"
 
 # $group - ability to add a group to the metadata to compare same group server results
 if ([string]::IsNullOrEmpty($group)){
@@ -170,7 +206,7 @@ if ( $servertype = 2 )
 {
   $OS_TYPE="StandAlone Server"
   Write-Host "$OS_TYPE system discovered running relevant checks"
-  $secedit_cmd = Invoke-Command -Script {secedit.exe /export /quiet /cfg $secedit_file } -ErrorAction SilentlyContinue
+  $secedit_cmd = Invoke-Command -Script { secedit.exe /export /cfg $secedit_file } -ErrorAction SilentlyContinue
   Try {
       "$secedit_cmd" 
   }
@@ -232,17 +268,17 @@ $AUDIT_JSON_VARS = "{ 'benchmark_type': `'$BENCHMARK`', 'benchmark_version': `'$
 # Set up AUDIT_OUT
 #$outfile
 if ([string]::IsNullOrEmpty($outfile)){
-    $AUDIT_OUT = "$AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.json"
+    $AUDIT_OUT = "$AUDIT_CONTENT_DIR\audit_$host_os_hostname_$host_epoch.json"
     }
 else {
     $AUDIT_OUT = "$outfile"
     }
 
-$AUDIT_ERR = "$AUDIT_CONTENT_LOCATION\audit_$host_os_hostname_$host_epoch.err"
+$AUDIT_ERR = "$AUDIT_CONTENT_DIR\audit_$host_os_hostname_$host_epoch.err"
 
 # create empty file - dont output
 New-Item -ItemType file $AUDIT_OUT | Out-Null
-#New-Item -ItemType file $AUDIT_ERR | Out-Null
+
 
 
 # run audit
@@ -254,7 +290,7 @@ $pinfo.FileName = "$AUDIT_BIN"
 $pinfo.RedirectStandardError = $true
 $pinfo.RedirectStandardOutput = $true
 $pinfo.UseShellExecute = $false
-$pinfo.Arguments = "--gossfile $AUDIT_CONTENT_DIR\$AUDIT_FILE --vars $AUDIT_CONTENT_DIR\$AUDIT_VARS  --vars-inline `"$AUDIT_JSON_VARS`" v --format json --format-options pretty"
+$pinfo.Arguments = "--gossfile $AUDIT_CONTENT_FULLPATH\$DEFAULT_AUDIT --vars $AUDIT_CONTENT_FULLPATH\$AUDIT_VARS --vars-inline `"$AUDIT_JSON_VARS`" v --format json --format-options pretty"
 $p = New-Object System.Diagnostics.Process
 $p.StartInfo = $pinfo
 $p.Start() | Out-Null
