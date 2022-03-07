@@ -86,6 +86,7 @@ gossfile:
   section_19/cis_*/*.yml: {}
     {{ end }}
   {{ end }}
+
 command:
   output_meta:
     title: Benchmark MetaData
