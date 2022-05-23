@@ -316,7 +316,7 @@ SYNOPSIS
 
 
 SYNTAX
-    C:\remediation_audit_logs\Windows-2016-CIS-Audit\run_audit.ps1 [[-auditbin] <String>] [[-auditdir] <String>]
+    C:\remediation_audit_logs\Windows-2019-CIS-Audit\run_audit.ps1 [[-auditbin] <String>] [[-auditdir] <String>]
     [[-varsfile] <String>] [[-group] <String>] [[-outfile] <String>] [<CommonParameters>]
 
 

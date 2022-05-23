@@ -29,7 +29,7 @@ gossfile:
   {{ end }}
 
 # Section 5 Print Spooler
-  {{ if .Vars.win2016cis_section_5 }}
+  {{ if .Vars.win2019cis_section_5 }}
     {{ if .Vars.is_standalone }}
   standalone_checks/section_5/cis_5.2.yml: {}
     {{ end }}
