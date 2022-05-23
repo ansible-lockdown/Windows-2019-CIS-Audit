@@ -1,0 +1,13 @@
+{{ if not .Vars.is_domain_controller}}
+  {{ if .Vars.win2016cis_level_1 }}
+    {{ is .Vars.win2019cis_5_1 }}
+command:
+  print_spooler_disabled_MS:
+    title: 5.2 | Ensure Print Spooler (Spooler) is set to Disabled
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_SVCS }} -Name Spooler
+    exit-status: 0
+    stdout:
+    - '4'
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -28,6 +28,16 @@ gossfile:
     {{ end }}
   {{ end }}
 
+# Section 5 Print Spooler
+  {{ if .Vars.win2016cis_section_5 }}
+    {{ if .Vars.is_standalone }}
+  standalone_checks/section_5/cis_5.2.yml: {}
+    {{ end }}
+    {{ if not .Vars.is_standalone }}
+  section_5/cis_5/cis_5.*.yml: {}
+    {{ end }}
+  {{ end }}
+
 # Section 9 - Firewalls
   {{ if .Vars.win2019cis_section_9 }}
 # Domain Firewall
