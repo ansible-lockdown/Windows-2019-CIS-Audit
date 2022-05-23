@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_4_1 }}
   disable_auto_logon:
-    title: 18.4.1 | L1 | Ensure 'MSS - (AutoAdminLogon) Enable Automatic Logon (not recommended)' is set to 'Disabled' | reg_check
+    title: 18.4.1 | Ensure 'MSS - (AutoAdminLogon) Enable Automatic Logon (not recommended)' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_NT_WINLOGON }} -Name AutoAdminLogon
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_2 }}
   disable_ip6_source_route:
-    title: 18.4.2 | L1 | Ensure 'MSS - (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)' is set to 'Enabled- Highest protection, source routing is completely disabled's| reg_check
+    title: 18.4.2 | Ensure 'MSS - (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing)' is set to 'Enabled- Highest protection, source routing is completely disabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP6 }} -Name DisableIPSourceRouting
     exit-status: 0
     stdout:
@@ -36,7 +36,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_3 }}
   disable_ip4_source_route:
-    title: 18.4.3 | L1 |  Ensure 'MSS - (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)' is set to 'Enabled- Highest protection, source routing is completely disabled | reg_check
+    title: 18.4.3 |  Ensure 'MSS - (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing)' is set to 'Enabled- Highest protection, source routing is completely disabled | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP4 }} -Name DisableIPSourceRouting
     exit-status: 0
     stdout:
@@ -53,7 +53,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_4 }}
   disable_icmp_ospf_redirects:
-    title: 18.4.4 | L1 | Ensure 'MSS - (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes' is set to 'Disabled' | reg_check
+    title: 18.4.4 | Ensure 'MSS - (EnableICMPRedirect) Allow ICMP redirects to override OSPF generated routes' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP4 }} -Name EnableICMPRedirect
     exit-status: 0
     stdout:
@@ -70,7 +70,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_6 }}
   ignore_netbios_except_wins:
-    title: 18.4.6 | L1 | Ensure 'MSS - (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers' is set to 'Enabled' | reg_check
+    title: 18.4.6 | Ensure 'MSS - (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/NetBT/Parameters' -Name NoNameReleaseOnDemand
     exit-status: 0
     stdout:
@@ -87,7 +87,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_8 }}
   enable_safe_dll:
-    title: 18.4.8 | L1 | Ensure 'MSS - (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled' | reg_check
+    title: 18.4.8 | Ensure 'MSS - (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Session Manager' -Name SafeDllSearchMode
     exit-status: 0
     stdout:
@@ -97,14 +97,14 @@ command:
       Member_Server: 1
       CIS_ID: 18.4.8
       CISv8:
-      - 10.5
+      - 2.6
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_4_9 }}
   screensaver_grace_secs:
-    title: 18.4.9 | L1 | Ensure 'MSS - (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled - 5 or fewer seconds' | reg_check
+    title: 18.4.9 | Ensure 'MSS - (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled - 5 or fewer seconds' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_NT_WINLOGON }} -Name ScreenSaverGracePeriod
     exit-status: 0
     stdout:
@@ -121,7 +121,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_12 }}
   percent_sec_eventlog_warn:
-    title: 18.4.12 | L1 | Ensure 'MSS - (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled - 90% or less's| reg_check
+    title: 18.4.12 | Ensure 'MSS - (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled - 90% or less' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Eventlog/Security' -Name WarningLevel
     exit-status: 0
     stdout:
@@ -139,7 +139,7 @@ command:
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_18_4_5 }}
   keepalive_ms_enabled:
-    title: 18.4.5 | L2 | Ensure 'MSS - (KeepAliveTime) How often keep-alive packets are sent in milliseconds' is set to 'Enabled - 300,000 or 5 minutes (recommended)' | reg_check
+    title: 18.4.5 | Ensure 'MSS - (KeepAliveTime) How often keep-alive packets are sent in milliseconds' is set to 'Enabled - 300,000 or 5 minutes (recommended)' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP4 }} -Name KeepAliveTime
     exit-status: 0
     stdout:
@@ -156,7 +156,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_7 }}
   disable_router_discovery:
-    title: 18.4.7 | L2 | Ensure 'MSS - (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)' is set to 'Disabled's| reg_check
+    title: 18.4.7 | Ensure 'MSS - (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP4 }} -Name PerformRouterDiscovery
     exit-status: 0
     stdout:
@@ -173,7 +173,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_4_10 }}
   max_retransmit_ipv6:
-    title: 18.4.10 | L2 |  Ensure 'MSS - (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted' is set to 'Enabled - 3's| reg_check
+    title: 18.4.10 |  Ensure 'MSS - (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted' is set to 'Enabled - 3's| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP6 }} -Name TcpMaxDataRetransmissions
     exit-status: 0
     stdout:
@@ -182,15 +182,10 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.4.10
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_4_11 }}
   max_retransmit_ipv4:
-    title: 18.4.11 | L2 | Ensure 'MSS - (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled - 3' | reg_check
+    title: 18.4.11 | Ensure 'MSS - (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled - 3' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TCPIP4 }} -Name TcpMaxDataRetransmissions
     exit-status: 0
     stdout:
@@ -199,11 +194,6 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.4.11
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
 {{ end }}
