@@ -20,11 +20,11 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_1_2_2 }}
   acct_lockout_threshold:
-    title: 1.2.2 | L1 | Ensure 'Account lockout threshold' is set to '10 or fewer invalid logon attempt(s), but not 0' 
+    title: 1.2.2 | L1 | Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname LockoutBadCount
     exit-status: 0
     stdout:
-    - '/^Policy:.*:\s\b([1-9]|10)\b'
+    - '/^Policy:.*:\s\b[1-5]\b'
     meta:
       Domain_Controller: 1
       Member_Server: 1

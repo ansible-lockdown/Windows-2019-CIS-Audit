@@ -19,11 +19,11 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_1_1_2 }}
   passwd_age_max:
-    title: 1.1.2 | L1 | Ensure 'Maximum password age' is set to '60 or fewer days, but not 0' 
+    title: 1.1.2 | L1 | Ensure 'Maximum password age' is set to '365 or fewer days,but not 0'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MaximumPasswordAge
     exit-status: 0
     stdout:
-    - '/Policy:.*:\s[1-60]/'
+    - '/Policy:.*:\s([1-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|36[0-5])$/'
     - '!/Policy:.*:\s0/'
     meta:
       Domain_Controller: 1
