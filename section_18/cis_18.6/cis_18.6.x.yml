@@ -1,19 +1,27 @@
 {{ if .Vars.win2019cis_level_1 }}
 command:
-  print_spool_accept_client_dis:
     {{ if .Vars.win2019cis_18_6_1 }}
+  print_spool_accept_client_dis:
     title: 18.6.1 | Ensure 'Allow Print Spooler to accept client connections' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Printers' -Name RegisterSpoolerRemoteRpcEndPoint
     exit-status: 0
     stdout:
     - '0'
     {{ end }}
-  print_spool_show_warn:
     {{ if .Vars.win2019cis_18_6_2 }}
+  print_spool_driver_warn:
     title: 18.6.2 | Ensure 'Point and Print Restrictions - When installing drivers for a new connection' is set to 'Enabled - Show warning and elevation prompt' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Printers/PointAndPrint' -Name NoWarningNoElevationOnInstall
     exit-status: 1
     stdout:
     - '0'
+    {{ end }}
+    {{ if .Vars.win2019cis_18_6_3 }}
+  point_and_print_warns:
+    title: 18.6.3 | Ensure 'Point and Print Restrictions When updating drivers for an existing connection' is set to 'Enabled Show warning and elevation prompt' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Printers/PointAndPrint' -Name UpdatePromptSettings
+    exit-status: 1
+    stdout:
+    - '1'
     {{ end }}
 {{ end }}
