@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_1_2 }}
   block_ms_accounts_regkey:
-    title: 2.3.1.2 | L1 | Ensure Accounts- Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts | reg_check
+    title: 2.3.1.2 | Ensure Accounts - Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name NoConnectedUser
     exit-status: 0
     stdout:
@@ -12,15 +12,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.1.2
-      CISv8:
-      - 5.6
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_4 }}
   Limit_ac_blank_pw_console_regkey:
-    title: 2.3.1.4 | L1 |  Ensure Accounts- Limit local account use of blank passwords to console logon only is set to 'Enabled' | reg_check
+    title: 2.3.1.4 | Ensure Accounts- Limit local account use of blank passwords to console logon only is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name LimitBlankPasswordUse
     exit-status: 0
     stdout:
@@ -37,7 +32,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_5 }}
   rename_administrator_act:
-    title: 2.3.1.5 | L1 |  Configure Accounts- Rename administrator account  
+    title: 2.3.1.5 | Configure Accounts - Rename administrator account  
     exec: {{ .Vars.ps_regcheck }} ( Get-LocalUser -Name \"{{ .Vars.win2019_admin_renamed_as }}\" )
     exit-status: 0
     stdout:
@@ -47,7 +42,6 @@ command:
       Member_Server: 1
       CIS_ID: 2.3.1.2
       CISv8:
-      - 4.1
       - 4.7
       CISv8_IG1: true
       CISv8_IG2: true
@@ -55,7 +49,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_6 }}
   rename_guest_act:
-    title: 2.3.1.6 | L1 |  Configure Accounts- Rename guest account'  
+    title: 2.3.1.6 | Configure Accounts - Rename guest account'  
     exec:  {{ .Vars.ps_regcheck }} ( Get-LocalUser -Name \"{{ .Vars.win2019_guest_renamed_as }}\" )
     exit-status: 0
     stdout:
@@ -65,7 +59,6 @@ command:
       Member_Server: 1
       CIS_ID: 2.3.1.6
       CISv8:
-      - 4.1
       - 4.7
       CISv8_IG1: true
       CISv8_IG2: true

@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_8_1 }}
   digi_sign_workstation_always:
-    title: 2.3.8.1 | L1 | Ensure 'Microsoft network client - Digitally sign communications (always)' is set to 'Enabled' | reg_check
+    title: 2.3.8.1 | Ensure 'Microsoft network client - Digitally sign communications (always)' is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANWORK }} -Name RequireSecuritySignature
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.8.1
-      CISv8:
-      - 3.10
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_8_2 }}
   digi_sign_workstation_agree:
-    title: 2.3.8.2 | L1 | Ensure 'Microsoft network client - Digitally sign communications (if server agrees)' is set to 'Enabled' | reg_check
+    title: 2.3.8.2 | Ensure 'Microsoft network client - Digitally sign communications (if server agrees)' is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANWORK }} -Name EnableSecuritySignature
     exit-status: 0
     stdout:
@@ -28,15 +23,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.8.2
-      CISv8:
-      - 3.10
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_8_3 }}
   3rd_party_unencrypt_disable_workstation:
-    title: 2.3.8.3 | L1 | Ensure 'Microsoft network client - Send unencrypted password to third-party SMB servers' is set to 'Disabled' | reg_check
+    title: 2.3.8.3 | Ensure 'Microsoft network client - Send unencrypted password to third-party SMB servers' is set to 'Disabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANWORK }} -Name EnablePlainTextPassword
     exit-status: 0
     stdout:

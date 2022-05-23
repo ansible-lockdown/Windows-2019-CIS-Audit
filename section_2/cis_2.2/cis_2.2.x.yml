@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_2_2_1 }}
   access_cred_mgr:
-    title: 2.2.1 | L1 | Ensure 'Access Credential Manager as a trusted caller' is set to 'No One' 
+    title: 2.2.1 | Ensure 'Access Credential Manager as a trusted caller' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname TrustedCredManAccessPrivilege
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.1
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_4 }}
   act_as_OS:
-    title: 2.2.4 | L1 | Ensure 'Act as part of the operating system' is set to 'No One' 
+    title: 2.2.4 | Ensure 'Act as part of the operating system' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname TcbPrivilege
     exit-status: 0
     stdout:
@@ -28,15 +23,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.4
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_6 }}
   mem_quotas_for_proc:
-    title: 2.2.6 | L1 | Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'  
+    title: 2.2.6 | Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'  
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname IncreaseQuotaPrivilege
     exit-status: 0
     stdout:
@@ -45,15 +35,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.6
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_10 }}
   backup_users:
-    title: 2.2.10 | L1 | Ensure 'Back up files and directories' is set to 'Administrators'  
+    title: 2.2.10 | Ensure 'Back up files and directories' is set to 'Administrators'  
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname BackupPrivilege
     exit-status: 0
     stdout:
@@ -62,32 +47,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.10
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.win2019cis_2_2_11 }}
-  time_users:
-    title: 2.2.11 | L1 | Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'  
-    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SystemtimePrivilege
-    exit-status: 0
-    stdout:
-    - '^Policy:.*:\sAdministrators LOCAL SERVICE/'
-    meta:
-      Domain_Controller: 1
-      Member_Server: 1
-      CIS_ID: 2.2.11
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_12 }}
   timezone_users:
-    title: 2.2.12 | L1 | Ensure 'Change the time Zone' is set to 'Administrators, LOCAL SERVICE'  
+    title: 2.2.12 | Ensure 'Change the time Zone' is set to 'Administrators, LOCAL SERVICE'  
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname TimeZonePrivilege
     exit-status: 0
     stdout:
@@ -96,15 +59,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.12
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_13 }}
   pagefile_users:
-    title: 2.2.13 | L1 | Ensure 'Create a pagefile' is set to 'Administrators' 
+    title: 2.2.13 | Ensure 'Create a pagefile' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreatePagefilePrivilege
     exit-status: 0
     stdout:
@@ -113,15 +71,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.13
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_14 }}
   token_object_users:
-    title: 2.2.14 | L1 | Ensure 'Create a token object' is set to 'No One' 
+    title: 2.2.14 | Ensure 'Create a token object' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateTokenPrivilege
     exit-status: 0
     stdout:
@@ -130,15 +83,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.14
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_15 }}
   global_object_users:
-    title: 2.2.15 | L1 | Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' 
+    title: 2.2.15 | Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateGlobalPrivilege
     exit-status: 0
     stdout:
@@ -147,15 +95,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.15
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_16 }}
   perm_shared_object_users:
-    title: 2.2.16 | L1 | Ensure 'Create permanent shared objects' is set to 'No One' 
+    title: 2.2.16 | Ensure 'Create permanent shared objects' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreatePermanentPrivilege
     exit-status: 0
     stdout:
@@ -164,15 +107,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.16
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_19 }}
   debug_progs_users:
-    title: 2.2.19 | L1 | Ensure 'Debug programs' is set to 'Administrators' 
+    title: 2.2.19 | Ensure 'Debug programs' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DebugPrivilege
     exit-status: 0
     stdout:
@@ -181,15 +119,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.19
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_22 }}
   deny_batch_job_logon_users:
-    title: 2.2.22 | L1 | Ensure 'Deny log on as a batch job' to include 'Guests'
+    title: 2.2.22 | Ensure 'Deny log on as a batch job' to include 'Guests'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyBatchLogonRight
     exit-status: 0
     stdout:
@@ -198,15 +131,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.22
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_23 }}
   deny_service_logon_users:
-    title: 2.2.23 | L1 | Ensure 'Deny log on as a service' to include 'Guests' 
+    title: 2.2.23 | Ensure 'Deny log on as a service' to include 'Guests' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyServiceLogonRight
     exit-status: 0
     stdout:
@@ -215,15 +143,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.23
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_24 }}
   deny_local_logon_users:
-    title: 2.2.24 | L1 | Ensure 'Deny log on locally' to include 'Guests' 
+    title: 2.2.24 | Ensure 'Deny log on locally' to include 'Guests' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyInteractiveLogonRight
     exit-status: 0
     stdout:
@@ -232,15 +155,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.24
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_29 }}
   force_remote_shutdown_users:
-    title: 2.2.29 | L1 | Ensure 'Force shutdown from a remote system' is set to 'Administrators' 
+    title: 2.2.29 | Ensure 'Force shutdown from a remote system' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ShutdownPrivilege
     exit-status: 0
     stdout:
@@ -249,15 +167,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.29
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_30 }}
   generate_security_audits:
-    title: 2.2.30 | L1 | Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'
+    title: 2.2.30 | Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname AuditPrivilege
     exit-status: 0
     stdout:
@@ -267,7 +180,6 @@ command:
       Member_Server: 1
       CIS_ID: 2.2.30
       CISv8:
-      - 6.8
       - 8.2
       CISv8_IG1: true
       CISv8_IG2: true
@@ -275,7 +187,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_2_33 }}
   increase_scheduling:
-    title: 2.2.33 | L1 | Ensure 'Increase scheduling priority' is set to 'Administrators'
+    title: 2.2.33 | Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname IncreaseBasePriorityPrivilege
     exit-status: 0
     stdout:
@@ -283,7 +195,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 2.2.133
+      CIS_ID: 2.2.33
       CISv8:
       - 6.8
       CISv8_IG1: false
@@ -292,7 +204,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_2_34 }}
   load_unload_drivers:
-    title: 2.2.34 | L1 | Ensure 'Load and unload device drivers' is set to 'Administrators'
+    title: 2.2.34 | Ensure 'Load and unload device drivers' is set to 'Administrators'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname LoadDriverPrivilege
     exit-status: 0
     stdout:
@@ -301,15 +213,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.34
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_35 }}
   lock_pages_memory:
-    title: 2.2.35 | L1 | Ensure 'Lock pages in memory' is set to 'No One' 
+    title: 2.2.35 | Ensure 'Lock pages in memory' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname LockMemoryPrivilege
     exit-status: 0
     stdout:
@@ -318,15 +225,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.35
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_39 }}
   modify_object_label:
-    title: 2.2.39 | L1 | Ensure 'Modify an object label' is set to 'No One' 
+    title: 2.2.39 | Ensure 'Modify an object label' is set to 'No One' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RelabelPrivilege
     exit-status: 0
     stdout:
@@ -335,15 +237,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.39
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_40 }}
   modify_fw_values:
-    title: 2.2.40 | L1 | Ensure 'Modify firmware environment values' is set to 'Administrators' 
+    title: 2.2.40 | Ensure 'Modify firmware environment values' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SystemEnvironmentPrivilege
     exit-status: 0
     stdout:
@@ -352,15 +249,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.40
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_41 }}
   volume_maintain_tasks:
-    title: 2.2.41 | L1 | Ensure 'Perform volume maintenance tasks' is set to 'Administrators' 
+    title: 2.2.41 | Ensure 'Perform volume maintenance tasks' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ManageVolumePrivilege
     exit-status: 0
     stdout:
@@ -369,15 +261,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.41
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_42 }}
   profile_single_process:
-    title: 2.2.42 | L1 | Ensure 'Profile single process' is set to 'Administrators' 
+    title: 2.2.42 | Ensure 'Profile single process' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ProfileSingleProcessPrivilege
     exit-status: 0
     stdout:
@@ -386,15 +273,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.42
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_43 }}
   profile_system_performance:
-    title: 2.2.43 | L1 | Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost' 
+    title: 2.2.43 | Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SystemProfilePrivilege
     exit-status: 0
     stdout:
@@ -403,15 +285,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.43
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_44 }}
   replace_process_token:
-    title: 2.2.44 | L1 | Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE' 
+    title: 2.2.44 | Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname AssignPrimaryTokenPrivilege
     exit-status: 0
     stdout:
@@ -428,24 +305,19 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_2_45 }}
   restore_files_dirs:
-    title: 2.2.45 | L1 | Ensure 'Restore files and directories' is set to 'Administrators' 
+    title: 2.2.45 | Ensure 'Restore files and directories' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RestorePrivilege
     exit-status: 0
     stdout:
-    - '/^Policy:.*:\sAdministrators/'
+    - '/^Policy:.*:\s(Administrators|Backup Operators)/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.45
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_46 }}
   shutdown_system_users:
-    title: 2.2.46 | L1 | Ensure 'Shut down the system' is set to 'Administrators' 
+    title: 2.2.46 | Ensure 'Shut down the system' is set to 'Administrators' 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ShutdownPrivilege
     exit-status: 0
     stdout:
@@ -454,15 +326,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.46
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_48 }}
   take_file_ownership:
-    title: 2.2.48 | L1 | Ensure 'Take ownership of files or other objects' is set to 'Administrators'
+    title: 2.2.48 | Ensure 'Take ownership of files or other objects' is set to 'Administrators'
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname TakeOwnershipPrivilege
     exit-status: 0
     stdout:
@@ -471,11 +338,5 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.1
-      CISv8:
-      - 3.3
-      - 6.8
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

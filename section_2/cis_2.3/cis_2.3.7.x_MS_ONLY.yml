@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_7_8 }}
   dc_req_to_unlock:
-    title: 2.3.7.8 | L1 | Ensure 'Interactive logon - Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' | reg_check
+    title: 2.3.7.8 | Ensure 'Interactive logon - Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_NT_WINLOGON }} -Name ForceUnlockLogon
     exit-status: 0
     stdout:
@@ -12,7 +12,7 @@ command:
       Member_Server: 1
       CIS_ID: 2.3.7.8
       CISv8:
-      - 4.1
+      - 4.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
@@ -21,20 +21,14 @@ command:
   {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_2_3_7_6 }}
   cache_logons_missing_DC:
-    title: 2.3.7.6 | L12| Ensure 'Interactive logon - Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) | reg_check
+    title: 2.3.7.6 | Ensure 'Interactive logon - Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_NT_WINLOGON }} -Name CachedLogonsCount
     exit-status: 0
     stdout:
     - '/[1-4]/'
     meta:
-      Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 2.3.7.6
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ end }}
 {{ end }}

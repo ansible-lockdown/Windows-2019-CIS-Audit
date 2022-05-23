@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_2_2 }}
   access_dc_admins:
-    title: 2.2.2 | L1 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only) 
+    title: 2.2.2 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname NetworkLogonRight
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.2
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_5 }}
   add_workstations_to_domain:
-    title: 2.2.5 | L1 | Ensure 'Add workstations to domain' is set to 'Administrators' (DC only) 
+    title: 2.2.5 | Ensure 'Add workstations to domain' is set to 'Administrators' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname MachineAccountPrivilege
     exit-status: 0
     stdout:
@@ -27,15 +22,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.5
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_7 }}
   allow_logon_locally_DC:
-    title: 2.2.7 | L1 |  Ensure 'Allow log on locally' is set to 'Administrators' (DC only) 
+    title: 2.2.7 |  Ensure 'Allow log on locally' is set to 'Administrators' (DC only) 
     exec: echo GPO
     exit-status: 0
     stdout:
@@ -43,15 +33,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.7
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_8 }}
   allow_logon_RDP_DC:
-    title: 2.2.8 | L1 |  Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only) 
+    title: 2.2.8 |  Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
@@ -59,15 +44,21 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.8
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_2_11 }}
+  time_users_dc:
+    title: 2.2.11 | Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'  
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SystemtimePrivilege
+    exit-status: 0
+    stdout:
+    - '^Policy:.*:\sAdministrators Server Operators LOCAL SERVICE/'
+    meta:
+      Domain_Controller: 1
+      CIS_ID: 2.2.11
   {{ end }}
   {{ if .Vars.win2019cis_2_2_17 }}
   symlink_users_DC:
-    title: 2.2.17 | L1 | Ensure 'Create symbolic links' is set to 'Administrators' (DC only) 
+    title: 2.2.17 | Ensure 'Create symbolic links' is set to 'Administrators' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateSymbolicLinkPrivilege
     exit-status: 0
     stdout:
@@ -75,15 +66,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.17
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_20 }}
   deny_network_access_DC:
-    title: 2.2.20 | L1 | Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only) 
+    title: 2.2.20 | Ensure 'Deny access to this computer from the network' to include 'Guests' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyNetworkLogonRight
     exit-status: 0
     stdout:
@@ -91,15 +77,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.20
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_25 }}
   deny_login_RDP_users_DC:
-    title: 2.2.25 | L1 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only) 
+    title: 2.2.25 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
@@ -107,15 +88,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.25
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_27 }}
   trusted_deleg_DC:
-    title: 2.2.27 | L1 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators'  (DC only) 
+    title: 2.2.27 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators'  (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableDelegationPrivilege
     exit-status: 0
     stdout:
@@ -123,15 +99,9 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.27
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
-  {{ end }}
   {{ if .Vars.win2019cis_2_2_31 }}
   impersonate_client_DC:
-    title: 2.2.31 | L1 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'  (DC only) 
+    title: 2.2.31 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'  (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname ImpersonatePrivilege
     exit-status: 0
     stdout:
@@ -139,15 +109,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.31
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_37 }}
   manage_audit_log_DC:
-    title: 2.2.37 | L1 | Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only) 
+    title: 2.2.37 | Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) 'Exchange Servers' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SecurityPrivilege
     exit-status: 0
     stdout:
@@ -158,15 +123,10 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.37
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_47 }}
   sync_dir_service_data_DC:
-    title: 2.2.47 | L1 | Ensure 'Synchronize directory service data' is set to 'No One' (DC only) 
+    title: 2.2.47 | Ensure 'Synchronize directory service data' is set to 'No One' (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SyncAgentPrivilege
     exit-status: 0
     stdout:
@@ -174,11 +134,6 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.47
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
 
@@ -187,20 +142,14 @@ command:
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_2_2_36 }}
   logon_as_batch_job_DC:
-    title: 2.2.36 | L2 | Ensure 'Log on as a batch job' is set to 'Administrators'  (DC only) 
+    title: 2.2.36 | Ensure 'Log on as a batch job' is set to 'Administrators'  (DC only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname BatchLogonRight
     exit-status: 0
     stdout:
     - '/^Policy:.*:\sAdministrators/'
     meta:
       Domain_Controller: 2
-      Member_Server: 2
       CIS_ID: 2.2.36
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ end }}
 {{ end }}

@@ -70,6 +70,7 @@ win2019cis_1_1_3: true
 win2019cis_1_1_4: true
 win2019cis_1_1_5: true
 win2019cis_1_1_6: true
+win2019cis_1_1_7: true
 # 1.2 Account Lockout Policy
 win2019cis_1_2_1: true
 win2019cis_1_2_2: true

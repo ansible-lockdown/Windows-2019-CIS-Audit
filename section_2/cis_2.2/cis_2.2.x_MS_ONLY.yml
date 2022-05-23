@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_2_3 }}
   access_dc_admins:
-    title: 2.2.3 | L1 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only) 
+    title: 2.2.3 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname NetworkLogonRight
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.3
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_7 }}
   allow_logon_locally:
-    title: 2.2.7 | L1 |  Ensure 'Allow log on locally' is set to 'Administrators' (MS only) 
+    title: 2.2.7 |  Ensure 'Allow log on locally' is set to 'Administrators' (MS only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname InteractiveLogonRight
     exit-status: 0
     stdout:
@@ -27,15 +22,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.7
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_9 }}
   allow_logon_RDP_MS:
-    title: 2.2.9 | L1 |  Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)  
+    title: 2.2.9 |  Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)  
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
@@ -43,15 +33,21 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.9
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_2_2_11 }}
+  time_users_ms:
+    title: 2.2.11 | Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE' | MS
+    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SystemtimePrivilege
+    exit-status: 0
+    stdout:
+    - '^Policy:.*:\sAdministrators LOCAL SERVICE/'
+    meta:
+      Member_Server: 1
+      CIS_ID: 2.2.11
   {{ end }}
   {{ if .Vars.win2019cis_2_2_18 }}
   symlink_users_MS:
-    title: 2.2.18 | L1 |  Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)
+    title: 2.2.18 |  Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname CreateSymbolicLinkPrivilege
     exit-status: 0
     stdout:
@@ -59,15 +55,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.18
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.win2019cis_2_2_21}}
+  {{ if .Vars.win2019cis_2_2_21 }}
   deny_network_access_MS:
-    title: 2.2.21 | L1 | Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only) 
+    title: 2.2.21 | Ensure 'Deny access to this computer from the network' to include 'Guests, Local account and member of Administrators group' (MS only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname DenyNetworkLogonRight
     exit-status: 0
     stdout:
@@ -75,15 +66,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.21
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_26 }}
   deny_login_RDP_users_MS:
-    title: 2.2.26 | L1 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests, Local account' (MS only) 
+    title: 2.2.26 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests, Local account' (MS only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname RemoteInteractiveLogonRight
     exit-status: 0
     stdout:
@@ -92,15 +78,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.26
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_28 }}
   trusted_deleg_MS:
-    title: 2.2.28 | L1 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One'  (MS only) 
+    title: 2.2.28 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One'  (MS only) 
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableDelegationPrivilege
     exit-status: 0
     stdout:
@@ -108,15 +89,10 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.28
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_2_32 }}
   impersonate_client_MS:
-    title: 2.2.32 | L1 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)
+    title: 2.2.32 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname EnableDelegationPrivilege
     exit-status: 0
     stdout:
@@ -126,16 +102,11 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.32
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
   {{ end }}
   {{ if .Vars.win2019cis_2_2_38 }}
   manage_audit_sec_log_MS:
-    title: 2.2.38 | L1 | Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
+    title: 2.2.38 | Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
     exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname SecurityPrivilege
     exit-status: 0
     stdout:
@@ -143,11 +114,6 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 2.2.38
-      CISv8:
-      - 6.8
-      CISv8_IG1: false
-      CISv8_IG2: false
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
 {{ end }}
