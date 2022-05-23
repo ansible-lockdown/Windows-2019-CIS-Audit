@@ -430,6 +430,7 @@ win2019cis_18_8_5_6: true
 win2019cis_18_8_5_7: true
 # 18.8.6 Device Health Attenstation Servic
 # 18.8.7 Device Installation
+win2019cis_18_8_7_2: true
 # 18.8.8 Device Redirection
 # 18.8.9 Disk NV Cache
 # 18.8.10 Disk Quotas
