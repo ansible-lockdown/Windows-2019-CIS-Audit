@@ -1,0 +1,11 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_8_7_2 }}
+command:
+  turn_on_vert_based_sec:
+    title: 18.8.7.2 |  Ensure 'Prevent device metadata retrieval from the Internet' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path "'HKLM:/SOFTWARE/Policies/Microsoft/Windows/Device'" -Name PreventDeviceMetadataFromNetwork
+    exit-status: 0
+    stdout:
+    - '1'
+    {{ end }}
+{{ end }}
