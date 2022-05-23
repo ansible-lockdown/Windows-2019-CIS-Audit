@@ -52,7 +52,7 @@ e.g. c:/windows_audit_reports
 
 
 .LINK
-https://github.com/ansible-lockdown/Windows-2016-CIS-Audit/blob/devel/Docs/Security_remediation_and_auditing.md
+https://github.com/ansible-lockdown/Windows-2019-CIS-Audit/blob/devel/Docs/Security_remediation_and_auditing.md
 
 #>
 
@@ -79,7 +79,7 @@ $DEFAULT_VARS_FILE = "$BENCHMARK.yml"  # This can be changed using cli option
 $DEFAULT_AUDIT_BIN = "$DEFAULT_CONTENT_DIR\goss.exe"  # This can be changed using cli option
 
 ### Shouldn't need to change anything past this point apart from tidy up the code
-$AUDIT_CONTENT_VERSION = "Windows-2016-$BENCHMARK-Audit"
+$AUDIT_CONTENT_VERSION = "Windows-2019-$BENCHMARK-Audit"
 $DEFAULT_AUDIT = "goss.yml"
 
 
