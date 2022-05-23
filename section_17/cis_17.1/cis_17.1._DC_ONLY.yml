@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_17_1_2 }}
   audit_kerb_auth_service:
-    title: 17.1.2 | L1 | Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only) 
+    title: 17.1.2 | Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only) 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Kerberos Authentication Service'
     exit-status: 0
     stdout:
@@ -20,7 +20,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_1_3 }}
   audit_kerb_service_tkt:
-    title: 17.1.3 | L1 | Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)  
+    title: 17.1.3 | Ensure 'Audit Kerberos Service Ticket Operations' is set to 'Success and Failure' (DC Only)  
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Kerberos Service Ticket Operations'
     exit-status: 0
     stdout:

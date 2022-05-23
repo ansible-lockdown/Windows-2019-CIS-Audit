@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_17_3_1 }}
   audit_PNP_activity:
-    title: 17.3.1 | L1 | Ensure 'Audit PNP Activity' is set to include 'Success' 
+    title: 17.3.1 | Ensure 'Audit PNP Activity' is set to include 'Success' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Plug and Play Events'
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_3_2 }}
   audit_process_creation:
-    title: 17.3.2 | L1 | Ensure 'Audit Process Creation' is set to include 'Success' 
+    title: 17.3.2 | Ensure 'Audit Process Creation' is set to include 'Success' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Process Creation'
     exit-status: 0
     stdout:

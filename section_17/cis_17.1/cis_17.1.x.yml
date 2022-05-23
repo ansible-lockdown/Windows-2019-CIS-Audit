@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_17_1_1 }}
   audit_cred_valuation:
-    title: 17.1.1 | L1 | Ensure 'Audit Credential Validation' is set to 'Success and Failure' 
+    title: 17.1.1 | Ensure 'Audit Credential Validation' is set to 'Success and Failure' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Credential Validation'
     exit-status: 0
     stdout:
