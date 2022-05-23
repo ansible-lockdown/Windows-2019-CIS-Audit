@@ -1,0 +1,19 @@
+{{ if .Vars.win2019cis_level_1 }}
+  {{ if .Vars.win2019cis_18_9_108_1_1}}
+  no_autoreboot_if_user:
+    title: 18.9.108.1.1 | L1 | Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WindowsUpdate/AU' -Name NoAutoRebootWithLoggedOnUsers
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.108.1.1
+      CISv8:
+      - 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

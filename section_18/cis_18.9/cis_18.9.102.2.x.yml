@@ -1,0 +1,73 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_102_2_1 }}
+  disable_basic_auth_winrm_svc:
+    title: 18.9.102.2.1 | L1 |  Ensure 'Allow Basic authentication' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_SVC }} -Name AllowBasic
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.102.2.1
+      CISv8:
+      - 13.10
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_102_2_3 }}
+  disable_allow_unencrypted_traffic_winrm_svc:
+    title: 18.9.102.2.3 | L1 | Ensure 'Allow unencrypted traffic' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_SVC }} -Name AllowUnencryptedTraffic
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.102.2.3
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_102_2_4 }}
+  disallow_runas_winrm_svc:
+    title: 18.9.102.2.4 | L1 |  Ensure 'Disallow WinRM from storing RunAs credentials' is set to 'Enabled's| reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_SVC }} -Name DisableRunAs
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.102.2.4
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ if .Vars.win2019cis_level_2 }}
+  {{ if .Vars.win2019cis_18_9_102_2_2 }}
+  disable_remote_srvr_mgmt_winrm_svc:
+    title: 18.9.102.2.2 | L2 | Ensure 'Allow remote server management through WinRM' is set to 'Disabled' | reg_check - smartscreen
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_SVC }} -Name AllowAutoConfig 
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.102.2.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}
+{{ end }}

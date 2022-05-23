@@ -1,0 +1,121 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_17_1 }}
+  allow_telemetry:
+    title: 18.9.17.1 | L1 | Ensure 'Allow Diagnostic Data' is set to 'Enabled - Diagnostic data off (not recommended)' or 'Enabled- Send required diagnostic data' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name AllowTelemetry
+    exit-status: 0
+    stdout:
+    - '/[0-1]/'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_3 }}
+  disable_oneset_downloads:
+    title: 18.9.16.3 | L1 | Ensure 'Disable OneSettings Downloads' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name DisableOneSettingsDownloads
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.3
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_4 }}
+  dontshownotification_feedback:
+    title: 18.9.17.4 | L1 | Ensure 'Do not show feedback notifications' is set to'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name DoNotShowFeedbackNotifications
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.4
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_5 }}
+  enableoneset_audit:
+    title: 18.9.17.5 | L1 |  Ensure 'Enable OneSettings Auditing' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name EnableOneSettingsAuditing
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.5
+      CISv8:
+      - 6.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_6 }}
+  enable_limit_diag_data:
+    title: 18.9.17.6 | L1 | Ensure 'Enable OneSettings Auditing' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name LimitDiagnosticLogCollection
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.6
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_7 }}
+  enable_limit_dump_collection:
+    title: 18.9.17.7 | L1 | Ensure 'Limit Dump Collection' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name LimitDumpCollection
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.7
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_17_8 }}
+  enable_limit_dump_collection:
+    title: 18.9.17.8 | L1 | Ensure 'Limit Dump Collection' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/PreviewBuilds' -Name AllowBuildPreview
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.17.8
+  {{ end }}
+{{ end }}
+{{ if .Vars.win2019cis_level_2 }}
+  {{ if .Vars.win2019cis_18_9_17_2 }}
+  auth_proxy_for_telemetry:
+    title: 18.9.17.2 | L2 | Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled - Disable Authenticated Proxy usage' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name DisableEnterpriseAuthProxy
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.17.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

@@ -1,4 +1,4 @@
-{{ if .Vars.is_domain_controller }}  
+{{ if .Vars.is_domain_controller }}
   {{ if .Vars.win2019cis_NG }}
     {{ if .Vars.win2019cis_18_8_5_6 }}
 command:

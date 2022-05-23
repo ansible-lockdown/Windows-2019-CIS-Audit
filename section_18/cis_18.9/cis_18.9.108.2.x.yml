@@ -1,0 +1,39 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_108_2_1 }}
+  auto_updates:
+    title: 18.9.108.2.1 | L1 | Ensure 'Configure Automatic Updates' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WindowsUpdate/AU' -Name NoAutoUpdate
+    exit-status: 0
+    stdout:
+    - {{ .Vars.win2019cis_autoupdate_enabled }}
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.108.2.1
+      CISv8:
+      - 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_108_2_2 }}
+    {{ if eq .Vars.win2019cis_autoupdate_enabled "4" }}  
+  auto_update_sched_days:
+    title: 18.9.108.2.2 | L1 |  Ensure 'Configure Automatic Updates - Scheduled install day' is set to '0 - Every day' | reg_check - if 18.9.102.4  == 4
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WindowsUpdate/AU' -Name ScheduledInstallDay
+    exit-status: 0
+    stdout:
+    - {{ .Vars.win2019cis_autoupdate_day }}
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.108.2.2
+      CISv8:
+      - 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+  {{ end }}
+{{ end }}

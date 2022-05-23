@@ -1,0 +1,75 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_47_9_1 }}
+  scan_all_downloads:
+    title: 18.9.47.9.1 | L1 | Ensure 'Scan all downloaded files and attachments' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableIOAVProtection
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.47.9.1
+      CISv8:
+      - 10.5
+      - 10.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_47_9_2 }}
+  turn_off_disable_RT_protection:
+    title: 18.9.47.9.2 | L1 | Ensure 'Turn off real-time protection' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableRealtimeMonitoring
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.47.9.2
+      CISv8:
+      - 10.5
+      - 10.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_47_9_3 }}
+  turn_on_behavior_monitoring:
+    title: 18.9.47.9.3 | L1 | Ensure 'Turn on behavior monitoring' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableBehaviorMonitoring
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.47.9.3
+      CISv8:
+      - 10.5
+      - 10.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_47_9_4 }}
+  disable_script_scanning:
+    title: 18.9.47.9.4 | L1 | Ensure 'Turn on behavior monitoring' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableScriptScanning
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.47.9.3
+      CISv8:
+      - 10.5
+      - 10.6
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

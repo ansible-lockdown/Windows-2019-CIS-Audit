@@ -1,0 +1,37 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  {{ if .Vars.win2019cis_18_9_27_2_1 }}
+  eventlog_sec_behaviour_when_max:
+    title: 18.9.27.2.1 | L1 | Ensure 'Security - Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/EventLog/Security' -Name Retention
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.27.2.1
+      CISv8:
+      - 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_27_2_2 }}
+  eventlog_sec_max_size:
+    title: 18.9.27.2.2 | L1 | Ensure 'Security - Specify the maximum log file size (KB)' is set to 'Enabled - 196,608 or greater' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/EventLog/Security' -Name MaxSize
+    exit-status: 0
+    stdout:
+    - '{{ .Vars.win2019_eventlog_sec_max_size }}'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.27.2.2
+      CISv8:
+      - 8.3
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

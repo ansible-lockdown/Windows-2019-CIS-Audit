@@ -1,0 +1,37 @@
+{{ if .Vars.win2019cis_level_2 }}
+command:
+  {{ if .Vars.win2019cis_18_9_65_3_10_1 }}
+  max_idle_time_terminal_services:
+    title: 18.9.65.3.10.1 | L2 | Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled - 15 minutes or less' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name MaxIdleTime
+    exit-status: 0
+    stdout:
+    - '3600000'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.65.3.10.1
+      CISv8:
+      - 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_9_65_3_10_2 }}
+  disconnect_time_terminal_services:
+    title: 18.9.65.3.10.2 | L2 | Ensure 'Set time limit for disconnected sessions' is set to 'Enabled - 1 minute'| reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_TERM_SVCS }} -Name MaxDisconnectionTime
+    exit-status: 0
+    stdout:
+    - '28800000'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.9.65.3.10.1
+      CISv8:
+      - 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

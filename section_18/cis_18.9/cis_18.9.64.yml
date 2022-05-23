@@ -1,0 +1,15 @@
+{{ if .Vars.win2019cis_level_1 }}
+command:
+  disable_push_to_install:
+    {{ if .Vars.win2019cis_18_9_64_1 }}
+    title: 18.9.64.1 | L1 | Ensure 'Prevent the usage of OneDrive for file storage' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/PushToInstall' -Name DisablePushToInstall
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.9.64.1
+    {{ end }}
+{{ end }}

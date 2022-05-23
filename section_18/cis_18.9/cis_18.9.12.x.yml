@@ -2,14 +2,14 @@
   {{ if .Vars.win2019cis_18_9_12_1 }}
 command:
   disable_camera:
-    title: 18.9.12.1 | L2 | Ensure 'Configure enhanced anti-spoofing' is set to 'Enabled' | reg_check
+    title: 18.9.12.1 | L2 | Ensure 'Allow Use of Camera' is set to 'Disabled'  | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Camera' -Name AllowCamera
     exit-status: 0
     stdout:
     - '1'
     meta:
-      Domain_Controller: 1
-      Member_Server: 1
+      Domain_Controller: 2
+      Member_Server: 2
       CIS_ID: 18.9.12.1
       CISv8:
       - 4.1
