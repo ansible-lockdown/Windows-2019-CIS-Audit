@@ -2,7 +2,11 @@
 
 ## Overview
 
-**This is a BETA release.**
+Based on [CIS Microsoft Windows Server 2019 Benchmark v1.3.0 - 03-18-2022](https://learn.cisecurity.org/l/799323/2022-03-15/rshpk)
+
+## Join us
+
+On our [Discord Server](https://discord.gg/JFxpSgPFEJ) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
 
 ### How it works
 
