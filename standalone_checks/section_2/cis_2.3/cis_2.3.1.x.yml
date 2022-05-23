@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_1_1 }}
   access_dc_admins:
-    title: 2.3.1.1 | L1 | Ensure 'Accounts - Administrator account status' is set to 'Disabled' (MS only) 
+    title: 2.3.1.1 | Ensure 'Accounts - Administrator account status' is set to 'Disabled' (MS only) 
     exec: powershell.exe {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname EnableAdminAccount
     exit-status: 0
     stdout:
@@ -21,7 +21,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_2 }}
   block_ms_accounts_regkey:
-    title: 2.3.1.2 | L1 | Ensure Accounts- Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts | reg_check
+    title: 2.3.1.2 | Ensure Accounts - Block Microsoft accounts is set to Users cant add or log on with Microsoft accounts | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name NoConnectedUser
     exit-status: 0
     stdout:
@@ -30,15 +30,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.1.2
-      CISv8:
-      - 5.6
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_3}}
   guest_account_disabled:
-    title: 2.3.1.3 | L1 | Ensure 'Accounts - Guest account status' is set to 'Disabled' (MS only) | GPO
+    title: 2.3.1.3 | Ensure 'Accounts - Guest account status' is set to 'Disabled' (MS only) | GPO
     exec: powershell.exe {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname EnableGuestAccount
     exit-status: 0
     stdout:
@@ -56,7 +51,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_4 }}
   Limit_ac_blank_pw_console_regkey:
-    title: 2.3.1.4 | L1 |  Ensure Accounts- Limit local account use of blank passwords to console logon only is set to 'Enabled' | reg_check
+    title: 2.3.1.4 | Ensure Accounts- Limit local account use of blank passwords to console logon only is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name LimitBlankPasswordUse
     exit-status: 0
     stdout:
@@ -73,7 +68,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_5 }}
   rename_administrator_act:
-    title: 2.3.1.5 | L1 |  Configure Accounts- Rename administrator account  
+    title: 2.3.1.5 |  Configure Accounts- Rename administrator account  
     exec: powershell -c "$admins=Get-LocalGroupMember -Group Administrators; Write-Host $admins"
     exit-status: 0
     stdout:
@@ -91,7 +86,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_1_6 }}
   rename_guest_act:
-    title: 2.3.1.6 | L1 |  Configure Accounts- Rename guest account' 
+    title: 2.3.1.6 |  Configure Accounts- Rename guest account' 
     exec: powershell -c '$guests=Get-LocalGroupMember -Group guests; Write-Host $guests.Name'
     exit-status: 0
     stdout:

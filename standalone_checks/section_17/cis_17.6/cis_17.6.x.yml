@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_17_6_1 }}
   audit_detailed_file_share:
-    title: 17.6.1 | L1 | Ensure 'Audit Detailed File Share' is set to include 'Failure' 
+    title: 17.6.1 | Ensure 'Audit Detailed File Share' is set to include 'Failure' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Detailed File Share'
     exit-status: 0
     stdout:
@@ -20,7 +20,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_6_2 }}
   audit_file_share:
-    title: 17.6.2 | L1 | Ensure 'Audit File Share' is set to 'Success and Failure' 
+    title: 17.6.2 | Ensure 'Audit File Share' is set to 'Success and Failure' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern '^\s+File Share'
     exit-status: 0
     stdout:
@@ -38,7 +38,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_6_3 }}
   audit_other_obj_access:
-    title: 17.6.3 | L1 | Ensure 'Audit Other Object Access Events' is set to 'Success and Failure' 
+    title: 17.6.3 | Ensure 'Audit Other Object Access Events' is set to 'Success and Failure' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Other Object Access Events'
     exit-status: 0
     stdout:
@@ -55,7 +55,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_6_4 }}
   audit_removable_storage:
-    title: 17.6.4 | L1 | Ensure 'Audit Removable Storage' is set to 'Success and Failure 
+    title: 17.6.4 | Ensure 'Audit Removable Storage' is set to 'Success and Failure 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Removable Storage'
     exit-status: 0
     stdout:

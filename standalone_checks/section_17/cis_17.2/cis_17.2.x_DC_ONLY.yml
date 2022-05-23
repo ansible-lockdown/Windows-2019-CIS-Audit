@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_17_2_2 }}
   audit_comp_ac_mgmt:
-    title: 17.2.2 | L1 | Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only) 
+    title: 17.2.2 | Ensure 'Audit Computer Account Management' is set to include 'Success' (DC only) 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Computer Account Management'
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_2_3 }}
   audit_dist_group_mgmt:
-    title: 17.2.3 | L1 | Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only) 
+    title: 17.2.3 | Ensure 'Audit Distribution Group Management' is set to include 'Success' (DC only) 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Computer Account Management'
     exit-status: 0
     stdout:
@@ -35,7 +35,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_2_4 }}
   audit_other_ac_mgmt:
-    title: 17.2.4 | L1 | Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only) 
+    title: 17.2.4 | Ensure 'Audit Other Account Management Events' is set to include 'Success' (DC only) 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Other Account Management Events'
     exit-status: 0
     stdout:

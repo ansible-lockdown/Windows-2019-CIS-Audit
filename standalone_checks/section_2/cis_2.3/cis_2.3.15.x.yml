@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_15_1 }}
   enable_no_case_sensitive_subsytems:
-    title: 2.3.15.1 | L1 | Ensure 'System objects - Require case insensitivity for non-Windows subsystems' is set to 'Enabled's| reg_check
+    title: 2.3.15.1 | Ensure 'System objects - Require case insensitivity for non-Windows subsystems' is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Session Manager/kernel' -Name ObCaseInsensitive
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.15.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_2_3_15_2 }}
   enable_srengthen_perms:
-    title: 2.3.15.2 | L1 | Ensure 'System objects - Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled's| reg_check
+    title: 2.3.15.2 | Ensure 'System objects - Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled' | reg_check
     exec:  {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Session Manager' -Name ProtectionMode
     exit-status: 0
     stdout:
@@ -28,10 +23,5 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.3.15.2
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

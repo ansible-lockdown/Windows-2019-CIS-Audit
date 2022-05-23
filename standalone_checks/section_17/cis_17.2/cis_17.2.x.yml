@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_17_2_1 }}
   audit_group_mgmt:
-    title: 17.2.1 | L1 | Ensure 'Audit Application Group Management' is set to 'Success and Failure'
+    title: 17.2.1 | Ensure 'Audit Application Group Management' is set to 'Success and Failure'
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Application Group Management'
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_2_5 }}
   audit_sec_group_mgmt:
-    title: 17.2.5 | L1 | Ensure 'Audit Security Group Management' is set to include 'Success' 
+    title: 17.2.5 | Ensure 'Audit Security Group Management' is set to include 'Success' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'Security Group Management'
     exit-status: 0
     stdout:
@@ -36,7 +36,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_17_2_6 }}
   audit_user_acct_mgmt:
-    title: 17.2.6 | L1 | Ensure 'Audit User Account Management' is set to 'Success and Failure' 
+    title: 17.2.6 | Ensure 'Audit User Account Management' is set to 'Success and Failure' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.audit_ps_cmd }} {{ .Vars.auditresult_file }} -Pattern 'User Account Management'
     exit-status: 0
     stdout:

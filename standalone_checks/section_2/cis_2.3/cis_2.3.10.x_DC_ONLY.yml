@@ -3,7 +3,7 @@
     {{ if .Vars.win2019cis_2_3_10_6 }}
 command:
   no_enum_anon_sam:
-    title: 2.3.10.6 | L1 | Configure 'Network access - Named Pipes that can be accessed anonymously' (DC only) | reg_check
+    title: 2.3.10.6 | Configure 'Network access - Named Pipes that can be accessed anonymously' (DC only) | reg_check
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name NullSessionPipes
     exit-status: 0
     stdout:
@@ -13,11 +13,6 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.3.10.6
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
     {{ end }}
   {{ end }}
 {{ end }}

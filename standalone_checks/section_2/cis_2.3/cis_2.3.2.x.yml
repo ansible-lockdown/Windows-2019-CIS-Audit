@@ -3,7 +3,7 @@
 command:
   {{ if .Vars.win2019cis_2_3_2_1 }}
   Force_audit_policy:
-    title: 2.3.2.1 | L1 | Ensure 'Audit - Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled' 
+    title: 2.3.2.1 | Ensure 'Audit - Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled' 
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name SCENoApplyLegacyAuditPolicy
     exit-status: 0
     stdout:
@@ -20,7 +20,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_2_3_2_2 }}
   Shutdown_immediate_sec_logs_reg:
-    title: 2.3.2.2 | L1 | Ensure 'Audit- Shut down system immediately if unable to log security audits' is set to 'Disabled' | reg_check
+    title: 2.3.2.2 | Ensure 'Audit- Shut down system immediately if unable to log security audits' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LSA }} -Name CrashOnAuditFail"
     exit-status: 0
     stdout:

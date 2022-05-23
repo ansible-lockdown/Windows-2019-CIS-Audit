@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_9_3_1 }}
   Public_firewall_on:
-    title: 9.3.1 | L1 | Ensure 'Windows Firewall - Public - Firewall state' is set to 'On (recommended)'| reg_check
+    title: 9.3.1 | Ensure 'Windows Firewall - Public - Firewall state' is set to 'On (recommended)'| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name EnableFirewall
     exit-status: 0
     stdout:
@@ -12,14 +12,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.1
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_2 }}
   Public_firewall_block_inbound:
-    title: 9.3.2 | L1 | Ensure 'Windows Firewall - Public - Inbound connections' is set to 'Block (default)' | reg_check
+    title: 9.3.2 | Ensure 'Windows Firewall - Public - Inbound connections' is set to 'Block (default)' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DefaultInboundAction
     exit-status: 0
     stdout:
@@ -29,14 +29,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.2
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_3 }}
   Public_firewall_block_outbound:
-    title: 9.3.3 | L1 | Ensure 'Windows Firewall - Public - Outbound connections' is set to 'Allow (default)'s| reg_check
+    title: 9.3.3 | Ensure 'Windows Firewall - Public - Outbound connections' is set to 'Allow (default)'s| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DefaultOutboundAction
     exit-status: 0
     stdout:
@@ -46,14 +46,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.3
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_4 }}
   Public_firewall_disable_notify:
-    title: 9.3.4 | L1 | Ensure 'Windows Firewall - Public - Settings - Display a notification' is set to 'No's| reg_check
+    title: 9.3.4 | Ensure 'Windows Firewall - Public - Settings - Display a notification' is set to 'No's| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name DisableNotifications
     exit-status: 0
     stdout:
@@ -63,14 +63,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.4
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_5 }}
   Public_firewall_merge_local:
-    title: 9.3.5 | L1 | Ensure 'Windows Firewall - Public - Settings - Apply local firewall rules' is set to 'No' | reg_check
+    title: 9.3.5 | Ensure 'Windows Firewall - Public - Settings - Apply local firewall rules' is set to 'No' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name AllowLocalPolicyMerge
     exit-status: 0
     stdout:
@@ -80,14 +80,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.5
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_6 }}
   Public_firewall_merge_ipsec_local:
-    title: 9.3.6 | L1 | Ensure 'Windows Firewall - Public - Settings - Apply local connection security rules' is set to 'No'| reg_check
+    title: 9.3.6 | Ensure 'Windows Firewall - Public - Settings - Apply local connection security rules' is set to 'No'| reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_POL_FW_PUB }} -Name AllowLocalIPSecPolicyMerge
     exit-status: 0
     stdout:
@@ -97,14 +97,14 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.6
       CISv8:
-      - 4.4
+      - 4.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_7 }}
   Public_firewall_logpath:
-    title: 9.3.7 | L1 | Ensure 'Windows Firewall - Public - Logging - Name' is set to '%SystemRoot%\System32\logfiles\firewall\publicfw.log' | reg_check
+    title: 9.3.7 | Ensure 'Windows Firewall - Public - Logging - Name' is set to '%SystemRoot%\System32\logfiles\firewall\publicfw.log' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PublicProfile/logging' -Name LogFilePath
     exit-status: 0
     stdout:
@@ -114,14 +114,15 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.7
       CISv8:
-      - 4.4
+      - 4.5
+      - 8.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_8 }}
   Public_firewall_logsize:
-    title: 9.3.8 | L1 | Ensure 'Windows Firewall - Public - Logging - Size limit (KB)' is set to '16,384 KB or greater' | reg_check
+    title: 9.3.8 | Ensure 'Windows Firewall - Public - Logging - Size limit (KB)' is set to '16,384 KB or greater' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PublicProfile/logging' -Name LogFileSize
     exit-status: 0
     stdout:
@@ -131,14 +132,15 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.8
       CISv8:
-      - 4.4
+      - 4.5
+      - 8.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_9 }}
   Public_firewall_log_dropped:
-    title: 9.3.9 | L1 | Ensure 'Windows Firewall - Public - Logging - Log dropped packets' is set to 'Yes' | reg_check
+    title: 9.3.9 | Ensure 'Windows Firewall - Public - Logging - Log dropped packets' is set to 'Yes' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PublicProfile/logging' -Name LogDroppedPackets
     exit-status: 0
     stdout:
@@ -148,14 +150,15 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.9
       CISv8:
-      - 4.4
+      - 4.5
+      - 8.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_9_3_10 }}
   Public_firewall_log_success:
-    title: 9.3.10 | L1 | Ensure 'Windows Firewall - Public - Logging - Log successful connections' is set to 'Yes' | reg_check
+    title: 9.3.10 | Ensure 'Windows Firewall - Public - Logging - Log successful connections' is set to 'Yes' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKLM:/SOFTWARE/Policies/Microsoft/WindowsFirewall/PublicProfile/logging' -Name LogSuccessfulConnections
     exit-status: 0
     stdout:
@@ -165,7 +168,8 @@ command:
       Member_Server: 1
       CIS_ID: 9.3.10
       CISv8:
-      - 4.4
+      - 4.5
+      - 8.5
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
