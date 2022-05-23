@@ -2,7 +2,7 @@
 command:
   disable_smb1_driver:
     {{ if .Vars.win2019cis_18_3_2 }}
-    title: 18.3.2 | L1 |  Ensure 'Configure SMB v1 client driver' is set to 'Enabled - Disable driver (recommended) | reg_check
+    title: 18.3.2 | Ensure 'Configure SMB v1 client driver' is set to 'Enabled - Disable driver (recommended) | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itemPropertyValue 'HKLM:/SYSTEM/CurrentControlSet/Services/mrxsmb10' -Name Start
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
     {{ end }}
   disable_smb1_server:
     {{ if .Vars.win2019cis_18_3_3 }}
-    title: 18.3.3 | L1 | Ensure 'Configure SMB v1 server' is set to 'Disabled's| reg_check
+    title: 18.3.3 | Ensure 'Configure SMB v1 server' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name SMB1
     exit-status: 0
     stdout:
@@ -36,7 +36,7 @@ command:
     {{ end }}
   enable_SEHOP:
     {{ if .Vars.win2019cis_18_3_4 }}
-    title: 18.3.4 | L1 | Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled' | reg_check
+    title: 18.3.4 | Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Session Manager/kernel' -Name DisableExceptionChainValidation
     exit-status: 0
     stdout:
@@ -51,9 +51,21 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
     {{ end }}
-  NetBT_node_type:
+  Limits_print_driver:
     {{ if .Vars.win2019cis_18_3_5 }}
-    title: 18.3.5 | L1 | Ensure 'NetBT NodeType configuration' is set to 'Enabled - P-node (recommended)' | reg_check
+    title: 18.3.5 | Ensure 'Limits print driver installation to Administrators' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Printers/PointAndPrint' -Name RestrictDriverInstallationToAdministrators
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.3.5
+    {{ end }}
+  NetBT_node_type:
+    {{ if .Vars.win2019cis_18_3_6 }}
+    title: 18.3.6 | Ensure 'NetBT NodeType configuration' is set to 'Enabled - P-node (recommended)' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/NetBT/Parameters' -Name NodeType
     exit-status: 0
     stdout:
@@ -61,16 +73,11 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.3.5
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      CIS_ID: 18.3.6
     {{ end }}
   disable_wdigest_auth:
-    {{ if .Vars.win2019cis_18_3_6 }}
-    title: 18.3.6 | L1 | Ensure 'WDigest Authentication' is set to 'Disabled's| reg_check
+    {{ if .Vars.win2019cis_18_3_7 }}
+    title: 18.3.7 | Ensure 'WDigest Authentication' is set to 'Disabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/SecurityProviders/WDigest' -Name UseLogonCredential
     exit-status: 0
     stdout:
@@ -78,7 +85,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.3.6
+      CIS_ID: 18.3.7
       CISv8:
       - 3.11
       CISv8_IG1: false
