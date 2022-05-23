@@ -34,6 +34,23 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
+    {{ if .Vars.win2019cis_19_7_8_5 }}
+  spotlight_desktop_disable:
+    title: 19.7.8.5 | L1 | Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name DisableSpotlightCollectionOnDesktop
+    exit-status: 0
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 19.7.8.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_19_7_8_3 }}
   enable_do_not_user_diag_data:

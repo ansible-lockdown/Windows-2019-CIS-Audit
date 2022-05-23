@@ -509,7 +509,8 @@ win2019cis_18_8_37_1: true
 win2019cis_18_8_37_2: true
 # 18.8.38 Removable Storage Access
 # 18.8.39 Scripts
-# 18.8.40 Server Manager
+# 18.8.40 Security Account Manager
+win2019cis_18_8_40_1: true
 # 18.8.41 Service Control Manager Settings
 # 18.8.42 Shutdown
 # 18.8.43 Shutdown Options
@@ -560,213 +561,233 @@ win2019cis_18_9_10_1_1: true
 # 18.9.11 BitLocker Drive Encryption
 # 18.9.12 Camera
 win2019cis_18_9_12_1: true
-# 18.9.13 Cloud Content
-win2019cis_18_9_13_1: true
-win2019cis_18_9_13_2: true
-# 18.9.14 Connect
+# 18.9.23 Chat
+# 18.9.14 Cloud Content
 win2019cis_18_9_14_1: true
-# 18.9.15 Credential User Interface
+win2019cis_18_9_14_2: true
+# 18.9.15 Connect
 win2019cis_18_9_15_1: true
-win2019cis_18_9_15_2: true
-# 18.9.16 Data Collection and Preview Builds
+# 18.9.16 Credential User Interface
 win2019cis_18_9_16_1: true
 win2019cis_18_9_16_2: true
-win2019cis_18_9_16_3: true
-win2019cis_18_9_16_4: true
-# 18.9.17 Delivery Optimization
-# 18.9.18 Desktop Gadgets
-# 18.9.19 Desktop Window Manager
-# 18.9.20 Device and Driver Compatibility
-# 18.9.21 Device Registration (formerly Workplace Join)
-# 18.9.22 Digital Locker
-# 18.9.23 Edge UI
-# 18.9.24 EMET
-# 18.9.25 Event Forwarding
-# 18.9.26 Event Log Service
-# 18.9.26.1 Application
-win2019cis_18_9_26_1_1: true
-win2019cis_18_9_26_1_2: true
-# 18.9.26.2 Security
-win2019cis_18_9_26_2_1: true
-win2019cis_18_9_26_2_2: true
-# 18.9.26.3 Setup
-win2019cis_18_9_26_3_1: true
-win2019cis_18_9_26_3_2: true
-# 18.9.26.4 System
-win2019cis_18_9_26_4_1: true
-win2019cis_18_9_26_4_2: true
-# 18.9.27 Event Logging
-# 18.9.28 Event Viewer
-# 18.9.29 Family Safety (formerly Parental Controls)
-# 18.9.30 File Explorer (formerly Windows Explorer)
-# 18.9.30.1 Previous Versions
-win2019cis_18_9_30_2: true
-win2019cis_18_9_30_3: true
-win2019cis_18_9_30_4: true
-# 18.9.31 File History
-# 18.9.32 Find My Device
-# 18.9.33 Game Explorer
-# 18.9.34 Handwriting
-# 18.9.35 HomeGroup
-# 18.9.36 Import Video
-# 18.9.37 Internet Explorer
-# 18.9.38 Internet Information Services
-# 18.9.39 Location and Sensors
-win2019cis_18_9_39_1: true
-# 18.9.40 Maintenance Scheduler
-# 18.9.41 Maps
-# 18.9.42 MDM
-# 18.9.43 Messaging
-win2019cis_18_9_43_1: true
-# 18.9.44 Microsoft account
-win2019cis_18_9_44_1: true
-# 18.9.45.3 MAPS
-win2019cis_18_9_45_3_1: true
-win2019cis_18_9_45_3_2: true
-# 18.9.45.4.1.x Attack Surface Reduction
-win2019cis_18_9_45_4_1_1: true
-win2019cis_18_9_45_4_1_2: true
-# 18.9.45.4.3.x Network Protection
-win2019cis_18_9_45_4_3_1: true
-# 18.9.45.5 MpEngine
-win2019cis_18_9_45_5_1: true
-# 18.9.45.8 Real-time Protection
-win2019cis_18_9_45_8_1: true
-win2019cis_18_9_45_8_2: true
-win2019cis_18_9_45_8_3: true
-# 18.9.45.9 Remediation
-# 18.9.45.10 Reporting
-win2019cis_18_9_45_10_1: true
-# 18.9.45.11 Scan
-win2019cis_18_9_45_11_1: true
-win2019cis_18_9_45_11_2: true
-# 18.9.45.12 Security Intelligence Updates (formerly Signature Updates)
-# 18.9.45.13 Threats
-win2019cis_18_9_45_14: true
-win2019cis_18_9_45_15: true
-# 18.9.46 Microsoft Defender Application Guard (formerly Windows Defender Application Guard)
-# 18.9.47 Microsoft Defender Exploit Guard (formerly Windows Defender Exploit Guard)
-# 18.9.48 Microsoft Edge
-# 18.9.49 Microsoft FIDO Authentication
-# 18.9.50 Microsoft Secondary Authentication Factor
-# 18.9.51 Microsoft User Experience Virtualization
-# 18.9.52 NetMeeting
+# 18.9.17 Data Collection and Preview Builds
+win2019cis_18_9_17_1: true
+win2019cis_18_9_17_2: true
+win2019cis_18_9_17_3: true
+win2019cis_18_9_17_4: true
+win2019cis_18_9_17_5: true
+win2019cis_18_9_17_6: true
+win2019cis_18_9_17_7: true
+win2019cis_18_9_17_8: true
+# 18.9.18 Delivery Optimization
+# 18.9.19 Desktop Gadgets
+# 18.9.20 Desktop Window Manager
+# 18.9.21 Device and Driver Compatibility
+# 18.9.22 Device Registration (formerly Workplace Join)
+# 18.9.23 Digital Locker
+# 18.9.24 Edge UI
+# 18.9.25 EMET
+# 18.9.26 Event Forwarding
+# 18.9.27 Event Log Service
+# 18.9.27.1 Application
+win2019cis_18_9_27_1_1: true
+win2019cis_18_9_27_1_2: true
+# 18.9.27.2 Security
+win2019cis_18_9_27_2_1: true
+win2019cis_18_9_27_2_2: true
+# 18.9.27.3 Setup
+win2019cis_18_9_27_3_1: true
+win2019cis_18_9_27_3_2: true
+# 18.9.27.4 System
+win2019cis_18_9_27_4_1: true
+win2019cis_18_9_27_4_2: true
+# 18.9.28 Event Logging
+# 18.9.29 Event Viewer
+# 18.9.30 Family Safety (formerly Parental Controls)
+# 18.9.31 File Explorer (formerly Windows Explorer)
+# 18.9.31.1 Previous Versions
+win2019cis_18_9_31_2: true
+win2019cis_18_9_31_3: true
+win2019cis_18_9_31_4: true
+# 18.9.32 File History
+# 18.9.33 Find My Device
+# 18.9.34 Game Explorer
+# 18.9.35 Handwriting
+# 18.9.36 HomeGroup
+# 18.9.37 Human Presence
+# 18.9.38 Import Video
+# 18.9.39 Internet Explorer
+# 18.9.40 Internet Information Services
+# 18.9.41 Location and Sensors
+win2019cis_18_9_41_1: true
+# 18.9.42 Maintenance Scheduler
+# 18.9.43 Maps
+# 18.9.44 MDM
+# 18.9.45 Messaging
+win2019cis_18_9_45_1: true
+# 18.9.46 Microsoft account
+win2019cis_18_9_46_1: true
+# 18.9.47  Microsoft Defender Antivirus (formerly Windows Defender and Windows Defender Antivirus)
+# 18.9.47.1 Client Interface
+# 18.9.47.2 Device Control
+# 18.9.47.3 Exclusions
+# 18.9.47.4 MAPS
+win2019cis_18_9_47_4_1: true
+win2019cis_18_9_47_4_2: true
+# 18.9.47.5.1.x Attack Surface Reduction
+win2019cis_18_9_47_5_1_1: true
+win2019cis_18_9_47_5_1_2: true
+# 18.9.47.5.2 Controlled Folder Access
+# 18.9.47.4.3.x Network Protection
+win2019cis_18_9_47_5_3_1: true
+# 18.9.47.6 MpEngine
+win2019cis_18_9_47_6_1: true
+# 18.9.47.7 Network Inspection System
+# 18.9.47.8 Quarantine
+# 18.9.47.9 Real-time Protection
+win2019cis_18_9_47_9_1: true
+win2019cis_18_9_47_9_2: true
+win2019cis_18_9_47_9_3: true
+# 18.9.47.10 Remediation
+# 18.9.47.11 Reporting
+win2019cis_18_9_47_11_1: true
+# 18.9.47.12 Scan
+win2019cis_18_9_47_12_1: true
+win2019cis_18_9_47_12_2: true
+# 18.9.47.13 Security Intelligence Updates (formerly Signature Updates)
+# 18.9.47.14 Threats
+win2019cis_18_9_47_15: true
+win2019cis_18_9_46_16: true
+# 18.9.48 Microsoft Defender Application Guard (formerly Windows Defender Application Guard)
+# 18.9.49 Microsoft Defender Exploit Guard (formerly Windows Defender Exploit Guard)
+# 18.9.50 Microsoft Edge
+# 18.9.51 Microsoft FIDO Authentication
+# 18.9.52 Microsoft Secondary Authentication Factor
+# 18.9.53 Microsoft User Experience Virtualization
+# 18.9.54 NetMeeting
+# 18.9.55 Network Access Protection
+# 18.9.56 Network Projector
+# 18.9.57 News and interests
+# 18.9.58 OneDrive (formerly SkyDrive)
+win2019cis_18_9_58_1: true
+# 18.9.59 Online Assistance
+# 18.9.60 OOBE
+# 18.9.61 Password Synchronization
+# 18.9.62 Portable Operating System
+# 18.9.63 Presentation Settings
+# 18.9.64 Push To Install
+win2019_18_9_64_1: true
 
-# 18.9.53 Network Access Protection
-# 18.9.54 Network Projector
-# 18.9.55 OneDrive (formerly SkyDrive)
-win2019cis_18_9_55_1: true
-# 18.9.56 Online Assistance
-# 18.9.57 OOBE
-# 18.9.58 Password Synchronization
-# 18.9.59 Portable Operating System
-# 18.9.60 Presentation Settings
-# 18.9.61 Push To Install
-
-# 18.9.62 Remote Desktop Services (formerly Terminal Services)
-# 18.9.62.1 RD Licensing (formerly TS Licensing)
-# 18.9.62.2 Remote Desktop Connection Client
-# 18.9.62.2.1 RemoteFX USB Device Redirection
-win2019cis_18_9_62_2_2: true
-# 18.9.62.3.1 Application Compatibility
-# 18.9.62.3.2 Connections
-win2019cis_18_9_62_3_2_1: true
-# 18.9.62.3.3 Device and Resource Redirection
-win2019cis_18_9_62_3_3_1: true
-win2019cis_18_9_62_3_3_2: true
-win2019cis_18_9_62_3_3_3: true
-win2019cis_18_9_62_3_3_4: true
-# 18.9.62.3.4 Licensing
-# 18.9.62.3.5 Printer Redirection
-# 18.9.62.3.6 Profiles
-# 18.9.62.3.7 RD Connection Broker (formerly TS Connection Broker)
-# 18.9.62.3.8 Remote Session Environment
-# 18.9.62.3.9 Security
-win2019cis_18_9_62_3_9_1: true
-win2019cis_18_9_62_3_9_2: true
-win2019cis_18_9_62_3_9_3: true
-win2019cis_18_9_62_3_9_4: true
-win2019cis_18_9_62_3_9_5: true
-# 18.9.62.3.10 Session Time Limits
-win2019cis_18_9_62_3_10_1: true
-win2019cis_18_9_62_3_10_2: true
-# 18.9.62.3.11 Temporary folders
-win2019cis_18_9_62_3_11_1: true
-win2019cis_18_9_62_3_11_2: true
-# 18.9.63 RSS Feeds
-win2019cis_18_9_63_1: true
-# 18.9.64 Search
-# 18.9.64.1 OCR
-win2019cis_18_9_64_2: true
-win2019cis_18_9_64_3: true
-# 18.9.65 Security Center
-# 18.9.66 Server for NIS
-# 18.9.67 Shutdown options
-# 18.9.68 Smart card
-# 18.9.69 Software Protection Platform
+# 18.9.65 Remote Desktop Services (formerly Terminal Services)
+# 18.9.65.1 RD Licensing (formerly TS Licensing)
+# 18.9.65.2 Remote Desktop Connection Client
+# 18.9.65.2.1 RemoteFX USB Device Redirection
+win2019cis_18_9_65_2_2: true
+# 18.9.65.3 Remote Desktop Session Host (formerly Terminal Server)
+# 18.9.65.3.1 Application Compatibility
+# 18.9.65.3.2 Connections
+win2019cis_18_9_65_3_2_1: true
+# 18.9.65.3.3 Device and Resource Redirection
+win2019cis_18_9_65_3_3_1: true
+win2019cis_18_9_65_3_3_2: true
+win2019cis_18_9_65_3_3_3: true
+win2019cis_18_9_65_3_3_4: true
+# 18.9.65.3.4 Licensing
+# 18.9.65.3.5 Printer Redirection
+# 18.9.65.3.6 Profiles
+# 18.9.65.3.7 RD Connection Broker (formerly TS Connection Broker)
+# 18.9.65.3.8 Remote Session Environment
+# 18.9.65.3.9 Security
+win2019cis_18_9_65_3_9_1: true
+win2019cis_18_9_65_3_9_2: true
+win2019cis_18_9_65_3_9_3: true
+win2019cis_18_9_65_3_9_4: true
+win2019cis_18_9_65_3_9_5: true
+# 18.9.65.3.10 Session Time Limits
+win2019cis_18_9_65_3_10_1: true
+win2019cis_18_9_65_3_10_2: true
+# 18.9.65.3.11 Temporary folders
+win2019cis_18_9_65_3_11_1: true
+win2019cis_18_9_65_3_11_2: true
+# 18.9.66 RSS Feeds
+win2019cis_18_9_66_1: true
+# 18.9.67 Search
+# 18.9.67.1 OCR
+win2019cis_18_9_67_2: true
+win2019cis_18_9_67_3: true
+# 18.9.68 Security Center
+# 18.9.69 Server for NIS
+# 18.9.70 Shutdown options
+# 18.9.71 Smart card
+# 18.9.72 Software Protection Platform
 win2019cis_18_9_69_1: true
-# 18.9.70 Sound Recorder
-# 18.9.71 Speech
-# 18.9.72 Store
-# 18.9.73 Sync your settings
-# 18.9.74 Tablet PC
-# 18.9.75 Task Scheduler
-# 18.9.76 Text Input
-# 18.9.77 Windows Calendar
-# 18.9.78 Windows Color System
-# 18.9.79 Windows Customer Experience Improvement Program
-# 18.9.80 Windows Defender SmartScreen
-win2019cis_18_9_80_1_1: true
-# 18.9.81 Windows Error Reporting
-# 18.9.82 Windows Game Recording and Broadcasting
-# 18.9.83 Windows Hello for Business (formerly Microsoft Passport for Work)
-# 18.9.84 Windows Ink Workspace
-win2019cis_18_9_84_1: true
-win2019cis_18_9_84_2: true
-# 18.9.85 Windows Installer
-win2019cis_18_9_85_1: true
-win2019cis_18_9_85_2: true
-win2019cis_18_9_85_3: true
-# 18.9.86 Windows Logon Options
-win2019cis_18_9_86_1: true
-# 18.9.87 Windows Mail
-# 18.9.88 Windows Media Center
-# 18.9.89 Windows Media Digital Rights Management
-# 18.9.90 Windows Media Player
-# 18.9.91 Windows Meeting Space
-# 18.9.92 Windows Messenger
-# 18.9.93 Windows Mobility Center
-# 18.9.94 Windows Movie Maker
-# 18.9.95 Windows PowerShell
-win2019cis_18_9_95_1: true
-win2019cis_18_9_95_2: true
-# 18.9.96 Windows Reliability Analysis
-# 18.9.97 Windows Remote Management (WinRM)
-# 18.9.97.1 WinRM Client
-win2019cis_18_9_97_1_1: true
-win2019cis_18_9_97_1_2: true
-win2019cis_18_9_97_1_3: true
-# 18.9.97.2 WinRM Service
-win2019cis_18_9_97_2_1: true
-win2019cis_18_9_97_2_2: true
-win2019cis_18_9_97_2_3: true
-win2019cis_18_9_97_2_4: true
-# 18.9.98 Windows Remote Shell
-win2019cis_18_9_98_1: true
-# 18.9.99 Windows Security (formerly Windows Defender Security Center)
-# 18.9.99.1 Account protection
-# 18.9.99.2 App and browser protection
-win2019cis_18_9_99_2_1: true
-# 18.9.100 Windows SideShow
-# 18.9.101 Windows System Resource Manager
-# 18.9.102 Windows Update
-# 18.9.102.1 Windows Update for Business (formerly Defer Windows Updates)
+# 18.9.73 Sound Recorder
+# 18.9.74 Speech
+# 18.9.75 Store
+# 18.9.77 Sync your settings
+# 18.9.78 Tablet PC
+# 18.9.79 Task Scheduler
+# 18.9.80 Text Input
+# 18.9.81 Widgets
+# 18.9.82 Windows Calendar
+# 18.9.83 Windows Color System
+# 18.9.84 Windows Customer Experience Improvement Program
+# 18.9.85 Windows Defender SmartScreen
+win2019cis_18_9_85_1_1: true
+# 18.9.86 Windows Error Reporting
+# 18.9.87 Windows Game Recording and Broadcasting
+# 18.9.88 Windows Hello for Business (formerly Microsoft Passport for Work)
+# 18.9.89 Windows Ink Workspace
+win2019cis_18_9_89_1: true
+win2019cis_18_9_89_2: true
+# 18.9.90 Windows Installer
+win2019cis_18_9_90_1: true
+win2019cis_18_9_90_2: true
+win2019cis_18_9_90_3: true
+# 18.9.91 Windows Logon Options
+win2019cis_18_9_91_1: true
+# 18.9.92 Windows Mail
+# 18.9.93 Windows Media Center
+# 18.9.94 Windows Media Digital Rights Management
+# 18.9.95 Windows Media Player
+# 18.9.96 Windows Meeting Space
+# 18.9.97 Windows Messenger
+# 18.9.98 Windows Mobility Center
+# 18.9.99 Windows Movie Maker
+# 18.9.100 Windows PowerShell
+win2019cis_18_9_100_1: true
+win2019cis_18_9_100_2: true
+# 18.9.101 Windows Reliability Analysis
+# 18.9.102 Windows Remote Management (WinRM)
+# 18.9.102.1 WinRM Client
 win2019cis_18_9_102_1_1: true
 win2019cis_18_9_102_1_2: true
 win2019cis_18_9_102_1_3: true
-win2019cis_18_9_102_2: true
-win2019cis_18_9_102_3: true
-win2019cis_18_9_102_4: true
+# 18.9.102.2 WinRM Service
+win2019cis_18_9_102_2_1: true
+win2019cis_18_9_102_2_2: true
+win2019cis_18_9_102_2_3: true
+win2019cis_18_9_102_2_4: true
+# 18.9.103 Windows Remote Shell
+win2019cis_18_9_103_1: true
+# 18.9.104 Windows Sandbox
+# 18.9.105 Windows Security (formerly Windows Defender Security Center)
+# 18.9.105.1 Account protection
+# 18.9.105.2 App and browser protection
+win2019cis_18_9_99_2_1: true
+# 18.9.106 Windows SideShow
+# 18.9.107 Windows System Resource Manager
+# 18.9.108 Windows Update
+# 18.9.108.1 Legacy Policies
+win2019cis_18_9_108_1_1: true
+# 18.9.108.2 Manage end user experience
+win2019_18_9_108_2_1: true
+win2019_18_9_108_2_2: true
+# 18.9.108.3 Manage updates offered from Windows Server Update Service
+# 18.9.108.4 Manage updates offered from Windows Update (formerly Defer Windows Updates and Windows Update for Business)
+win2019cis_18_9_108_4_1: true
+win2019cis_18_9_108_4_2: true
+win2019cis_18_9_108_4_3: true
 
 ###################
 # Section_18_Vars #
@@ -821,6 +842,7 @@ win2019cis_19_7_8_1: true
 win2019cis_19_7_8_2: true
 win2019cis_19_7_8_3: true
 win2019cis_19_7_8_4: true
+win2019cis_19_7_8_5: true
 # 19.7.9 Credential User Interface
 # 19.7.10 Data Collection and Preview Builds
 # 19.7.11 Desktop Gadgets
