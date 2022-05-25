@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_8_28_4 }}
 command:
   dont_enumerate_local_users_signin:
-    title: 18.8.28.4 | L1 | Ensure 'Enumerate local users on domain-joined computers' is set to 'Disabled' (MS only) | reg_check
+    title: 18.8.28.4 | Ensure 'Enumerate local users on domain-joined computers' is set to 'Disabled' (MS only) | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name EnumerateLocalUsers
     exit-status: 0
     stdout:
@@ -10,10 +10,5 @@ command:
     meta:
       Member_Server: 1
       CIS_ID: 18.8.28.4
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

@@ -3,7 +3,7 @@
     {{ if .Vars.win2019cis_18_8_5_6 }}
 command:
   credential_guard_conf_uefi_lock_DC_ONLY:
-    title: 18.8.5.6 | NG | Ensure 'Turn On Virtualization Based Security - Credential Guard Configuration' is set to 'Disabled' (DC Only) | reg_check
+    title: 18.8.5.6 | Ensure 'Turn On Virtualization Based Security - Credential Guard Configuration' is set to 'Disabled' (DC Only) | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name LsaCfgFlags
     stdout:
     - '0'

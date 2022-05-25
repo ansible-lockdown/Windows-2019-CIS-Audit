@@ -1,0 +1,18 @@
+{{ if .Vars.win2019cis_level_1 }}
+    {{ if .Vars.win2019cis_18_8_40_1 }}
+command:
+  credential_guard_conf_uefi_lock_DC_ONLY:
+    title: 18.8.40.1 | Ensure 'Configure validation of ROCA-vulnerable WHfB keys during authentication' is set to 'Enabled Audit' or higher(DC Only) | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/SAM' -Name SamNGCKeyROCAValidation
+    stdout:
+    - '1'
+    meta:
+      Domain_Controller: 1
+      CIS_ID: 18.8.40.1
+      CISv8:
+      - 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+    {{ end }}
+{{ end }}

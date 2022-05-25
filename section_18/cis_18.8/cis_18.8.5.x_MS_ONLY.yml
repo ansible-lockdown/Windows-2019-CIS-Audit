@@ -3,7 +3,7 @@
     {{ if .Vars.win2019cis_18_8_5_5 }}
 command:
   credential_guard_conf_uefi_lock_MS_ONLY:
-    title: 18.8.5.5 | NG | Ensure 'Turn On Virtualization Based Security - Credential Guard Configuration' is set to 'Enabled with UEFI lock' | reg_check
+    title: 18.8.5.5 | Ensure 'Turn On Virtualization Based Security - Credential Guard Configuration' is set to 'Enabled with UEFI lock' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD }} -Name LsaCfgFlags
     stdout:
     - '1'

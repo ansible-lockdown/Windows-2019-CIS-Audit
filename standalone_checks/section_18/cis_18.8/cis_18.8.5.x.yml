@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_8_5_1 }}
   turn_on_vert_based_sec:
-    title: 18.8.5.1 | NG | Ensure 'Turn On Virtualization Based Security' is set to 'Enabled' | reg_check
+    title: 18.8.5.1 | Ensure 'Turn On Virtualization Based Security' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD }} -Name EnableVirtualizationBasedSecurity 
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_5_2 }}
   req_platform_sec_features:
-    title: 18.8.5.2 | NG |  Ensure 'Turn On Virtualization Based Security - Select Platform Security Level' is set to 'Secure Boot and DMA Protection' | reg_check
+    title: 18.8.5.2 | Ensure 'Turn On Virtualization Based Security - Select Platform Security Level' is set to 'Secure Boot and DMA Protection' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name RequirePlatformSecurityFeatures
     exit-status: 0
     stdout:
@@ -36,7 +36,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_5_3 }}
   hyperv_based_code_integrity:
-    title: 18.8.5.3 | NG | Ensure 'Turn On Virtualization Based Security - Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' | reg_check
+    title: 18.8.5.3 | Ensure 'Turn On Virtualization Based Security - Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name HypervisorEnforcedCodeIntegrity
     exit-status: 0
     stdout:
@@ -53,7 +53,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_5_4 }}
   require_uefi_mem_attrib_table:
-    title: 18.8.5.4 | NG | Ensure 'Turn On Virtualization Based Security - Require UEFI Memory Attributes Table' is set to 'True (checked)' | reg_check
+    title: 18.8.5.4 | Ensure 'Turn On Virtualization Based Security - Require UEFI Memory Attributes Table' is set to 'True (checked)' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name HVCIMATRequired
     exit-status: 0
     stdout:
@@ -70,7 +70,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_5_7 }}
   secure_launch:
-    title: 18.8.5.7 | NG | Ensure 'Turn On Virtualization Based Security - Secure Launch Configuration' is set to 'Enabled' | reg_check
+    title: 18.8.5.7 | Ensure 'Turn On Virtualization Based Security - Secure Launch Configuration' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_DEV_GUARD  }} -Name ConfigureSystemGuardLaunch
     exit-status: 0
     stdout:

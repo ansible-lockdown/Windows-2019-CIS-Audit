@@ -1,8 +1,8 @@
 {{ if .Vars.win2019cis_level_2 }}
-  {{ if .Vars.win2019cis_18_8_49_1 }}
+  {{ if .Vars.win2019cis_18_8_50_1 }}
 command:
-  disable_perftrack:
-    title: 18.8.49.1 | L2 | Ensure 'Turn off the advertising ID' is set to 'Enabled' | reg_check - behaviour
+  disable_advert:
+    title: 18.8.50.1 | Ensure 'Turn off the advertising ID' is set to 'Enabled' | reg_check - behaviour
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path "'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WDI/{9c5a40da-b965-4fc3-8781-88dd50a6299d}'" -Name ScenarioExecutionEnabled
     exit-status: 0
     stdout:
@@ -10,11 +10,6 @@ command:
     meta:
       domain_controller: 2
       Member_Server: 2
-      CIS_ID: 18.8.49.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
+      CIS_ID: 18.8.50.1
   {{ end }}
 {{ end }}

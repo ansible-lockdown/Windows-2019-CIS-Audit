@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_8_28_1 }}
   dont_show_account_details_signin:
-    title: 18.8.28.1 | L1 | Ensure 'Block user from showing account details on sign-in' is set to 'Enabled' | reg_check
+    title: 18.8.28.1 | Ensure 'Block user from showing account details on sign-in' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name BlockUserFromShowingAccountDetailsOnSignin
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_8_28_2 }}
   dont_display_network_select_signin:
-    title: 18.8.28.2 | L1 | Ensure 'Do not display network selection UI' is set to 'Enabled' | reg_check
+    title: 18.8.28.2 | Ensure 'Do not display network selection UI' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name DontDisplayNetworkSelectionUI
     exit-status: 0
     stdout:
@@ -28,15 +23,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.2
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_8_28_3 }}
   dont_enumerate_connect_users_signin:
-    title: 18.8.28.3 | L1 | Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled' | reg_check
+    title: 18.8.28.3 | Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name DontEnumerateConnectedUsers
     exit-status: 0
     stdout:
@@ -45,15 +35,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.3
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_8_28_5 }}
   turn_off_app_notify_loc_screen:
-    title: 18.8.28.5 | L1 | Ensure 'Turn off app notifications on the lock screen' is set to 'Enabled' | reg_check
+    title: 18.8.28.5 | Ensure 'Turn off app notifications on the lock screen' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name DisableLockScreenAppNotifications
     exit-status: 0
     stdout:
@@ -62,15 +47,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.5
-      CISv8:
-      - 4.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_8_28_6 }}
   turn_off_pic_passed_signin:
-    title: 18.8.28.6 | L1 | Ensure 'Turn off picture password sign-in' is set to 'Enabled' | reg_check
+    title: 18.8.28.6 | Ensure 'Turn off picture password sign-in' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name BlockDomainPicturePassword
     exit-status: 0
     stdout:
@@ -79,15 +59,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.6
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_8_28_7 }}
   disable_pin_sigin:
-    title: 18.8.28.7 | L1 | Ensure 'Turn on convenience PIN sign-in' is set to 'Disabled' | reg_check
+    title: 18.8.28.7 | Ensure 'Turn on convenience PIN sign-in' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WIN_SYSTEM }} -Name AllowDomainPINLogon 
     exit-status: 0
     stdout:
@@ -96,10 +71,5 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.8.28.7
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

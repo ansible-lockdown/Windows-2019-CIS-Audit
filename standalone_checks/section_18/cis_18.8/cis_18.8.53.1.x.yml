@@ -1,8 +1,8 @@
 {{ if .Vars.win2019cis_level_2 }}
-  {{ if .Vars.win2019cis_18_8_52_1_1 }}
+  {{ if .Vars.win2019cis_18_8_53_1_1 }}
 command:
   enable_ntp_client:
-    title: 18.8.52.1.1 | L2 | Ensure 'Enable Windows NTP Client' is set to 'Enabled' | reg_check - behaviour
+    title: 18.8.53.1.1 | Ensure 'Enable Windows NTP Client' is set to 'Enabled' | reg_check - behaviour
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/W32Time/TimeProviders/NtpClient' -Name Enabled
     exit-status: 0
     stdout:
@@ -10,7 +10,7 @@ command:
     meta:
       domain_controller: 2
       Member_Server: 2
-      CIS_ID: 18.8.52.1.1
+      CIS_ID: 18.8.53.1.1
       CISv8:
       - 4.8
       CISv8_IG1: false

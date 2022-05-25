@@ -1,49 +1,15 @@
-{{ if .Vars.win2019cis_level_2 }}
+{{ if .Vars.win2019cis_level_1 }}
 command:
-  {{ if .Vars.win2019cis_18_8_34_6_1 }}
-  disable_network_conn_standby:
-    title: 18.8.34.6.1 | L2 | Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/f15576e8-98b7-4186-b944-eafa664402d9' -Name DCSettingIndex
-    exit-status: 0
-    stdout:
-    - '0'
-    meta:
-      Domain_Controller: 2
-      Member_Server: 2
-      CIS_ID: 18.8.34.6.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.win2019cis_18_8_34_6_2 }}
-  disable_network_conn_standby_pluggedin:
-    title: 18.8.34.6.2 | L2 | Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/f15576e8-98b7-4186-b944-eafa664402d9' -Name ACSettingIndex
-    exit-status: 0
-    stdout:
-    - '0'
-    meta:
-      Domain_Controller: 2
-      Member_Server: 2
-      CIS_ID: 18.8.34.6.2
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
   {{ if .Vars.win2019cis_18_8_34_6_3 }}
   enable_require_passwd_standby:
-    title: 18.8.34.6.3 | L2 | Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled's| reg_check
+    title: 18.8.34.6.3 | Ensure 'Require a password when a computer wakes (on battery)' is set to 'Enabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/0e796bdb-100d-47d6-a2d5-f7d2daa51f51' -Name DCSettingIndex
     exit-status: 0
     stdout:
     - '1'
     meta:
-      Domain_Controller: 2
-      Member_Server: 2
+      Domain_Controller: 1
+      Member_Server: 1
       CIS_ID: 18.8.34.6.3
       CISv8:
       - 4.3
@@ -53,19 +19,45 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_34_6_4 }}
   enable_require_passwd_standby_pluggedin:
-    title: 18.8.34.6.4 | L2 | Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled's| reg_check
+    title: 18.8.34.6.4 | Ensure 'Require a password when a computer wakes (plugged in)' is set to 'Enabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/0e796bdb-100d-47d6-a2d5-f7d2daa51f51' -Name ACSettingIndex
     exit-status: 0
     stdout:
     - '1'
     meta:
-      Domain_Controller: 2
-      Member_Server: 2
+      Domain_Controller: 1
+      Member_Server: 1
       CIS_ID: 18.8.34.6.4
       CISv8:
       - 4.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
+{{ end }}
+{{ if .Vars.win2019cis_level_2 }}
+  {{ if .Vars.win2019cis_18_8_34_6_1 }}
+  disable_network_conn_standby:
+    title: 18.8.34.6.1 | Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/f15576e8-98b7-4186-b944-eafa664402d9' -Name DCSettingIndex
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.8.34.6.1
+  {{ end }}
+  {{ if .Vars.win2019cis_18_8_34_6_2 }}
+  disable_network_conn_standby_pluggedin:
+    title: 18.8.34.6.2 | Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Power/PowerSettings/f15576e8-98b7-4186-b944-eafa664402d9' -Name ACSettingIndex
+    exit-status: 0
+    stdout:
+    - '0'
+    meta:
+      Domain_Controller: 2
+      Member_Server: 2
+      CIS_ID: 18.8.34.6.2
   {{ end }}
 {{ end }}

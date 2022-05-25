@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_8_3_1 }}
 command:
   disable_cli_proc_creation_evts:
-    title: 18.8.3.1 | L1 | Ensure 'Include command line in process creation events' is set to 'Disabled's| reg_check
+    title: 18.8.3.1 | Ensure 'Include command line in process creation events' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/Audit' -Name ProcessCreationIncludeCmdLine_Enabled
     exit-status: 0
     stdout:
@@ -12,7 +12,7 @@ command:
       Member_Server: 1
       CIS_ID: 18.8.3.1
       CISv8:
-      - 3.11
+      - 8.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true

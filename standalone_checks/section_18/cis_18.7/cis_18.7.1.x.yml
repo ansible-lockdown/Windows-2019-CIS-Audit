@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_7_1_1 }}
 command:
   disable_push_notify:
-    title: 18.7.1.1 | L2 | Ensure 'Turn off notifications network usage' is set to 'Enabled's| reg_check
+    title: 18.7.1.1 | Ensure 'Turn off notifications network usage' is set to 'Enabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/CurrentVersion/PushNotifications' -Name NoCloudApplicationNotification
     exit-status: 0
     stdout:

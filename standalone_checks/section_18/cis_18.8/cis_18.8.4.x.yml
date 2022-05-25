@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_8_4_1 }}
   credssp_encrpyt_oracle_force:
-    title: 18.8.4.1 | L1 | Ensure 'Encryption Oracle Remediation' is set to 'Enabled - Force Updated Clients's| reg_check
+    title: 18.8.4.1 | Ensure 'Encryption Oracle Remediation' is set to 'Enabled - Force Updated Clients's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/CredSSP/Parameters' -Name AllowEncryptionOracle
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_8_4_2 }}
   credssp_encrypt_oracle_force:
-    title: 18.8.4.2 | L1 | Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled's| reg_check
+    title: 18.8.4.2 | Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled's| reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/CredentialsDelegation' -Name AllowProtectedCreds
     exit-status: 0
     stdout:
@@ -29,7 +29,7 @@ command:
       Member_Server: 1
       CIS_ID: 18.8.4.2
       CISv8:
-      - 3.11
+      - 10.5
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true

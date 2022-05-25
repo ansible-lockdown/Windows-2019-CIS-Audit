@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_8_27_1 }}
 command:
   device_auth_using_cert_behaviour:
-    title: 18.8.27.1 | L2 | Ensure 'Disallow copying of user input methods to the system account for sign-in' is set to 'Enabled' | reg_check
+    title: 18.8.27.1 | Ensure 'Disallow copying of user input methods to the system account for sign-in' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Control Panel/International' -Name BlockUserInputMethodsForSignin
     exit-status: 0
     stdout:
@@ -11,10 +11,5 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.8.27.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
