@@ -74,7 +74,7 @@ $BENCHMARK_OS   = "Windows 2019"
 
 # Set Variables for Audit
 
-$DEFAULT_CONTENT_DIR = "C:\remediation_audit_logs"  # This can be changed using cli
+$DEFAULT_CONTENT_DIR = "C:\vagrant"  # This can be changed using cli
 $DEFAULT_VARS_FILE = "$BENCHMARK.yml"  # This can be changed using cli option
 $DEFAULT_AUDIT_BIN = "$DEFAULT_CONTENT_DIR\goss.exe"  # This can be changed using cli option
 
@@ -290,7 +290,7 @@ $pinfo.FileName = "$AUDIT_BIN"
 $pinfo.RedirectStandardError = $true
 $pinfo.RedirectStandardOutput = $true
 $pinfo.UseShellExecute = $false
-$pinfo.Arguments = "--gossfile $AUDIT_CONTENT_FULLPATH\$DEFAULT_AUDIT --vars $AUDIT_CONTENT_FULLPATH\$AUDIT_VARS --vars-inline `"$AUDIT_JSON_VARS`" v --format json --format-options pretty"
+$pinfo.Arguments = "--gossfile $AUDIT_CONTENT_FULLPATH\$DEFAULT_AUDIT --vars $AUDIT_CONTENT_FULLPATH\$AUDIT_VARS --vars-inline `"$AUDIT_JSON_VARS`" v --format documentation"
 $p = New-Object System.Diagnostics.Process
 $p.StartInfo = $pinfo
 $p.Start() | Out-Null

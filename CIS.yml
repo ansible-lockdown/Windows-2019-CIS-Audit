@@ -21,9 +21,9 @@ exchange_server_group: false
 ###################
 # Reference files #
 ###################
-gpresult_file: 'c:\goss\gpresult.txt'
-auditresult_file: 'c:\goss\audit_pol.txt'
-secedit_file: 'c:\goss\secedit_conf.txt'
+gpresult_file: 'c:\vagrant\gpresult.txt'
+auditresult_file: 'c:\vagrant\audit_pol.txt'
+secedit_file: 'c:\vagrant\secedit_conf.txt'
 #########
 ## CIS ##
 #########
@@ -54,11 +54,11 @@ win2019_use_public_firewall: false
 ################
 win2019cis_section_1: true
 win2019cis_section_2: true
-win2019cis_section_5: true
-win2019cis_section_9: true
-win2019cis_section_17: true
-win2019cis_section_18: true
-win2019cis_section_19: true
+win2019cis_section_5: false
+win2019cis_section_9: false
+win2019cis_section_17: false
+win2019cis_section_18: false
+win2019cis_section_19: false
 
 ########################
 ## Section_1_Controls ##
