@@ -371,6 +371,7 @@ win2019cis_18_4_12: true
 # 18.5.3 DirectAccess Client Experience Settings
 # 18 5.4 DNS Client
 win2019cis_18_5_4_1: true
+win2019cis_18_5_4_2: true
 # 18.5.5 Fonts
 win2019cis_18_5_5_1: true
 # 18.5.6 Hotspot Authentication
@@ -408,8 +409,9 @@ win2019cis_18_5_21_1: true
 win2019cis_18_5_21_2: true
 # 18.5.6 Printers
 # 18.6 Printers
-win2019_cis_18_6_1: true
-win2019_cis_18_6_2: true
+win2019cis_18_6_1: true
+win2019cis_18_6_2: true
+win2019cis_18_6_3: true
 # 18.7.Start Menu and Taskbar
 # 18.7.1 Notifications
 win2019cis_18_7_1_1: true
