@@ -652,6 +652,7 @@ win2019cis_18_9_47_6_1: true
 win2019cis_18_9_47_9_1: true
 win2019cis_18_9_47_9_2: true
 win2019cis_18_9_47_9_3: true
+win2019cis_18_9_47_9_4: true
 # 18.9.47.10 Remediation
 # 18.9.47.11 Reporting
 win2019cis_18_9_47_11_1: true
@@ -661,7 +662,7 @@ win2019cis_18_9_47_12_2: true
 # 18.9.47.13 Security Intelligence Updates (formerly Signature Updates)
 # 18.9.47.14 Threats
 win2019cis_18_9_47_15: true
-win2019cis_18_9_46_16: true
+win2019cis_18_9_47_16: true
 # 18.9.48 Microsoft Defender Application Guard (formerly Windows Defender Application Guard)
 # 18.9.49 Microsoft Defender Exploit Guard (formerly Windows Defender Exploit Guard)
 # 18.9.50 Microsoft Edge
@@ -680,8 +681,7 @@ win2019cis_18_9_58_1: true
 # 18.9.62 Portable Operating System
 # 18.9.63 Presentation Settings
 # 18.9.64 Push To Install
-win2019_18_9_64_1: true
-
+win2019cis_18_9_64_1: true
 # 18.9.65 Remote Desktop Services (formerly Terminal Services)
 # 18.9.65.1 RD Licensing (formerly TS Licensing)
 # 18.9.65.2 Remote Desktop Connection Client
@@ -778,15 +778,15 @@ win2019cis_18_9_103_1: true
 # 18.9.105 Windows Security (formerly Windows Defender Security Center)
 # 18.9.105.1 Account protection
 # 18.9.105.2 App and browser protection
-win2019cis_18_9_99_2_1: true
+win2019cis_18_9_105_2_1: true
 # 18.9.106 Windows SideShow
 # 18.9.107 Windows System Resource Manager
 # 18.9.108 Windows Update
 # 18.9.108.1 Legacy Policies
 win2019cis_18_9_108_1_1: true
 # 18.9.108.2 Manage end user experience
-win2019_18_9_108_2_1: true
-win2019_18_9_108_2_2: true
+win2019cis_18_9_108_2_1: true
+win2019cis_18_9_108_2_2: true
 # 18.9.108.3 Manage updates offered from Windows Server Update Service
 # 18.9.108.4 Manage updates offered from Windows Update (formerly Defer Windows Updates and Windows Update for Business)
 win2019cis_18_9_108_4_1: true
