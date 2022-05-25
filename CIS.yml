@@ -514,35 +514,36 @@ win2019cis_18_8_37_2: true
 # 18.8.39 Scripts
 # 18.8.40 Security Account Manager
 win2019cis_18_8_40_1: true
-# 18.8.41 Service Control Manager Settings
-# 18.8.42 Shutdown
-# 18.8.43 Shutdown Options
-# 18.8.44 Storage Health
-# 18.8.45 Storage Sense
-# 18.8.46 System Restore
-# 18.8.47 Troubleshooting and Diagnostics
-# 18.8.47.1 Application Compatibility Diagnostics
-# 18.8.47.2 Corrupted File Recovery
-# 18.8.47.3 Disk Diagnostic
-# 18.8.47.4 Fault Tolerant Heap
-# 18.8.47.5 Microsoft Support Diagnostic Tool
-win2019cis_18_8_47_5_1: true
-# 18.8.47.6 MSI Corrupted File Recovery
-# 18.8.47.7 Scheduled Maintenance
-# 18.8.47.8 Scripted Diagnostics
-# 18.8.47.9 Windows Boot Performance Diagnostics
-# 18.8.47.10 Windows Memory Leak Diagnosis
-# 18.8.47.11 Windows Performance PerfTrack
-win2019cis_18_8_47_11_1: true
-# 18.8.48 Trusted Platform Module Services
-# 18.8.49 User Profiles
-win2019cis_18_8_49_1: true
-# 18.8.50 Windows File Protection
-# 18.8.51 Windows HotStart
-# 18.8.52 Windows Time Service
-# 18.8.52.1 Time Providers
-win2019cis_18_8_52_1_1: true
-win2019cis_18_8_52_1_2: true
+# 18.8.41 Server Manager
+# 18.8.42 Service Control Manager Settings
+# 18.8.43 Shutdown
+# 18.8.44 Shutdown Options
+# 18.8.45 Storage Health
+# 18.8.46 Storage Sense
+# 18.8.47 System Restore
+# 18.8.48 Troubleshooting and Diagnostics
+# 18.8.48.1 Application Compatibility Diagnostics
+# 18.8.48.2 Corrupted File Recovery
+# 18.8.48.3 Disk Diagnostic
+# 18.8.48.4 Fault Tolerant Heap
+# 18.8.48.5 Microsoft Support Diagnostic Tool
+win2019cis_18_8_48_5_1: true
+# 18.8.48.6 MSI Corrupted File Recovery
+# 18.8.48.7 Scheduled Maintenance
+# 18.8.48.8 Scripted Diagnostics
+# 18.8.48.9 Windows Boot Performance Diagnostics
+# 18.8.48.10 Windows Memory Leak Diagnosis
+# 18.8.48.11 Windows Performance PerfTrack
+win2019cis_18_8_48_11_1: true
+# 18.8.49 Trusted Platform Module Services
+# 18.8.50 User Profiles
+win2019cis_18_8_50_1: true
+# 18.8.51 Windows File Protection
+# 18.8.52 Windows HotStart
+# 18.8.53 Windows Time Service
+# 18.8.53.1 Time Providers
+win2019cis_18_8_53_1_1: true
+win2019cis_18_8_53_1_2: true
 # 18.9 Windows Components
 # 18.9.1 Active Directory Federation Services
 # 18.9.2 ActiveX Installer Service
