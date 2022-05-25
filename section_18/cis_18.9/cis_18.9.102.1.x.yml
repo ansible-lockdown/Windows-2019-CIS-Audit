@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_9_102_1_1 }}
   disable_basic_auth_winrm:
-    title: 18.9.102.1.1 | L1 |  Ensure 'Allow Basic authentication' is set to 'Disabled' | reg_check
+    title: 18.9.102.1.1 | L1 | Ensure 'Allow Basic authentication' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_CLT }} -Name AllowBasic
     exit-status: 0
     stdout:
