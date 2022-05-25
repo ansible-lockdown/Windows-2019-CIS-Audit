@@ -89,7 +89,7 @@ command:
     exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_LANSERVER }} -Name NullSessionShares
     exit-status: 0
     stdout:
-    - '1'
+    - '!/.*/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
