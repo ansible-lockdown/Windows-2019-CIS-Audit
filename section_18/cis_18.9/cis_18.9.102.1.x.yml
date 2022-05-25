@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_9_102_1_1 }}
   disable_basic_auth_winrm:
-    title: 18.9.102.1.1 | L1 | Ensure 'Allow Basic authentication' is set to 'Disabled' | reg_check
+    title: 18.9.102.1.1 | Ensure 'Allow Basic authentication' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_CLT }} -Name AllowBasic
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_9_102_1_2 }}
   disable_allow_unencrypted_traffic_winrm:
-    title: 18.9.102.1.2 | L1 | Ensure Ensure 'Allow unencrypted traffic' is set to 'Disabled' | reg_check
+    title: 18.9.102.1.2 | Ensure Ensure 'Allow unencrypted traffic' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_CLT }} -Name AllowUnencryptedTraffic
     exit-status: 0
     stdout:
@@ -29,14 +29,14 @@ command:
       Member_Server: 1
       CIS_ID: 18.9.102.1.2
       CISv8:
-      - 13.10
+      - 3.10
       CISv8_IG1: false
       CISv8_IG2: false
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_9_102_1_3 }}
   enable_disallow_digest_auth_winrm:
-    title: 18.9.102.1.3 | L1 | Ensure 'Disallow Digest authentication' is set to 'Enabled' | reg_check
+    title: 18.9.102.1.3 | Ensure 'Disallow Digest authentication' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_WINRM_CLT }} -Name AllowDigest
     exit-status: 0
     stdout:
@@ -46,7 +46,7 @@ command:
       Member_Server: 1
       CIS_ID: 18.9.102.1.3
       CISv8:
-      - 4.1
+      - 3.10
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true

@@ -3,7 +3,7 @@
 command:
   disable_allow_localapp_data_share:
     
-    title: 18.9.4.1 | L2 | Ensure 'Allow a Windows app to share application data between users' is set to 'Disabled' | reg_check
+    title: 18.9.4.1 | Ensure 'Allow a Windows app to share application data between users' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/CurrentVersion/AppModel/StateManager' -Name AllowSharedLocalAppData
     exit-status: 0
     stdout:

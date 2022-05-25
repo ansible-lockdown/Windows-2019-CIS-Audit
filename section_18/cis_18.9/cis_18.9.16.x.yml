@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_9_16_1 }}
   dont_display_password_reveal:
-    title: 18.9.16.1 | L1 | Ensure 'Do not display the password reveal button' is set to 'Enabled' | reg_check
+    title: 18.9.16.1 | Ensure 'Do not display the password reveal button' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/CredUI' -Name DisablePasswordReveal
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_9_16_2 }}
   disable_enumerate_admin_accts_on_elevate:
-    title: 18.9.16.2 | L1 | Ensure 'Enumerate administrator accounts on elevation' is set to 'Disabled' | reg_check
+    title: 18.9.16.2 | Ensure 'Enumerate administrator accounts on elevation' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/CredUI' -Name EnumerateAdministrators
     exit-status: 0
     stdout:

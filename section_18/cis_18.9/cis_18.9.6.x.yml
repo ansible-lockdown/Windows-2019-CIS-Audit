@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_9_6_1 }}
 command:
   enable_allow_MS_optional_accts:
-    title: 18.9.6.1 | L1 | Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled' | reg_check
+    title: 18.9.6.1 | Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_SYSTEM }} -Name MSAOptional
     exit-status: 0
     stdout:

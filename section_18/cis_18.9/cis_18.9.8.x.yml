@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_9_8_1 }}
   disable_autoplay_non-volumes:
-    title: 18.9.8.1 | L1 | Ensure 'Disallow Autoplay for non-volume devices' is set to 'Enabled' | reg_check
+    title: 18.9.8.1 | Ensure 'Disallow Autoplay for non-volume devices' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_EXPLORER }} -Name NoAutoplayfornonVolume
     exit-status: 0
     stdout:
@@ -19,7 +19,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_9_8_2 }}
   disable_autorun_commands:
-    title: 18.9.8.2 | L1 | Ensure 'Set the default behavior for AutoRun' is set to 'Enabled - Do not execute any autorun commands' | reg_check
+    title: 18.9.8.2 | Ensure 'Set the default behavior for AutoRun' is set to 'Enabled - Do not execute any autorun commands' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_EXPLORER }} -Name NoAutorun
     exit-status: 0
     stdout:
@@ -36,7 +36,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_9_8_3 }}
   disable_autoplay_all:
-    title: 18.9.8.3 | L1 | Ensure 'Turn off Autoplay' is set to 'Enabled - All drives' | reg_check
+    title: 18.9.8.3 | Ensure 'Turn off Autoplay' is set to 'Enabled - All drives' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CV_EXPLORER }} -Name NoDriveTypeAutoRun
     exit-status: 0
     stdout:

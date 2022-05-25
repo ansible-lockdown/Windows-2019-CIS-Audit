@@ -1,72 +1,36 @@
 {{ if .Vars.win2019cis_level_1 }}
 command:
   {{ if .Vars.win2019cis_18_9_16_1 }}
-  allow_telemetry:
-    title: 18.9.16.1 | L1 | Ensure 'Allow Telemetry' is set to 'Enabled - 0 - Security [Enterprise Only]' or 'Enabled - 1 - Basic's| reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name AllowTelemetry
-    exit-status: 0
-    stdout:
-    - '/[0-1]/'
-    meta:
-      Domain_Controller: 1
-      Member_Server: 1
-      CIS_ID: 18.9.16.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.win2019cis_18_9_16_3 }}
-  do_not_show_feedback:
-    title: 18.9.16.3 | L1 | Ensure 'Do not show feedback notifications' is set to 'Enabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name DoNotShowFeedbackNotifications
+  dont_display_password_reveal:
+    title: 18.9.16.1 | Ensure 'Do not display the password reveal button' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/CredUI' -Name DisablePasswordReveal
     exit-status: 0
     stdout:
     - '1'
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.9.16.3
+      CIS_ID: 18.9.16.1
       CISv8:
-      - 4.8
-      CISv8_IG1: false
+      - 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.win2019cis_18_9_16_4 }}
-  disable_insider_builds:
-    title: 18.9.16.4 | L1 | Ensure 'Toggle user control over Insider builds' is set to 'Disabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/PreviewBuilds' -Name AllowBuildPreview
+  {{ if .Vars.win2019cis_18_9_16_2 }}
+  disable_enumerate_admin_accts_on_elevate:
+    title: 18.9.16.2 | Ensure 'Enumerate administrator accounts on elevation' is set to 'Disabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/CredUI' -Name EnumerateAdministrators
     exit-status: 0
     stdout:
     - '0'
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.9.16.1
-      CISv8:
-      - 2.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
-{{ end }}
-{{ if .Vars.win2019cis_level_2 }}
-  {{ if .Vars.win2019cis_18_9_16_2 }}
-  auth_proxy_for_telemetry:
-    title: 18.9.16.2 | L2 | Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled - Disable Authenticated Proxy usage' | reg_check
-    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/DataCollection' -Name DisableEnterpriseAuthProxy
-    exit-status: 0
-    stdout:
-    - '0'
-    meta:
-      Domain_Controller: 2
-      Member_Server: 2
       CIS_ID: 18.9.16.2
       CISv8:
-      - 4.8
-      CISv8_IG1: false
+      - 4.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}

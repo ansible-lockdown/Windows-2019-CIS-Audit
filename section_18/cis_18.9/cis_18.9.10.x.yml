@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_9_10_1_1 }}
 command:
   config_enhanced_anti_spoof:
-    title: 18.9.10.1.1 | L1 | Ensure 'Configure enhanced anti-spoofing' is set to 'Enabled' | reg_check
+    title: 18.9.10.1.1 | Ensure 'Configure enhanced anti-spoofing' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Biometrics/FacialFeatures' -Name EnhancedAntiSpoofing
     exit-status: 0
     stdout:
