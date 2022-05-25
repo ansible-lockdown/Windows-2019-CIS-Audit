@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_19_7_8_1 }}
   disable_spotlight_on_lockscreen:
-    title: 19.7.8.1 | L1 | Ensure 'Configure Windows spotlight on lock screen' is set to 'Disabled' | reg_check
+    title: 19.7.8.1 | Ensure 'Configure Windows spotlight on lock screen' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name ConfigureWindowsSpotlight
     exit-status: 0
     stdout:
@@ -12,14 +12,14 @@ command:
       Member_Server: 1
       CIS_ID: 19.7.8.1
       CISv8:
-      - 4.3
-      CISv8_IG1: true
+      - 4.8
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_19_7_8_2 }}
   enable_do_not_suggest_3rd_party:
-    title: 19.7.8.2 | L1 | Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled' | reg_check
+    title: 19.7.8.2 | Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name DisableThirdPartySuggestions
     exit-status: 0
     stdout:
@@ -29,14 +29,14 @@ command:
       Member_Server: 1
       CIS_ID: 19.7.8.2
       CISv8:
-      - 4.1
-      CISv8_IG1: true
+      - 4.8
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
     {{ if .Vars.win2019cis_19_7_8_5 }}
   spotlight_desktop_disable:
-    title: 19.7.8.5 | L1 | Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled' | reg_check
+    title: 19.7.8.5 | Ensure 'Turn off Spotlight collection on Desktop' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name DisableSpotlightCollectionOnDesktop
     exit-status: 0
     stdout:
@@ -45,16 +45,11 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 19.7.8.5
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_19_7_8_3 }}
   enable_do_not_user_diag_data:
-    title: 19.7.8.3 | L2 | Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled' | reg_check
+    title: 19.7.8.3 | Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name DisableTailoredExperiencesWithDiagnosticData
     exit-status: 0
     stdout:
@@ -71,7 +66,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_19_7_8_4 }}
   disable_windows_spotlight:
-    title: 19.7.8.4 | L2 | Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'  | reg_check
+    title: 19.7.8.4 | Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'  | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/CloudContent' -Name DisableWindowsSpotlightFeatures
     exit-status: 0
     stdout:

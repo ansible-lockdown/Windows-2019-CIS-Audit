@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_19_7_4_1 }}
   disable_preserve_zone_info:
-    title: 19.7.4.1 | L1 | Ensure 'Do not preserve zone information in file attachments' is set to 'Disabled' | reg_check
+    title: 19.7.4.1 | Ensure 'Do not preserve zone information in file attachments' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/Attachments' -Name SaveZoneInformation
     exit-status: 0
     stdout:
@@ -11,15 +11,10 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 19.7.4.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_19_7_4_2 }}
   enable_AV_attachements:
-    title: 19.7.4.2 | L1 | Ensure 'Notify antivirus programs when opening attachments' is set to 'Enabled' | reg_check
+    title: 19.7.4.2 | Ensure 'Notify antivirus programs when opening attachments' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/Attachments' -Name ScanWithAntiVirus
     exit-status: 0
     stdout:
@@ -29,9 +24,8 @@ command:
       Member_Server: 1
       CIS_ID: 19.7.4.2
       CISv8:
-      - 10.5
-      - 10.6
-      CISv8_IG1: false
+      - 10.1
+      CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}

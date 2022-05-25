@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_19_7_28_1 }}
 command:
   enable_prevent_users_sharing_profile:
-    title: 19.7.28.1 | L1 | Ensure 'Prevent users from sharing files within their profile.' is set to 'Enabled' | reg_check
+    title: 19.7.28.1 | Ensure 'Prevent users from sharing files within their profile.' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/Explorer' -Name NoInplaceSharing
     exit-status: 0
     stdout:

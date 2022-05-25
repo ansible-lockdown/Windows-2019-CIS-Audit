@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_19_1_3_1 }}
   screensaver_enabled:
-    title: 19.1.3.1 | L1 | Ensure 'Enable screen saver' is set to 'Enabled' | reg_check
+    title: 19.1.3.1 | Ensure 'Enable screen saver' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKCU_CP_DESKTOP }} -Name ScreenSaveActive
     exit-status: 0
     stdout:
@@ -18,12 +18,12 @@ command:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_19_1_3_2 }}
-  force_lockscreenfile:
-    title: 19.1.3.2 | L1 | Ensure 'Force specific screen saver - Screen saver executable name' is set to 'Enabled - scrnsave.scr' | reg_check
-    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKCU_CP_DESKTOP }} -Name SCRNSAVE.EXE
+  password_unlock_screensaver:
+    title: 19.1.3.2 | Ensure 'Password protect the screen saver' is set to 'Enabled' | reg_check
+    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKCU_CP_DESKTOP }} -Name ScreenSaverIsSecure
     exit-status: 0
     stdout:
-    - '{{ .Vars.win2019cis_screensaver_file }}'
+    - '1'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -35,25 +35,8 @@ command:
       CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_19_1_3_3 }}
-  password_unlock_screensaver:
-    title: 19.1.3.3 | L1 | Ensure 'Password protect the screen saver' is set to 'Enabled' | reg_check
-    exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKCU_CP_DESKTOP }} -Name ScreenSaverIsSecure
-    exit-status: 0
-    stdout:
-    - '1'
-    meta:
-      Domain_Controller: 1
-      Member_Server: 1
-      CIS_ID: 19.1.3.3
-      CISv8:
-      - 4.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-  {{ end }}
-  {{ if .Vars.win2019cis_19_1_3_4 }}
   screensaver_timeout:
-    title: 19.1.3.4 | L1 | Ensure 'Screen saver timeout' is set to 'Enabled- 900 seconds or fewer, but not 0'  | reg_check
+    title: 19.1.3.3 | Ensure 'Screen saver timeout' is set to 'Enabled- 900 seconds or fewer, but not 0'  | reg_check
     exec: {{ .Vars.ps_regcheck }} {{ .Vars.HKCU_CP_DESKTOP }} -Name ScreenSaveTimeOut
     exit-status: 0
     stdout:
@@ -61,7 +44,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 19.1.3.4
+      CIS_ID: 19.1.3.3
       CISv8:
       - 4.3
       CISv8_IG1: true

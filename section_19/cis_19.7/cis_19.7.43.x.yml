@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_19_7_43_1 }}
 command:
   disable_elevate_install:
-    title: 19.7.43.1 | L1 | Ensure 'Always install with elevated privileges' is set to 'Disabled' | reg_check
+    title: 19.7.43.1 | Ensure 'Always install with elevated privileges' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyvalue -path 'HKCU:/SOFTWARE/Policies/Microsoft/Windows/Installer' -Name AlwaysInstallElevated
     exit-status: 0
     stdout:
