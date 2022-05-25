@@ -565,7 +565,7 @@ win2019cis_18_9_10_1_1: true
 # 18.9.11 BitLocker Drive Encryption
 # 18.9.12 Camera
 win2019cis_18_9_12_1: true
-# 18.9.23 Chat
+# 18.9.13 Chat
 # 18.9.14 Cloud Content
 win2019cis_18_9_14_1: true
 win2019cis_18_9_14_2: true
@@ -815,7 +815,6 @@ win2019cis_autoupdate_day: 0 # 0 - everyday
 win2019cis_19_1_3_1: true
 win2019cis_19_1_3_2: true
 win2019cis_19_1_3_3: true
-win2019cis_19_1_3_4: true
 # 19.2 Desktop
 # 19.3 Network
 # 19.4 Shared Folders
