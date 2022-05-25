@@ -11,6 +11,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.1.1.1
+  {{ end }}
   {{ if .Vars.win2019cis_18_1_1_2 }}
   prevent_lock_screen_slide:
     title: 18.1.1.2 | Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled's| reg_check

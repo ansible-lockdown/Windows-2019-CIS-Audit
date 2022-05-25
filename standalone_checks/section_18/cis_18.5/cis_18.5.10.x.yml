@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_5_10_2 }}
 command:
   peer_to_peer_Name_res:
-    title: 18.5.10.2 | L2 | Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled' | reg_check
+    title: 18.5.10.2 | Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Peernet' -Name Disabled
     exit-status: 0
     stdout:

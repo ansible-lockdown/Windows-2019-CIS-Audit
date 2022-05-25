@@ -2,14 +2,14 @@
   {{ if .Vars.win2019cis_18_5_5_1 }}
 command:
   disable_font_providers:
-    title: 18.5.5.1 | L2 | Ensure 'Enable Font Providers' is set to 'Disabled' | reg_check
+    title: 18.5.5.1 | Ensure 'Enable Font Providers' is set to 'Disabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/System' -Name EnableFontProviders
     exit-status: 0
     stdout:
     - '0'
     meta:
-      Domain_Controller: 1
-      Member_Server: 1
+      Domain_Controller: 2
+      Member_Server: 2
       CIS_ID: 18.5.5.1
       CISv8:
       - 16.5

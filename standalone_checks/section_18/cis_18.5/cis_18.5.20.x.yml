@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_5_20_1 }}
   wireless_via_win_connect_disabled:
-    title: 18.5.20.1 | L2 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled's| reg_check - EnableRegistrars
+    title: 18.5.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | reg_check - EnableRegistrars
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/Registrars' -Name EnableRegistrars
     exit-status: 0
     stdout:
@@ -17,7 +17,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   wireless_uPnP_disabled:
-    title: 18.5.20.1 | L2 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled's| reg_check - DisableUPnPRegistrar
+    title: 18.5.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | reg_check - DisableUPnPRegistrar
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/Registrars' -Name DisableUPnPRegistrar
     exit-status: 0
     stdout:
@@ -32,7 +32,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   wireless_802dot11_disabled:
-    title: 18.5.20.1 | L2 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled's| reg_check - DisableInBand802DOT11Registrar
+    title: 18.5.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | reg_check - DisableInBand802DOT11Registrar
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/Registrars' -Name DisableInBand802DOT11Registrar
     exit-status: 0
     stdout:
@@ -47,7 +47,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   wireless_flash_config_disabled:
-    title: 18.5.20.1 | L2 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled's| reg_check - DisableFlashConfigRegistrar
+    title: 18.5.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | reg_check - DisableFlashConfigRegistrar
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/Registrars' -Name DisableFlashConfigRegistrar
     exit-status: 0
     stdout:
@@ -62,7 +62,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   wireless_WPD_disabled:
-    title: 18.5.20.1 | L2 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled's| reg_check - Disable WPDRegistrar
+    title: 18.5.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | reg_check - Disable WPDRegistrar
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/Registrars' -Name DisableWPDRegistrar
     exit-status: 0
     stdout:
@@ -79,7 +79,7 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_5_20_2 }}
   disable_win_connect_wiz:
-    title: 18.5.20.2 | L2 | Ensure 'Prohibit access of the Windows Connect Now wizards' is set to 'Enabled's| reg_check - 
+    title: 18.5.20.2 | Ensure 'Prohibit access of the Windows Connect Now wizards' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WCN/UI' -Name DisableWcnUi
     exit-status: 0
     stdout:

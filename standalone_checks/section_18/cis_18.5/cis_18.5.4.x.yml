@@ -1,8 +1,25 @@
 {{ if .Vars.win2019cis_level_1 }}
   {{ if .Vars.win2019cis_18_5_4_1 }}
 command:
+  DNS_over_HTTPS:
+    title: 18.5.4.1 | Ensure 'Configure DNS over HTTPS (DoH) name resolution' is set to 'Enabled Allow DoH' or higher | reg_check
+    exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/DNSClient' -Name DoHPolicy
+    exit-status: 0
+    stdout:
+    - '2'
+    meta:
+      Domain_Controller: 1
+      Member_Server: 1
+      CIS_ID: 18.5.4.1
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+  {{ if .Vars.win2019cis_18_5_4_2 }}
   turn_off_mcast_name_resolution:
-    title: 18.5.4.1 | L1 | Ensure 'Turn off multicast name resolution' is set to 'Enabled' | reg_check
+    title: 18.5.4.2 | Ensure 'Turn off multicast name resolution' is set to 'Enabled' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/DNSClient' -Name EnableMulticast
     exit-status: 0
     stdout:
@@ -10,7 +27,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.5.4.1
+      CIS_ID: 18.5.4.2
       CISv8:
       - 4.8
       CISv8_IG1: false

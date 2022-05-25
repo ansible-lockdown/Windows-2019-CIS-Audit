@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_5_21_1 }}
   conn_mgr_minimize_conns:
-    title: 18.5.21.1 | L1 | Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled - 1 = Minimize simultaneous connections' | reg_check
+    title: 18.5.21.1 | Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled - 1 = Minimize simultaneous connections' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WcmSvc/GroupPolicy' -Name fMinimizeConnections
     exit-status: 0
     stdout:
@@ -11,17 +11,12 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.5.21.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
 {{ if .Vars.win2019cis_level_2 }}
   {{ if .Vars.win2019cis_18_5_21_2 }}
   prohibit_other_dom_conns:
-    title: 18.5.21.2 | L2 | Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled - 1 = Minimize simultaneous connections' | reg_check
+    title: 18.5.21.2 | Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled - 1 = Minimize simultaneous connections' | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WcmSvc/GroupPolicy' -Name fBlockNonDomain
     exit-status: 0
     stdout:
@@ -30,10 +25,5 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.21.2
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

@@ -2,7 +2,7 @@
   {{ if .Vars.win2019cis_18_5_14_1 }}
 command:
   harden_unc_auth_netlogon:
-    title: 18.5.14.1 | L1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares's| reg_check NETLOGON
+    title: 18.5.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares's| reg_check NETLOGON
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/NetworkProvider/HardenedPaths' -Name \\*\NETLOGON
     exit-status: 0
     stdout:
@@ -11,13 +11,8 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.5.14.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   harden_unc_auth_sysvol:
-    title: 18.5.14.1 | L1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares's| reg_check SYSVOL
+    title: 18.5.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares's| reg_check SYSVOL
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/NetworkProvider/HardenedPaths' -Name \\*\SYSVOL
     exit-status: 0
     stdout:
@@ -26,10 +21,5 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 18.5.14.1
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}

@@ -2,7 +2,7 @@
 command:
   {{ if .Vars.win2019cis_18_5_9_1 }}
   disable_LLTDIO_Domain:
-    title: 18.5.9.1 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - AllowLLTDIOOnDomain
+    title: 18.5.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | reg_check - AllowLLTDIOOnDomain
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name AllowLLTDIOOnDomain
     exit-status: 0
     stdout:
@@ -11,13 +11,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_LLTDIO_PublicNet:
-    title: 18.5.9.1 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - AllowLLTDIOOnPublicNet
+    title: 18.5.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | reg_check - AllowLLTDIOOnPublicNet
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name AllowLLTDIOOnPublicNet
     exit-status: 0
     stdout:
@@ -26,13 +21,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_LLTDIO:
-    title: 18.5.9.1 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - EnableLLTDIO
+    title: 18.5.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | reg_check - EnableLLTDIO
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name EnableLLTDIO
     exit-status: 0
     stdout:
@@ -41,13 +31,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_LLTDIO_PrivateNet:
-    title: 18.5.9.1 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - ProhibitLLTDIOOnPrivateNet
+    title: 18.5.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | reg_check - ProhibitLLTDIOOnPrivateNet
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name ProhibitLLTDIOOnPrivateNet
     exit-status: 0
     stdout:
@@ -56,15 +41,10 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
   {{ if .Vars.win2019cis_18_5_9_2 }}
   disable_rspndr_Domain:
-    title: 18.5.9.2 | L2 | Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled's| reg_check - AllowRspndrOnDomain
+    title: 18.5.9.2 | Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled' | reg_check - AllowRspndrOnDomain
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name AllowRspndrOnDomain
     exit-status: 0
     stdout:
@@ -73,13 +53,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_rspndr_PublicNet:
-    title: 18.5.9.2 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - AllowRspndrOnPublicNet
+    title: 18.5.9.2 | Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled' | reg_check - AllowRspndrOnPublicNet
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name AllowRspndrOnPublicNet
     exit-status: 0
     stdout:
@@ -88,13 +63,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_rspndr:
-    title: 18.5.9.2 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - EnableRspndr
+    title: 18.5.9.2 | Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled' | reg_check - EnableRspndr
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name EnableRspndr
     exit-status: 0
     stdout:
@@ -103,13 +73,8 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   disable_rspndr_PrivateNet:
-    title: 18.5.9.2 | L2 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled's| reg_check - ProhibitRspndrOnPrivateNet
+    title: 18.5.9.2 | Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled' | reg_check - ProhibitRspndrOnPrivateNet
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/LLTD' -Name ProhibitRspndrOnPrivateNet
     exit-status: 0
     stdout:
@@ -118,10 +83,5 @@ command:
       Domain_Controller: 2
       Member_Server: 2
       CIS_ID: 18.5.9.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
   {{ end }}
 {{ end }}
