@@ -32,7 +32,7 @@ command:
       CISv8_IG2: true
       CISv8_IG3: true
   {{ end }}
-  {{ if .Vars.win2019cis_18_9_108_1_2 }}
+  {{ if .Vars.win2019cis_18_9_108_4_2 }}
   preview_channel_defer_policy:
     title: 18.9.108.4.2 | Ensure 'Select when Preview Builds and Feature Updates are received' is set to 'Enabled- 180 or more days' | reg_check - deferenabled
     exec: {{ .Vars.ps_regcheck }} {{.Vars.HKLM_WIN_UPDATE }} -Name DeferFeatureUpdates
@@ -42,7 +42,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.9.104.1.2
+      CIS_ID: 18.9.108.4.2
       CISv8:
       - 2.5
       - 7.3
@@ -58,7 +58,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.9.104.1.2
+      CIS_ID: 18.9.108.4.2
       CISv8:
       - 2.5
       - 7.3
@@ -74,7 +74,7 @@ command:
     meta:
       Domain_Controller: 1
       Member_Server: 1
-      CIS_ID: 18.9.104.1.2
+      CIS_ID: 18.9.108.4.2
       CISv8:
       - 2.5
       - 7.3
