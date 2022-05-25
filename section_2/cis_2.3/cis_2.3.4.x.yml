@@ -26,3 +26,4 @@ command:
       CIS_ID: 2.3.4.2
   {{ end }}
 {{ end }}
+{{ end }}

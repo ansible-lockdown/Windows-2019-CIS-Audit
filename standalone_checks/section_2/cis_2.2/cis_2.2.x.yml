@@ -83,6 +83,7 @@ command:
       Domain_Controller: 1
       Member_Server: 1
       CIS_ID: 2.2.11
+  {{ end }}
   {{ if .Vars.win2019cis_2_2_12 }}
   timezone_users:
     title: 2.2.12 | Ensure 'Change the time Zone' is set to 'Administrators, LOCAL SERVICE'  

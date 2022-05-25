@@ -99,6 +99,7 @@ command:
     meta:
       Domain_Controller: 1
       CIS_ID: 2.2.27
+  {{ end }}
   {{ if .Vars.win2019cis_2_2_31 }}
   impersonate_client_DC:
     title: 2.2.31 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'  (DC only) 
