@@ -3,10 +3,10 @@ command:
   {{ if .Vars.win2019cis_1_2_1 }}
   lockout_duration:
     title: 1.2.1 | Ensure 'Account lockout duration' is set to '15 or more minute(s)'  
-    exec: powershell.exe {{ .Vars.audit_content }}{{  .Vars.standalone_script  }} -filename {{ .Vars.secedit_file }} -localname LockoutDuration
+    exec: powershell.exe {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname LockoutDuration
     exit-status: 0
     stdout:
-    - '/^LockoutDuration = \b(1[5-9]|[2-5][0-9]|60)\b/'
+    - '/^LockoutDuration = (1[5-9]|[2-5][0-9]|60)$/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -21,10 +21,10 @@ command:
   {{ if .Vars.win2019cis_1_2_2 }}
   acct_lockout_threshold:
     title: 1.2.2 | Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0' 
-    exec: powershell {{ .Vars.audit_content }}{{ .Vars.gpo_regex_script }} -filename {{ .Vars.gpresult_file }} -policyname LockoutBadCount
+    exec: powershell.exe {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname LockoutBadCount
     exit-status: 0
     stdout:
-    - '/^Policy:.*:\s\b[1-5]\b'
+    - '/^LockoutBadCount = [1-5]$/'
     meta:
       Domain_Controller: 1
       Member_Server: 1
@@ -39,7 +39,7 @@ command:
   {{ if .Vars.win2019cis_1_2_3 }}
   reset_lockout_after:
     title: 1.2.3 | Ensure 'Reset account lockout counter after' is set to '15 or more minute(s)'
-    exec: powershell.exe {{ .Vars.audit_content }}{{  .Vars.standalone_script  }} -filename {{ .Vars.secedit_file }} -localname ResetLockoutCount
+    exec: powershell.exe {{ .Vars.audit_content }}{{ .Vars.standalone_script }} -filename {{ .Vars.secedit_file }} -localname ResetLockoutCount
     exit-status: 0
     stdout:
     - '/^ResetLockoutCount = \b(1[5-9]|[2-5][0-9]|60)\b/'

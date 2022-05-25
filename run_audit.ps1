@@ -263,7 +263,7 @@ $audit_content="$AUDIT_CONTENT_DIR"
 # Probably the ugliest thing ever with so much room to go wrong :)
 # Has to be a better way
 
-$AUDIT_JSON_VARS = "{ 'benchmark_type': `'$BENCHMARK`', 'benchmark_version': `'$BENCHMARK_VER`', 'benchmark_os': `'$BENCHMARK_OS`', 'machine_uuid': `'$host_machine_uuid`','os_deployment_type': `'$host_system_type`', 'epoch': `'$host_epoch`', 'os_locale': `'$host_os_locale`', 'os_release': `'$host_os_version`', 'host_os_distribution': `'$host_os_name`', 'os_hostname': `'$host_os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$audit_content`'}"
+$AUDIT_JSON_VARS = "{ 'benchmark_type': `'$BENCHMARK`', 'benchmark_version': `'$BENCHMARK_VER`', 'benchmark_os': `'$BENCHMARK_OS`', 'machine_uuid': `'$host_machine_uuid`','os_deployment_type': `'$host_system_type`', 'epoch': `'$host_epoch`', 'os_locale': `'$host_os_locale`', 'os_release': `'$host_os_version`', 'host_os_distribution': `'$host_os_name`', 'os_hostname': `'$host_os_hostname`', 'auto_group': `'$auto_group`', 'gpresult_file': `'$$gpresult_file`', 'auditresult_file': `'$auditresult_file`', 'secedit_file': `'$secedit_file`','audit_content': `'$AUDIT_CONTENT_FULLPATH`'}"
 
 # Set up AUDIT_OUT
 #$outfile

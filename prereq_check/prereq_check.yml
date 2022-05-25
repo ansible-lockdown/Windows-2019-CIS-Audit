@@ -1,6 +1,7 @@
 command:
   is_reboot_required:
-    exec: {{ .Vars.reboot_check }}
+    title: PreReq check Outstanding reboot on system
+    exec: powershell.exe -c ({{ .Vars.audit_content }}/scripts/pending_reboot.ps1 localhost).IsPendingReboot
     exit-status: 0
   gpresult_user_permissions:
     exec: powershell.exe -command 'gpresult.exe /SCOPE computer /r /v'
