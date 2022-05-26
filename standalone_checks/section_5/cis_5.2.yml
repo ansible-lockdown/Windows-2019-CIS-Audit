@@ -4,7 +4,7 @@
 command:
   print_spooler_disabled_MS:
     title: 5.2 | Ensure Print Spooler (Spooler) is set to Disabled
-    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_SVCS }} -Name Spooler
+    exec:  {{ .Vars.ps_regcheck }} {{ .Vars.HKLM_CCS_SVCS }} -Name Start
     exit-status: 0
     stdout:
     - '4'

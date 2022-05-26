@@ -54,7 +54,7 @@ win2019_use_public_firewall: false
 ################
 win2019cis_section_1: true
 win2019cis_section_2: true
-win2019cis_section_5: false
+win2019cis_section_5: true
 win2019cis_section_9: false
 win2019cis_section_17: false
 win2019cis_section_18: false
@@ -913,7 +913,7 @@ audit_ps_cmd: Select-String -Path
 HKLM_CCS_LANWORK: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LanmanWorkStation/Parameters'
 HKLM_CCS_LANSERVER: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LanmanServer/Parameters'
 HKLM_CCS_LDAP: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/LDAP/'
-HKLM_CCS_SVCS: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/'
+HKLM_CCS_SVCS: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Spooler'
 HKLM_CCS_LSA: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Control/Lsa/'
 HKLM_CCS_NETLOGON: get-itempropertyValue -path 'HKLM:/SYSTEM/CurrentControlSet/Services/Netlogon/Parameters'
 HKLM_CV_SYSTEM: get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/'
