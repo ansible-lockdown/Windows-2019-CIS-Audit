@@ -6,7 +6,7 @@ command:
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Microsoft/Windows/CurrentVersion/Policies/System/Audit' -Name ProcessCreationIncludeCmdLine_Enabled
     exit-status: 0
     stdout:
-    - '0'
+    - '1'
     meta:
       Domain_Controller: 1
       Member_Server: 1

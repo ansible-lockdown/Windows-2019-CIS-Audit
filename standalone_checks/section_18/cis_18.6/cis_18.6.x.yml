@@ -6,7 +6,7 @@ command:
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows NT/Printers' -Name RegisterSpoolerRemoteRpcEndPoint
     exit-status: 0
     stdout:
-    - '0'
+    - '2'
     {{ end }}
     {{ if .Vars.win2019cis_18_6_2 }}
   print_spool_driver_warn:

@@ -55,10 +55,10 @@ win2019_use_public_firewall: false
 win2019cis_section_1: true
 win2019cis_section_2: true
 win2019cis_section_5: true
-win2019cis_section_9: false
-win2019cis_section_17: false
-win2019cis_section_18: false
-win2019cis_section_19: false
+win2019cis_section_9: true
+win2019cis_section_17: true
+win2019cis_section_18: true
+win2019cis_section_19: true
 
 ########################
 ## Section_1_Controls ##
@@ -629,6 +629,9 @@ win2019cis_18_9_41_1: true
 # 18.9.44 MDM
 # 18.9.45 Messaging
 win2019cis_18_9_45_1: true
+# 18.9.45.4.1.x Attack Surface Reduction
+win2019cis_18_9_45_4_1_1: true
+win2019cis_18_9_45_4_1_2: true
 # 18.9.46 Microsoft account
 win2019cis_18_9_46_1: true
 # 18.9.47  Microsoft Defender Antivirus (formerly Windows Defender and Windows Defender Antivirus)
@@ -638,9 +641,6 @@ win2019cis_18_9_46_1: true
 # 18.9.47.4 MAPS
 win2019cis_18_9_47_4_1: true
 win2019cis_18_9_47_4_2: true
-# 18.9.47.5.1.x Attack Surface Reduction
-win2019cis_18_9_47_5_1_1: true
-win2019cis_18_9_47_5_1_2: true
 # 18.9.47.5.2 Controlled Folder Access
 # 18.9.47.4.3.x Network Protection
 win2019cis_18_9_47_5_3_1: true
@@ -759,6 +759,8 @@ win2019cis_18_9_91_1: true
 # 18.9.98 Windows Mobility Center
 # 18.9.99 Windows Movie Maker
 # 18.9.100 Windows PowerShell
+# 19.9.98 Windows Remote Shell
+win2019cis_18_9_98_1: true
 win2019cis_18_9_100_1: true
 win2019cis_18_9_100_2: true
 # 18.9.101 Windows Reliability Analysis

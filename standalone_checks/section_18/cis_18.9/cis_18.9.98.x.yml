@@ -1,8 +1,8 @@
 {{ if .Vars.win2019cis_level_2 }}
-  {{ if .Vars.win2019cis_18_9_103_1 }}
+  {{ if .Vars.win2019cis_18_9_98_1 }}
 command:
   disable_remote_shell:
-    title: 18.9.103.1 | Ensure 'Allow Remote Shell Access' is set to 'Disabled' | reg_check - smartscreen
+    title: 18.9.98.1 | Ensure 'Allow Remote Shell Access' is set to 'Disabled' | reg_check - smartscreen
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows/WinRM/Service/WinRS' -Name AllowRemoteShellAccess
     exit-status: 0
     stdout:

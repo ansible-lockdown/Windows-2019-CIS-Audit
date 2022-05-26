@@ -43,11 +43,11 @@ command:
   {{ end }}
   {{ if .Vars.win2019cis_18_9_47_9_4 }}
   disable_script_scanning:
-    title: 18.9.47.9.4 | Ensure 'Turn on behavior monitoring' is set to 'Enabled' | reg_check
+    title: 18.9.47.9.4 | Ensure 'Turn on script scanning' is set to 'Enabled | reg_check
     exec: {{ .Vars.ps_regcheck }} get-itempropertyValue -path 'HKLM:/SOFTWARE/Policies/Microsoft/Windows Defender/Real-Time Protection' -Name DisableScriptScanning
     exit-status: 0
     stdout:
-    - '1'
+    - '0'
     meta:
       Domain_Controller: 1
       Member_Server: 1
