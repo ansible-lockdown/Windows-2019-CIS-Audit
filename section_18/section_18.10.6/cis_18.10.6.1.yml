@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_6_1 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\MSAOptional:
+    title: "18.10.6.1 | Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled' | MSAOptional"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.6.1
+      NIST800-53R5:
+        - AC-2(1)
+  {{ end }}
+{{ end }}

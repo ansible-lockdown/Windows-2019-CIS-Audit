@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_43_4_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Features\PassiveRemediation:
+    title: "18.10.43.4.1 | Ensure 'Enable EDR in block mode' is set to 'Enabled' | PassiveRemediation"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.43.4.1
+      NIST800-53R5:
+        - SI-3
+        - SI-4
+  {{ end }}
+{{ end }}

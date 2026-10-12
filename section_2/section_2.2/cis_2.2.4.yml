@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_4 }}
+file:
+  win19cis_2_2_4_setcbprivilege:
+    title: "2.2.4 | Ensure 'Act as part of the operating system' is set to 'No One' | SeTcbPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeTcbPrivilege'
+    exists: true
+    contents:
+      - '/^NONE$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.4
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+  {{ end }}
+{{ end }}

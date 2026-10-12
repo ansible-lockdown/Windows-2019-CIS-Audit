@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_20_1_11 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Messenger\Client\CEIP:
+    title: "18.9.20.1.11 | Ensure 'Turn off the Windows Messenger Customer Experience Improvement Program' is set to 'Enabled' | CEIP"
+    exists: true
+    value: 2
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.20.1.11
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

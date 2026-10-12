@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_7_5 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption:
+    title: "2.3.7.5 | Configure 'Interactive logon: Message title for users attempting to log on' | LegalNoticeCaption"
+    exists: true
+    value: '{{ .Vars.win19cis_legal_notice_caption }}'
+    type: REG_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.7.5
+      NIST800-53R5:
+        - AC-8
+  {{ end }}
+{{ end }}

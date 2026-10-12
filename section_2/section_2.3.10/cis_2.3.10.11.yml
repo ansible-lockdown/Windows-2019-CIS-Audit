@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_11 }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\RestrictRemoteSAM:
+    title: "2.3.10.11 | Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only) | RestrictRemoteSAM"
+    exists: true
+    value: "O:BAG:BAD:(A;;RC;;;BA)"
+    type: REG_SZ
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.11
+      NIST800-53R5:
+        - AC-6(3)
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_48 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_2_2_48_sesyncagentprivilege:
+    title: "2.2.48 | Ensure 'Synchronize directory service data' is set to 'No One' (DC only) | SeSyncAgentPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeSyncAgentPrivilege'
+    exists: true
+    contents:
+      - '/^NONE$/'
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.2.48
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+    {{ end }}
+  {{ end }}
+{{ end }}

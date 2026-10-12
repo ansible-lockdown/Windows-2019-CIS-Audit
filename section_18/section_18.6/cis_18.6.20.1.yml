@@ -1,0 +1,77 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_6_20_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcn\Registrars\EnableRegistrars:
+    title: "18.6.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | EnableRegistrars"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.20.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcn\Registrars\DisableUPnPRegistrar:
+    title: "18.6.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | DisableUPnPRegistrar"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.20.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcn\Registrars\DisableInBand802DOT11Registrar:
+    title: "18.6.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | DisableInBand802DOT11Registrar"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.20.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcn\Registrars\DisableFlashConfigRegistrar:
+    title: "18.6.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | DisableFlashConfigRegistrar"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.20.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcn\Registrars\DisableWPDRegistrar:
+    title: "18.6.20.1 | Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled' | DisableWPDRegistrar"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.20.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

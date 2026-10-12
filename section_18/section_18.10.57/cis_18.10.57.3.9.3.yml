@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_57_3_9_3 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\SecurityLayer:
+    title: "18.10.57.3.9.3 | Ensure 'Require use of specific security layer for remote (RDP) connections' is set to 'Enabled: SSL' | SecurityLayer"
+    exists: true
+    value: 2
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.57.3.9.3
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+  {{ end }}
+{{ end }}

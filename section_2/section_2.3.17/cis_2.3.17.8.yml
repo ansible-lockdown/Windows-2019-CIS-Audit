@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_17_8 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableVirtualization:
+    title: "2.3.17.8 | Ensure 'User Account Control: Virtualize file and registry write failures to per-user locations' is set to 'Enabled' | EnableVirtualization"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.17.8
+      NIST800-53R5:
+        - SC-29(1)
+  {{ end }}
+{{ end }}

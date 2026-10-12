@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_14 }}
+file:
+  win19cis_2_2_14_secreatepagefileprivilege:
+    title: "2.2.14 | Ensure 'Create a pagefile' is set to 'Administrators' | SeCreatePagefilePrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreatePagefilePrivilege'
+    exists: true
+    contents:
+      - '/^S-1-5-32-544$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.14
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+  {{ end }}
+{{ end }}

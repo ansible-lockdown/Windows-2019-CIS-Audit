@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_4_2 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\mrxsmb10\Start:
+    title: "18.4.2 | Ensure 'Configure SMB v1 client driver' is set to 'Enabled: Disable driver (recommended)' | Start"
+    exists: true
+    value: 4
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.2
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

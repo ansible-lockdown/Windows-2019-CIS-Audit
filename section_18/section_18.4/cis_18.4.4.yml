@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_4_4 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Cryptography\Wintrust\Config\EnableCertPaddingCheck:
+    title: "18.4.4 | Ensure 'Enable Certificate Padding' is set to 'Enabled' | EnableCertPaddingCheck"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.4
+      NIST800-53R5:
+        - SC-8
+  HKLM\SOFTWARE\Wow6432Node\Microsoft\Cryptography\Wintrust\Config\EnableCertPaddingCheck:
+    title: "18.4.4 | Ensure 'Enable Certificate Padding' is set to 'Enabled' | EnableCertPaddingCheck"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.4
+      NIST800-53R5:
+        - SC-8
+  {{ end }}
+{{ end }}

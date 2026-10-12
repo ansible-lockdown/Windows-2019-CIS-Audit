@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_7_6 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\RPC\ForceKerberosForRpc:
+    title: "18.7.6 | Ensure 'Configure RPC listener settings: Authentication protocol to use for incoming RPC connections:' is set to 'Enabled: Negotiate' or higher | ForceKerberosForRpc"
+    exists: true
+    value: {{ .Vars.win19cis_force_kerberos_for_rpc }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.7.6
+      NIST800-53R5:
+        - IA-3(1)
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_6_4 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\DisablePasswordChange:
+    title: "2.3.6.4 | Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled' | DisablePasswordChange"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.6.4
+      NIST800-53R5:
+        - AC-2(1)
+  {{ end }}
+{{ end }}

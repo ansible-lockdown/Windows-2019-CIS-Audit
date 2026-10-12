@@ -1,0 +1,29 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_27 }}
+    {{ if not .Vars.win19cis_win_skip_for_test }}
+      {{ if eq .Vars.win19cis_system_role "memberserver" }}
+file:
+  win19cis_2_2_27_sedenyremoteinteractivelogonright:
+    title: "2.2.27 | Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only) | SeDenyRemoteInteractiveLogonRight"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyRemoteInteractiveLogonRight'
+    exists: true
+    contents:
+      - '/^S-1-5-113,S-1-5-32-546$/'
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.27
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_26_3_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Setup\MaxSize:
+    title: "18.10.26.3.2 | Ensure 'Setup: Specify the maximum log file size (KB)' is set to 'Enabled: 32,768 or greater' | MaxSize"
+    exists: true
+    value: {{ .Vars.win19cis_setup_max_log_file_size }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.26.3.2
+      NIST800-53R5:
+        - AU-4
+  {{ end }}
+{{ end }}

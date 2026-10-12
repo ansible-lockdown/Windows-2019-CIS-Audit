@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_31 }}
+file:
+  win19cis_2_2_31_seauditprivilege:
+    title: "2.2.31 | Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE' | SeAuditPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeAuditPrivilege'
+    exists: true
+    contents:
+      - '/^S-1-5-19,S-1-5-20$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.31
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+  {{ end }}
+{{ end }}

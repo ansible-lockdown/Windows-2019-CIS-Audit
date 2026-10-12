@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_8_3 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDriveTypeAutoRun:
+    title: "18.10.8.3 | Ensure 'Turn off Autoplay' is set to 'Enabled: All drives' | NoDriveTypeAutoRun"
+    exists: true
+    value: 255
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.8.3
+      NIST800-53R5:
+        - MP-7
+  {{ end }}
+{{ end }}

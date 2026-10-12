@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_20_1_7 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Registration Wizard Control\NoRegistration:
+    title: "18.9.20.1.7 | Ensure 'Turn off Registration if URL connection is referring to Microsoft.com' is set to 'Enabled' | NoRegistration"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.20.1.7
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

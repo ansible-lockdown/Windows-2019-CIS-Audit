@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_36_1 }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Rpc\EnableAuthEpResolution:
+    title: "18.9.36.1 | Ensure 'Enable RPC Endpoint Mapper Client Authentication' is set to 'Enabled' (MS only) | EnableAuthEpResolution"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.36.1
+      NIST800-53R5:
+        - SI-4
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,314 @@
+{
+  "auditpol": [
+    {
+      "rule": "17.1.1",
+      "subcategory": "{0cce923f-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.1.2",
+      "subcategory": "{0cce9242-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.1.3",
+      "subcategory": "{0cce9240-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.1",
+      "subcategory": "{0cce9239-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.2",
+      "subcategory": "{0cce9236-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.3",
+      "subcategory": "{0cce9238-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.4",
+      "subcategory": "{0cce923a-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.5",
+      "subcategory": "{0cce9237-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.2.6",
+      "subcategory": "{0cce9235-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.3.1",
+      "subcategory": "{0cce9248-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.3.2",
+      "subcategory": "{0cce922b-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.4.1",
+      "subcategory": "{0cce923b-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.4.2",
+      "subcategory": "{0cce923c-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.1",
+      "subcategory": "{0cce9217-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.2",
+      "subcategory": "{0cce9249-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.3",
+      "subcategory": "{0cce9216-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.4",
+      "subcategory": "{0cce9215-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.5",
+      "subcategory": "{0cce921c-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.5.6",
+      "subcategory": "{0cce921b-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.6.1",
+      "subcategory": "{0cce9244-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.6.2",
+      "subcategory": "{0cce9224-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.6.3",
+      "subcategory": "{0cce9227-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.6.4",
+      "subcategory": "{0cce9245-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.7.1",
+      "subcategory": "{0cce922f-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.7.2",
+      "subcategory": "{0cce9230-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.7.3",
+      "subcategory": "{0cce9231-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.7.4",
+      "subcategory": "{0cce9232-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.7.5",
+      "subcategory": "{0cce9234-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.8.1",
+      "subcategory": "{0cce9228-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.9.1",
+      "subcategory": "{0cce9213-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.9.2",
+      "subcategory": "{0cce9214-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.9.3",
+      "subcategory": "{0cce9210-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.9.4",
+      "subcategory": "{0cce9211-69ae-11d9-bed3-505054503030}"
+    },
+    {
+      "rule": "17.9.5",
+      "subcategory": "{0cce9212-69ae-11d9-bed3-505054503030}"
+    }
+  ],
+  "firewall": [
+    {
+      "profile": "Domain",
+      "property": "Enabled"
+    },
+    {
+      "profile": "Domain",
+      "property": "DefaultInboundAction"
+    },
+    {
+      "profile": "Private",
+      "property": "Enabled"
+    },
+    {
+      "profile": "Private",
+      "property": "DefaultInboundAction"
+    },
+    {
+      "profile": "Public",
+      "property": "Enabled"
+    },
+    {
+      "profile": "Public",
+      "property": "DefaultInboundAction"
+    }
+  ],
+  "hku": [
+    {
+      "data": 1,
+      "name": "NoToastApplicationNotificationOnLockScreen",
+      "rule": "19.5.1.1",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CurrentVersion\\PushNotifications",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "NoImplicitFeedback",
+      "rule": "19.6.6.1.1",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Assistance\\Client\\1.0",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 2,
+      "name": "SaveZoneInformation",
+      "rule": "19.7.5.1",
+      "subpath": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 3,
+      "name": "ScanWithAntiVirus",
+      "rule": "19.7.5.2",
+      "subpath": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 2,
+      "name": "ConfigureWindowsSpotlight",
+      "rule": "19.7.8.1",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "DisableThirdPartySuggestions",
+      "rule": "19.7.8.2",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "DisableTailoredExperiencesWithDiagnosticData",
+      "rule": "19.7.8.3",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "DisableWindowsSpotlightFeatures",
+      "rule": "19.7.8.4",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "DisableSpotlightCollectionOnDesktop",
+      "rule": "19.7.8.5",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "NoInplaceSharing",
+      "rule": "19.7.26.1",
+      "subpath": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 0,
+      "name": "AlwaysInstallElevated",
+      "rule": "19.7.44.1",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\Windows\\Installer",
+      "type": "REG_DWORD"
+    },
+    {
+      "data": 1,
+      "name": "PreventCodecDownload",
+      "rule": "19.7.46.2.1",
+      "subpath": "SOFTWARE\\Policies\\Microsoft\\WindowsMediaPlayer",
+      "type": "REG_DWORD"
+    }
+  ],
+  "privilege_rights": [
+    "SeAssignPrimaryTokenPrivilege",
+    "SeAuditPrivilege",
+    "SeBackupPrivilege",
+    "SeBatchLogonRight",
+    "SeCreateGlobalPrivilege",
+    "SeCreatePagefilePrivilege",
+    "SeCreatePermanentPrivilege",
+    "SeCreateSymbolicLinkPrivilege",
+    "SeCreateTokenPrivilege",
+    "SeDebugPrivilege",
+    "SeDenyBatchLogonRight",
+    "SeDenyInteractiveLogonRight",
+    "SeDenyNetworkLogonRight",
+    "SeDenyRemoteInteractiveLogonRight",
+    "SeDenyServiceLogonRight",
+    "SeEnableDelegationPrivilege",
+    "SeImpersonatePrivilege",
+    "SeIncreaseBasePriorityPrivilege",
+    "SeIncreaseQuotaPrivilege",
+    "SeInteractiveLogonRight",
+    "SeLoadDriverPrivilege",
+    "SeLockMemoryPrivilege",
+    "SeMachineAccountPrivilege",
+    "SeManageVolumePrivilege",
+    "SeNetworkLogonRight",
+    "SeProfileSingleProcessPrivilege",
+    "SeReLabelPrivilege",
+    "SeRemoteInteractiveLogonRight",
+    "SeRemoteShutdownPrivilege",
+    "SeRestorePrivilege",
+    "SeSecurityPrivilege",
+    "SeShutdownPrivilege",
+    "SeSyncAgentPrivilege",
+    "SeSystemEnvironmentPrivilege",
+    "SeSystemProfilePrivilege",
+    "SeSystemTimePrivilege",
+    "SeTakeOwnershipPrivilege",
+    "SeTcbPrivilege",
+    "SeTimeZonePrivilege",
+    "SeTrustedCredManAccessPrivilege"
+  ],
+  "services": [
+    "Spooler"
+  ],
+  "system_access": [
+    "AllowAdministratorLockout",
+    "ClearTextPassword",
+    "EnableGuestAccount",
+    "ForceLogoffWhenHourExpire",
+    "LSAAnonymousNameLookup",
+    "LockoutBadCount",
+    "LockoutDuration",
+    "MaximumPasswordAge",
+    "MinimumPasswordAge",
+    "MinimumPasswordLength",
+    "NewAdministratorName",
+    "NewGuestName",
+    "PasswordComplexity",
+    "PasswordHistorySize",
+    "ResetLockoutCount"
+  ]
+}

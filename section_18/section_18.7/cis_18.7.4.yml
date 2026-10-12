@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_7_4 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\RPC\RpcAuthentication:
+    title: "18.7.4 | Ensure 'Configure RPC connection settings: Use authentication for outgoing RPC connections' is set to 'Enabled: Default' | RpcAuthentication"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.7.4
+      NIST800-53R5:
+        - CM-6b
+  {{ end }}
+{{ end }}

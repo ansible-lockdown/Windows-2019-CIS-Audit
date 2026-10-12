@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_25_2 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS\PasswordExpirationProtectionEnabled:
+    title: "18.9.25.2 | Ensure 'Do not allow password expiration time longer than required by policy' is set to 'Enabled' | PasswordExpirationProtectionEnabled"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.25.2
+      NIST800-53R5:
+        - IA-5(1)(d)
+    {{ end }}
+  {{ end }}
+{{ end }}

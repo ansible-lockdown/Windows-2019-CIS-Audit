@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_5_9 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod:
+    title: "18.5.9 | Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires' is set to 'Enabled: 5 or fewer seconds' | ScreenSaverGracePeriod"
+    exists: true
+    value: '{{ .Vars.win19cis_screen_saver_grace_period }}'
+    type: REG_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.5.9
+      NIST800-53R5:
+        - AC-2(5)
+        - AC-11
+        - AC-11(1)
+        - AC-12
+  {{ end }}
+{{ end }}

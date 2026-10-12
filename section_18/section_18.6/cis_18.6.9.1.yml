@@ -1,0 +1,59 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_6_9_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\LLTD\AllowLLTDIOOnDomain:
+    title: "18.6.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | AllowLLTDIOOnDomain"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.9.1
+      NIST800-53R5:
+        - CM-6
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\LLTD\AllowLLTDIOOnPublicNet:
+    title: "18.6.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | AllowLLTDIOOnPublicNet"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.9.1
+      NIST800-53R5:
+        - CM-6
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\LLTD\EnableLLTDIO:
+    title: "18.6.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | EnableLLTDIO"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.9.1
+      NIST800-53R5:
+        - CM-6
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\LLTD\ProhibitLLTDIOOnPrivateNet:
+    title: "18.6.9.1 | Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled' | ProhibitLLTDIOOnPrivateNet"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.9.1
+      NIST800-53R5:
+        - CM-6
+  {{ end }}
+{{ end }}

@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_19_7_46_2_1 }}
+file:
+  win19cis_19_7_46_2_1_per_user_policy:
+    title: "19.7.46.2.1 | Ensure 'Prevent Codec Download' is set to 'Enabled' | per-user policy"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\HKU.19.7.46.2.1'
+    exists: true
+    contents:
+      - '/^COMPLIANT profiles=[1-9][0-9]*$/'
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 19.7.46.2.1
+      NIST800-53R5:
+        - CM-6
+  {{ end }}
+{{ end }}

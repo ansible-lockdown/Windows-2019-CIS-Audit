@@ -1,0 +1,23 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_5_1 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_5_1_spooler:
+    title: "5.1 | Ensure 'Print Spooler (Spooler)' is set to 'Disabled' (DC only) | Spooler"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\Service.Spooler'
+    exists: true
+    contents:
+      - '/^(Disabled|NotInstalled)$/'
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 5.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+    {{ end }}
+  {{ end }}
+{{ end }}

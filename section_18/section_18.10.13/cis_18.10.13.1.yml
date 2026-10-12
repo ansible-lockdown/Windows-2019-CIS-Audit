@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_13_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent\DisableConsumerAccountStateContent:
+    title: "18.10.13.1 | Ensure 'Turn off cloud consumer account state content' is set to 'Enabled' | DisableConsumerAccountStateContent"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.13.1
+      NIST800-53R5:
+        - AC-2(1)
+  {{ end }}
+{{ end }}

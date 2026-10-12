@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_81_3 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer\SafeForScripting:
+    title: "18.10.81.3 | Ensure 'Prevent Internet Explorer security prompt for Windows Installer scripts' is set to 'Disabled' | SafeForScripting"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.81.3
+      NIST800-53R5:
+        - CM-7(5)
+        - CM-10
+  {{ end }}
+{{ end }}

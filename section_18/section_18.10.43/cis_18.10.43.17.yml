@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_43_17 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\HideExclusionsFromLocalUsers:
+    title: "18.10.43.17 | Ensure 'Control whether exclusions are visible to local users' is set to 'Enabled' | HideExclusionsFromLocalUsers"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.43.17
+      NIST800-53R5:
+        - AC-6
+  {{ end }}
+{{ end }}

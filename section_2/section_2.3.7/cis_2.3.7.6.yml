@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_2_3_7_6 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount:
+    title: "2.3.7.6 | Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) | CachedLogonsCount"
+    exists: true
+    value: '{{ .Vars.win19cis_cached_logons_count }}'
+    type: REG_SZ
+    meta:
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 2.3.7.6
+      NIST800-53R5:
+        - IA-5(13)
+    {{ end }}
+  {{ end }}
+{{ end }}

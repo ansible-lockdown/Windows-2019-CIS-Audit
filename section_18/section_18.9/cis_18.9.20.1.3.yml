@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_20_1_3 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Handwritingerrorreports\PreventHandwritingErrorReports:
+    title: "18.9.20.1.3 | Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled' | PreventHandwritingErrorReports"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.20.1.3
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

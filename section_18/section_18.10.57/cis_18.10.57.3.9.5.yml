@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_57_3_9_5 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MinEncryptionLevel:
+    title: "18.10.57.3.9.5 | Ensure 'Set client connection encryption level' is set to 'Enabled: High Level' | MinEncryptionLevel"
+    exists: true
+    value: 3
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.57.3.9.5
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+  {{ end }}
+{{ end }}

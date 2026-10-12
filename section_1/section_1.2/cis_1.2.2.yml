@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_1_2_2 }}
+file:
+  win19cis_1_2_2_lockoutbadcount:
+    title: "1.2.2 | Ensure 'Account lockout threshold' is set to '5 or fewer invalid logon attempt(s), but not 0' | LockoutBadCount"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.LockoutBadCount'
+    exists: true
+    contents:
+      - '/^[1-{{ .Vars.win19cis_bad_login_lockout_count }}]$/'
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 1.2.2
+      NIST800-53R5:
+        - AC-7
+        - AC-19
+  {{ end }}
+{{ end }}

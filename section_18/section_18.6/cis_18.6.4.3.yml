@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_6_4_3 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient\DisableIPv6DefaultDnsServers:
+    title: "18.6.4.3 | Ensure 'Turn off default IPv6 DNS Servers' is set to 'Enabled' | DisableIPv6DefaultDnsServers"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.6.4.3
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

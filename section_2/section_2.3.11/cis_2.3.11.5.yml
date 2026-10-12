@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_11_5 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\NoLMHash:
+    title: "2.3.11.5 | Ensure 'Network security: Do not store LAN Manager hash value on next password change' is set to 'Enabled' | NoLMHash"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.5
+      NIST800-53R5:
+        - IA-5(1)
+        - SC-28
+        - SC-28(1)
+  {{ end }}
+{{ end }}

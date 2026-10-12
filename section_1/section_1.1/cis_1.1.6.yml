@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_1_1_6 }}
+file:
+  win19cis_1_1_6_cleartextpassword:
+    title: "1.1.6 | Ensure 'Store passwords using reversible encryption' is set to 'Disabled' | ClearTextPassword"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.ClearTextPassword'
+    exists: true
+    contents:
+      - '/^0$/'
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 1.1.6
+      NIST800-53R5:
+        - IA-5(1)
+        - SC-28
+        - SC-28(1)
+  {{ end }}
+{{ end }}

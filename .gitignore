@@ -10,10 +10,6 @@ tests/Dockerfile
 packer_cache
 delete*
 ignore*
-*.xlsx
-testing.yml
-Notes.md
-standalone_goss.yml
 # VSCode
 .vscode
 
@@ -45,3 +41,15 @@ benchparse/
 *xccdf.xml
 *.retry
 
+# GitHub Action/Workflow files
+.github/
+
+# Windows audit
+# syver.exe is pre-staged on the host, never committed
+*.exe
+# audit output and the policy snapshot the collector writes
+audit_*.json
+audit_*.txt
+win19cis_policy_snapshot.txt
+# candidate regenerations of hand-edited spec files
+.regen/

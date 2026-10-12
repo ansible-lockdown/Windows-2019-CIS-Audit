@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_1_1_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization\NoLockScreenSlideshow:
+    title: "18.1.1.2 | Ensure 'Prevent enabling lock screen slide show' is set to 'Enabled' | NoLockScreenSlideshow"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.1.1.2
+      NIST800-53R5:
+        - CM-6b
+  {{ end }}
+{{ end }}

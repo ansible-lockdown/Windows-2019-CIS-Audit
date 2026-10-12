@@ -1,0 +1,27 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_38 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_2_2_38_sesecurityprivilege:
+    title: "2.2.38 | Ensure 'Manage auditing and security log' is set to 'Administrators' (DC only) | SeSecurityPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeSecurityPrivilege'
+    exists: true
+    contents:
+      - '/^(NAME:Exchange Servers,)?S-1-5-32-544$/'
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.2.38
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+    {{ end }}
+  {{ end }}
+{{ end }}

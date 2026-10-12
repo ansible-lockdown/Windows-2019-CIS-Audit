@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_15_2 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI\EnumerateAdministrators:
+    title: "18.10.15.2 | Ensure 'Enumerate administrator accounts on elevation' is set to 'Disabled' | EnumerateAdministrators"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.15.2
+      NIST800-53R5:
+        - AC-6(10)
+  {{ end }}
+{{ end }}

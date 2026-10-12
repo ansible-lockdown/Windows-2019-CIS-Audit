@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_4_1 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy:
+    title: "18.4.1 | Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only) | LocalAccountTokenFilterPolicy"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.1
+      NIST800-53R5:
+        - AC-2(9)
+    {{ end }}
+  {{ end }}
+{{ end }}

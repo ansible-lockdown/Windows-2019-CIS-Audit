@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_9_1_5 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFileSize:
+    title: "9.1.5 | Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater' | LogFileSize"
+    exists: true
+    value: {{ .Vars.win19cis_domain_firewall_log_size }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 9.1.5
+      NIST800-53R5:
+        - SC-7
+        - SC-7(5)
+  {{ end }}
+{{ end }}

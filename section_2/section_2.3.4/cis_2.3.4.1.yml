@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_4_1 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Print\Providers\Lanman Print Services\Servers\AddPrinterDrivers:
+    title: "2.3.4.1 | Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled' | AddPrinterDrivers"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.4.1
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AC-9(4)
+  {{ end }}
+{{ end }}

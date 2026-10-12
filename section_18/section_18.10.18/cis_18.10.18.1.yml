@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_18_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\AppInstaller\EnableAppInstaller:
+    title: "18.10.18.1 | Ensure 'Enable App Installer' is set to 'Disabled' | EnableAppInstaller"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.18.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

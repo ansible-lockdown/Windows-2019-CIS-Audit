@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_26_3_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Eventlog\Setup\Retention:
+    title: "18.10.26.3.1 | Ensure 'Setup: Control Event Log behavior when the log file reaches its maximum size' is set to 'Disabled' | Retention"
+    exists: true
+    value: "0"
+    type: REG_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.26.3.1
+      NIST800-53R5:
+        - AU-4
+  {{ end }}
+{{ end }}

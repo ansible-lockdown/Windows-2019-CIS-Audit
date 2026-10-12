@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_9_1_4 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFilePath:
+    title: "9.1.4 | Ensure 'Windows Firewall: Domain: Logging: Name' is set to '%SystemRoot%\\System32\\logfiles\\firewall\\domainfw.log' | LogFilePath"
+    exists: true
+    value: '{{ .Vars.win19cis_domain_firewall_log_path }}'
+    type: REG_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 9.1.4
+      NIST800-53R5:
+        - SC-7
+        - SC-7(5)
+  {{ end }}
+{{ end }}

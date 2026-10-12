@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_43_6_3_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection\EnableNetworkProtection:
+    title: "18.10.43.6.3.1 | Ensure 'Prevent users and apps from accessing dangerous websites' is set to 'Enabled: Block' | EnableNetworkProtection"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.43.6.3.1
+      NIST800-53R5:
+        - SC-7(3)
+        - SC-7(4)
+        - SI-16
+  {{ end }}
+{{ end }}

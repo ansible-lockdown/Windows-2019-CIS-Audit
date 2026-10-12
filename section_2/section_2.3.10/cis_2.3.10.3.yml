@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_3 }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\RestrictAnonymous:
+    title: "2.3.10.3 | Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only) | RestrictAnonymous"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.3
+      NIST800-53R5:
+        - AC-6(10)
+    {{ end }}
+  {{ end }}
+{{ end }}

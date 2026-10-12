@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_23_1 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\DevicePKInitBehavior:
+    title: "18.9.23.1 | Ensure 'Support device authentication using certificate' is set to 'Enabled: Automatic' | DevicePKInitBehavior"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.23.1
+      NIST800-53R5:
+        - IA-3(1)
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\DevicePKInitEnabled:
+    title: "18.9.23.1 | Ensure 'Support device authentication using certificate' is set to 'Enabled: Automatic' | DevicePKInitEnabled"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.23.1
+      NIST800-53R5:
+        - IA-3(1)
+  {{ end }}
+{{ end }}

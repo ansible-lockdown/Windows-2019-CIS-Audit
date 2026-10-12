@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_57_3_3_4 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisablePNPRedir:
+    title: "18.10.57.3.3.4 | Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled' | fDisablePNPRedir"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.57.3.3.4
+      NIST800-53R5:
+        - CM-7b
+  {{ end }}
+{{ end }}

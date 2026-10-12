@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_18_7 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\AppInstaller\EnableWindowsPackageManagerCommandLineInterfaces:
+    title: "18.10.18.7 | Ensure 'Enable Windows Package Manager command line interfaces' is set to 'Disabled' | EnableWindowsPackageManagerCommandLineInterfaces"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.18.7
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

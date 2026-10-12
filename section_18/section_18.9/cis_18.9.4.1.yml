@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_4_1 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\CredSSP\Parameters\AllowEncryptionOracle:
+    title: "18.9.4.1 | Ensure 'Encryption Oracle Remediation' is set to 'Enabled: Force Updated Clients' | AllowEncryptionOracle"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.4.1
+      NIST800-53R5:
+        - SI-16
+  {{ end }}
+{{ end }}

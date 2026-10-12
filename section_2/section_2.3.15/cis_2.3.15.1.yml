@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_15_1 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\ObCaseInsensitive:
+    title: "2.3.15.1 | Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled' | ObCaseInsensitive"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.15.1
+      NIST800-53R5:
+        - CM-6b
+  {{ end }}
+{{ end }}
