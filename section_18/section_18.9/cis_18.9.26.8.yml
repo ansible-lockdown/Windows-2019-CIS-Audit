@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_26_8 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS\PostAuthenticationActions:
+    title: "18.9.26.8 | Ensure 'Post-authentication actions: Actions' is set to 'Enabled: Reset the password and logoff the managed account' or higher | PostAuthenticationActions"
+    exists: true
+    value: {{ .Vars.win19cis_laps_postauthenticationactions_value }}
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.26.8
+      NIST800-53R5:
+        - IA-5(1)
+    {{ end }}
+  {{ end }}
+{{ end }}

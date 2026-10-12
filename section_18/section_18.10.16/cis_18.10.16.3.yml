@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_10_16_3 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\DisableOneSettingsDownloads:
-    title: "18.10.16.3 | Ensure 'Disable OneSettings Downloads' is set to 'Enabled' | DisableOneSettingsDownloads"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Datacollection\DoNotShowFeedbackNotifications:
+    title: "18.10.16.3 | Ensure 'Do not show feedback notifications' is set to 'Enabled' | DoNotShowFeedbackNotifications"
     exists: true
     value: 1
     type: REG_DWORD

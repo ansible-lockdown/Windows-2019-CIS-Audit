@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_17_1 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Policies\ClfsAuthenticationChecking:
+    title: "18.9.17.1 | Ensure 'Enable / disable CLFS logfile authentication' is set to 'Enabled' | ClfsAuthenticationChecking"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.17.1
+  {{ end }}
+{{ end }}

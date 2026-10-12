@@ -1,27 +1,20 @@
 ---
 
-{{ if .Vars.win19cis_level_2 }}
+{{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_5_11 }}
 registry:
-  HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions:
-    title: "18.5.11 | Ensure 'MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3' | TcpMaxDataRetransmissions"
+  HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel:
+    title: "18.5.11 | Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' | WarningLevel"
     exists: true
-    value: 3
+    value: {{ .Vars.win19cis_log_threshold_audit_event }}
     type: REG_DWORD
     meta:
-      domaincontroller: 2
-      memberserver: 2
-      server: 2
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
       CIS_ID:
         - 18.5.11
       NIST800-53R5:
-        - AC-18
-        - AC-18(1)
-        - AC-18(3)
-        - CM-2
-        - CM-6
-        - CM-7
-        - CM-7(1)
-        - CM-9
+        - AU-4
   {{ end }}
 {{ end }}

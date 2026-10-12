@@ -1,17 +1,17 @@
 ---
 
-{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_28 }}
-    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
 file:
   win19cis_2_2_28_seenabledelegationprivilege:
-    title: "2.2.28 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only) | SeEnableDelegationPrivilege"
+    title: "2.2.28 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only) | SeEnableDelegationPrivilege"
     path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeEnableDelegationPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-32-544$/'
+      - '/^NONE$/'
     meta:
-      domaincontroller: 1
+      memberserver: 1
       server: 1
       CIS_ID:
         - 2.2.28

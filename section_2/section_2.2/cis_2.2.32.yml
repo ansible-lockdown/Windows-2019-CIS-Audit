@@ -1,17 +1,17 @@
 ---
 
-{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_32 }}
-    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
 file:
   win19cis_2_2_32_seimpersonateprivilege:
-    title: "2.2.32 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only) | SeImpersonatePrivilege"
+    title: "2.2.32 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (MS only) | SeImpersonatePrivilege"
     path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeImpersonatePrivilege'
     exists: true
     contents:
-      - '/^S-1-5-19,S-1-5-20,S-1-5-32-544,S-1-5-6$/'
+      - '/^S-1-5-19,S-1-5-20,S-1-5-32-544(,S-1-5-32-568)?,S-1-5-6(,S-1-5-99-216390572-1995538116-3857911515-2404958512-2623887229)?$/'
     meta:
-      domaincontroller: 1
+      memberserver: 1
       server: 1
       CIS_ID:
         - 2.2.32

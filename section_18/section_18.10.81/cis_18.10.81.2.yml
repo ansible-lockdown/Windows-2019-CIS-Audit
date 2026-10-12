@@ -3,10 +3,10 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_10_81_2 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer\AlwaysInstallElevated:
-    title: "18.10.81.2 | Ensure 'Always install with elevated privileges' is set to 'Disabled' | AlwaysInstallElevated"
+  HKLM\SOFTWARE\Policies\Microsoft\WindowsInkWorkspace\AllowWindowsInkWorkspace:
+    title: "18.10.81.2 | Ensure 'Allow Windows Ink Workspace' is set to 'Enabled: On, but disallow access above lock' OR 'Enabled: Disabled' | AllowWindowsInkWorkspace"
     exists: true
-    value: 0
+    value: {{ .Vars.win19cis_allow_windows_ink_workspace }}
     type: REG_DWORD
     meta:
       domaincontroller: 1
@@ -15,6 +15,6 @@ registry:
       CIS_ID:
         - 18.10.81.2
       NIST800-53R5:
-        - AC-2(9)
+        - SI-4
   {{ end }}
 {{ end }}

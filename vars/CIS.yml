@@ -1,7 +1,7 @@
 ---
 
 ## metadata for Audit benchmark
-benchmark_version: 'v4.0.0'
+benchmark_version: 'v5.0.0'
 
 #  timeout for each command to run where set
 #  Windows pays PowerShell start-up plus Defender scanning an unsigned binary,
@@ -128,12 +128,10 @@ win19cis_rule_2_3_7_8: true
 win19cis_rule_2_3_7_9: true
 win19cis_rule_2_3_8_1: true
 win19cis_rule_2_3_8_2: true
-win19cis_rule_2_3_8_3: true
 win19cis_rule_2_3_9_1: true
 win19cis_rule_2_3_9_2: true
 win19cis_rule_2_3_9_3: true
 win19cis_rule_2_3_9_4: true
-win19cis_rule_2_3_9_5: true
 win19cis_rule_2_3_10_1: true
 win19cis_rule_2_3_10_2: true
 win19cis_rule_2_3_10_3: true
@@ -260,7 +258,6 @@ win19cis_rule_18_5_8: true
 win19cis_rule_18_5_9: true
 win19cis_rule_18_5_10: true
 win19cis_rule_18_5_11: true
-win19cis_rule_18_5_12: true
 win19cis_rule_18_6_4_1: true
 win19cis_rule_18_6_4_2: true
 win19cis_rule_18_6_4_3: true
@@ -304,12 +301,11 @@ win19cis_rule_18_9_5_6: true
 win19cis_rule_18_9_5_7: true
 win19cis_rule_18_9_7_2: true
 win19cis_rule_18_9_13_1: true
+win19cis_rule_18_9_17_1: true
 win19cis_rule_18_9_19_2: true
 win19cis_rule_18_9_19_3: true
 win19cis_rule_18_9_19_4: true
 win19cis_rule_18_9_19_5: true
-win19cis_rule_18_9_19_6: true
-win19cis_rule_18_9_19_7: true
 win19cis_rule_18_9_20_1_1: true
 win19cis_rule_18_9_20_1_2: true
 win19cis_rule_18_9_20_1_3: true
@@ -325,37 +321,36 @@ win19cis_rule_18_9_20_1_12: true
 win19cis_rule_18_9_20_1_13: true
 win19cis_rule_18_9_23_1: true
 win19cis_rule_18_9_24_1: true
-win19cis_rule_18_9_25_1: true
-win19cis_rule_18_9_25_2: true
-win19cis_rule_18_9_25_3: true
-win19cis_rule_18_9_25_4: true
-win19cis_rule_18_9_25_5: true
-win19cis_rule_18_9_25_6: true
-win19cis_rule_18_9_25_7: true
-win19cis_rule_18_9_25_8: true
-win19cis_rule_18_9_27_1: true
+win19cis_rule_18_9_26_1: true
+win19cis_rule_18_9_26_2: true
+win19cis_rule_18_9_26_3: true
+win19cis_rule_18_9_26_4: true
+win19cis_rule_18_9_26_5: true
+win19cis_rule_18_9_26_6: true
+win19cis_rule_18_9_26_7: true
+win19cis_rule_18_9_26_8: true
 win19cis_rule_18_9_28_1: true
-win19cis_rule_18_9_28_2: true
-win19cis_rule_18_9_28_3: true
-win19cis_rule_18_9_28_4: true
-win19cis_rule_18_9_28_5: true
-win19cis_rule_18_9_28_6: true
-win19cis_rule_18_9_28_7: true
-win19cis_rule_18_9_31_1: true
-win19cis_rule_18_9_31_2: true
-win19cis_rule_18_9_33_6_1: true
-win19cis_rule_18_9_33_6_2: true
-win19cis_rule_18_9_33_6_3: true
-win19cis_rule_18_9_33_6_4: true
-win19cis_rule_18_9_35_1: true
-win19cis_rule_18_9_35_2: true
-win19cis_rule_18_9_36_1: true
-win19cis_rule_18_9_36_2: true
-win19cis_rule_18_9_47_5_1: true
-win19cis_rule_18_9_47_11_1: true
-win19cis_rule_18_9_49_1: true
-win19cis_rule_18_9_51_1_1: true
-win19cis_rule_18_9_51_1_2: true
+win19cis_rule_18_9_29_1: true
+win19cis_rule_18_9_29_2: true
+win19cis_rule_18_9_29_3: true
+win19cis_rule_18_9_29_4: true
+win19cis_rule_18_9_29_5: true
+win19cis_rule_18_9_29_6: true
+win19cis_rule_18_9_33_1: true
+win19cis_rule_18_9_33_2: true
+win19cis_rule_18_9_35_6_1: true
+win19cis_rule_18_9_35_6_2: true
+win19cis_rule_18_9_35_6_3: true
+win19cis_rule_18_9_35_6_4: true
+win19cis_rule_18_9_37_1: true
+win19cis_rule_18_9_37_2: true
+win19cis_rule_18_9_38_1: true
+win19cis_rule_18_9_38_2: true
+win19cis_rule_18_9_49_5_1: true
+win19cis_rule_18_9_49_11_1: true
+win19cis_rule_18_9_51_1: true
+win19cis_rule_18_9_53_1_1: true
+win19cis_rule_18_9_53_1_2: true
 win19cis_rule_18_10_4_1: true
 win19cis_rule_18_10_6_1: true
 win19cis_rule_18_10_8_1: true
@@ -364,7 +359,6 @@ win19cis_rule_18_10_8_3: true
 win19cis_rule_18_10_9_1_1: true
 win19cis_rule_18_10_11_1: true
 win19cis_rule_18_10_13_1: true
-win19cis_rule_18_10_13_2: true
 win19cis_rule_18_10_14_1: true
 win19cis_rule_18_10_15_1: true
 win19cis_rule_18_10_15_2: true
@@ -374,7 +368,6 @@ win19cis_rule_18_10_16_3: true
 win19cis_rule_18_10_16_4: true
 win19cis_rule_18_10_16_5: true
 win19cis_rule_18_10_16_6: true
-win19cis_rule_18_10_16_7: true
 win19cis_rule_18_10_18_1: true
 win19cis_rule_18_10_18_2: true
 win19cis_rule_18_10_18_3: true
@@ -394,34 +387,9 @@ win19cis_rule_18_10_29_2: true
 win19cis_rule_18_10_29_3: true
 win19cis_rule_18_10_29_4: true
 win19cis_rule_18_10_29_5: true
-win19cis_rule_18_10_37_1: true
+win19cis_rule_18_10_36_1: true
+win19cis_rule_18_10_40_1: true
 win19cis_rule_18_10_41_1: true
-win19cis_rule_18_10_42_1: true
-win19cis_rule_18_10_43_4_1: true
-win19cis_rule_18_10_43_5_1: true
-win19cis_rule_18_10_43_5_2: true
-win19cis_rule_18_10_43_6_1_1: true
-win19cis_rule_18_10_43_6_1_2: true
-win19cis_rule_18_10_43_6_3_1: true
-win19cis_rule_18_10_43_7_1: true
-win19cis_rule_18_10_43_8_1: true
-win19cis_rule_18_10_43_10_1: true
-win19cis_rule_18_10_43_10_2: true
-win19cis_rule_18_10_43_10_3: true
-win19cis_rule_18_10_43_10_4: true
-win19cis_rule_18_10_43_10_5: true
-win19cis_rule_18_10_43_11_1_1_1: true
-win19cis_rule_18_10_43_11_1_1_2: true
-win19cis_rule_18_10_43_11_1_2_1: true
-win19cis_rule_18_10_43_12_1: true
-win19cis_rule_18_10_43_13_1: true
-win19cis_rule_18_10_43_13_2: true
-win19cis_rule_18_10_43_13_3: true
-win19cis_rule_18_10_43_13_4: true
-win19cis_rule_18_10_43_13_5: true
-win19cis_rule_18_10_43_16: true
-win19cis_rule_18_10_43_17: true
-win19cis_rule_18_10_51_1: true
 win19cis_rule_18_10_56_1: true
 win19cis_rule_18_10_57_2_2: true
 win19cis_rule_18_10_57_3_2_1: true
@@ -429,13 +397,13 @@ win19cis_rule_18_10_57_3_3_1: true
 win19cis_rule_18_10_57_3_3_2: true
 win19cis_rule_18_10_57_3_3_3: true
 win19cis_rule_18_10_57_3_3_4: true
+win19cis_rule_18_10_57_3_3_5: true
 win19cis_rule_18_10_57_3_9_1: true
 win19cis_rule_18_10_57_3_9_2: true
 win19cis_rule_18_10_57_3_9_3: true
 win19cis_rule_18_10_57_3_9_4: true
 win19cis_rule_18_10_57_3_9_5: true
 win19cis_rule_18_10_57_3_10_1: true
-win19cis_rule_18_10_57_3_10_2: true
 win19cis_rule_18_10_57_3_11_1: true
 win19cis_rule_18_10_57_3_11_2: true
 win19cis_rule_18_10_58_1: true
@@ -444,30 +412,30 @@ win19cis_rule_18_10_59_2: true
 win19cis_rule_18_10_59_3: true
 win19cis_rule_18_10_59_4: true
 win19cis_rule_18_10_63_1: true
-win19cis_rule_18_10_76_2_1: true
-win19cis_rule_18_10_80_1: true
-win19cis_rule_18_10_80_2: true
+win19cis_rule_18_10_77_2_1: true
 win19cis_rule_18_10_81_1: true
 win19cis_rule_18_10_81_2: true
-win19cis_rule_18_10_81_3: true
 win19cis_rule_18_10_82_1: true
-win19cis_rule_18_10_87_1: true
-win19cis_rule_18_10_87_2: true
-win19cis_rule_18_10_89_1_1: true
-win19cis_rule_18_10_89_1_2: true
-win19cis_rule_18_10_89_1_3: true
-win19cis_rule_18_10_89_2_1: true
-win19cis_rule_18_10_89_2_2: true
-win19cis_rule_18_10_89_2_3: true
-win19cis_rule_18_10_89_2_4: true
-win19cis_rule_18_10_90_1: true
-win19cis_rule_18_10_92_2_1: true
-win19cis_rule_18_10_93_1_1: true
+win19cis_rule_18_10_82_2: true
+win19cis_rule_18_10_82_3: true
+win19cis_rule_18_10_83_1: true
+win19cis_rule_18_10_88_1: true
+win19cis_rule_18_10_88_2: true
+win19cis_rule_18_10_90_1_1: true
+win19cis_rule_18_10_90_1_2: true
+win19cis_rule_18_10_90_1_3: true
+win19cis_rule_18_10_90_2_1: true
+win19cis_rule_18_10_90_2_2: true
+win19cis_rule_18_10_90_2_3: true
+win19cis_rule_18_10_90_2_4: true
+win19cis_rule_18_10_91_1: true
 win19cis_rule_18_10_93_2_1: true
-win19cis_rule_18_10_93_2_2: true
-win19cis_rule_18_10_93_4_1: true
-win19cis_rule_18_10_93_4_2: true
-win19cis_rule_18_10_93_4_3: true
+win19cis_rule_18_10_94_1_1: true
+win19cis_rule_18_10_94_2_1: true
+win19cis_rule_18_10_94_2_2: true
+win19cis_rule_18_10_94_4_1: true
+win19cis_rule_18_10_94_4_2: true
+win19cis_rule_18_11_1: true
 
 ## Section 19
 win19cis_rule_19_5_1_1: true
@@ -480,14 +448,13 @@ win19cis_rule_19_7_8_3: true
 win19cis_rule_19_7_8_4: true
 win19cis_rule_19_7_8_5: true
 win19cis_rule_19_7_26_1: true
-win19cis_rule_19_7_44_1: true
 win19cis_rule_19_7_46_2_1: true
 
 ##
 ## Site tunables, seeded from the remediation role's defaults
 ##
 
-# discovered_remote_registry_paths: define me -- not found in the role defaults
+# rule_2_3_10_9_remote_registry_paths: define me -- not found in the role defaults
 win19cis_account_lockout_counter_reset: 15
 win19cis_account_lockout_duration: 15
 win19cis_allow_admin_account_lockout: 1
@@ -495,7 +462,6 @@ win19cis_allow_telemetry: 1
 win19cis_allow_windows_ink_workspace: 1
 win19cis_application_max_log_file_size: 32768
 win19cis_bad_login_lockout_count: 5
-win19cis_brute_force_protection_aggressiveness: 1
 win19cis_cached_logons_count: 1
 win19cis_consent_prompt_behavior_admin: 2
 win19cis_domain_firewall_log_path: '%SystemRoot%\System32\logfiles\firewall\domainfw.log'
@@ -527,12 +493,9 @@ win19cis_private_firewall_log_path: '%SystemRoot%\System32\logfiles\firewall\pri
 win19cis_private_firewall_log_size: 16384
 win19cis_public_firewall_log_path: '%SystemRoot%\System32\logfiles\firewall\publicfw.log'
 win19cis_public_firewall_log_size: 16384
-win19cis_remote_encryption_protection_aggressiveness: 1
-win19cis_remote_encryption_protection_mode: 1
 win19cis_require_pin_for_pairing: 1
 win19cis_restrict_sending_ntlm_traffic: 1
 win19cis_sc_remove_option: 1
-win19cis_screen_saver_grace_period: 5
 win19cis_security_max_log_file_size: 196608
 win19cis_setup_max_log_file_size: 32768
 win19cis_smb_auto_disconnect_time: 15

@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_11_1 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp\DisableWpad:
+    title: "18.11.1 | Ensure 'Disable HTTP proxy features: Disable WPAD' is set to 'Enabled: Checked' | DisableWpad"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.11.1
+  {{ end }}
+{{ end }}

@@ -1,18 +1,17 @@
 ---
 
-{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_27 }}
-    {{ if not .Vars.win19cis_win_skip_for_test }}
-      {{ if eq .Vars.win19cis_system_role "memberserver" }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
 file:
-  win19cis_2_2_27_sedenyremoteinteractivelogonright:
-    title: "2.2.27 | Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only) | SeDenyRemoteInteractiveLogonRight"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyRemoteInteractiveLogonRight'
+  win19cis_2_2_27_seenabledelegationprivilege:
+    title: "2.2.27 | Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only) | SeEnableDelegationPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeEnableDelegationPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-113,S-1-5-32-546$/'
+      - '/^S-1-5-32-544$/'
     meta:
-      memberserver: 1
+      domaincontroller: 1
       server: 1
       CIS_ID:
         - 2.2.27
@@ -23,7 +22,6 @@ file:
         - AC-6(1)
         - AC-6(7)
         - AU-9(4)
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

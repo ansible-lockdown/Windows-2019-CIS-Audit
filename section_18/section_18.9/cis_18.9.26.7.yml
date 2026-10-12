@@ -1,0 +1,21 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_26_7 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS\PostAuthenticationResetDelay:
+    title: "18.9.26.7 | Ensure 'Post-authentication actions: Grace period (hours)' is set to 'Enabled: 8 or fewer hours, but not 0' | PostAuthenticationResetDelay"
+    exists: true
+    value: {{ .Vars.win19cis_laps_postauthenticationresetdelay_value }}
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.26.7
+      NIST800-53R5:
+        - IA-5(1)
+    {{ end }}
+  {{ end }}
+{{ end }}

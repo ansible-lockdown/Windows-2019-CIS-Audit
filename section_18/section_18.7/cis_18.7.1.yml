@@ -1,6 +1,6 @@
 ---
 
-{{ if or (and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1) (and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_2) }}
+{{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_7_1 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\RegisterSpoolerRemoteRpcEndPoint:
@@ -10,7 +10,7 @@ registry:
     type: REG_DWORD
     meta:
       domaincontroller: 1
-      memberserver: 2
+      memberserver: 1
       server: 1
       CIS_ID:
         - 18.7.1

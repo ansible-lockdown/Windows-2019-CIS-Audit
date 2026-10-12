@@ -3,10 +3,10 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_3_8_2 }}
 registry:
-  HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnableSecuritySignature:
-    title: "2.3.8.2 | Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled' | EnableSecuritySignature"
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword:
+    title: "2.3.8.2 | Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled' | EnablePlainTextPassword"
     exists: true
-    value: 1
+    value: 0
     type: REG_DWORD
     meta:
       domaincontroller: 1

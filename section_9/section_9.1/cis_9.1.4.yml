@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_9_1_4 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFilePath:
-    title: "9.1.4 | Ensure 'Windows Firewall: Domain: Logging: Name' is set to '%SystemRoot%\\System32\\logfiles\\firewall\\domainfw.log' | LogFilePath"
+    title: "9.1.4 | Ensure 'Windows Firewall: Domain: Logging: Name' is configured | LogFilePath"
     exists: true
     value: '{{ .Vars.win19cis_domain_firewall_log_path }}'
     type: REG_SZ

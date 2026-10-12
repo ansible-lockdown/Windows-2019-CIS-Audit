@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_18_6_14_1 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths::\\*\NETLOGON:
-    title: "18.6.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with \"Require Mutual Authentication\", \"Require Integrity\", and “Require Privacy” set for all NETLOGON and SYSVOL shares' | \\\\*\\NETLOGON"
+    title: "18.6.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with \"Require Mutual Authentication\", \"Require Integrity\", and \"Require Privacy\" set for all NETLOGON and SYSVOL shares' | \\\\*\\NETLOGON"
     exists: true
     value: "RequireMutualAuthentication=1, RequireIntegrity=1, RequirePrivacy=1"
     type: REG_SZ
@@ -17,7 +17,7 @@ registry:
       NIST800-53R5:
         - IA-3(1)
   HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths::\\*\SYSVOL:
-    title: "18.6.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with \"Require Mutual Authentication\", \"Require Integrity\", and “Require Privacy” set for all NETLOGON and SYSVOL shares' | \\\\*\\SYSVOL"
+    title: "18.6.14.1 | Ensure 'Hardened UNC Paths' is set to 'Enabled, with \"Require Mutual Authentication\", \"Require Integrity\", and \"Require Privacy\" set for all NETLOGON and SYSVOL shares' | \\\\*\\SYSVOL"
     exists: true
     value: "RequireMutualAuthentication=1, RequireIntegrity=1, RequirePrivacy=1"
     type: REG_SZ

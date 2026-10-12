@@ -1,0 +1,22 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_53_1_2 }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\W32Time\Timeproviders\Ntpserver\Enabled:
+    title: "18.9.53.1.2 | Ensure 'Enable Windows NTP Server' is set to 'Disabled' (MS only) | Enabled"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.53.1.2
+      NIST800-53R5:
+        - AU-7
+        - AU-8
+    {{ end }}
+  {{ end }}
+{{ end }}

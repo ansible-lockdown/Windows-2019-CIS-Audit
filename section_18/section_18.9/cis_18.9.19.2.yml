@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_9_19_2 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}\NoBackgroundPolicy:
-    title: "18.9.19.2 | Ensure 'Configure registry policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE' | NoBackgroundPolicy"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\NoBackgroundPolicy:
+    title: "18.9.19.2 | Ensure 'Configure security policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE' | NoBackgroundPolicy"
     exists: true
     value: 0
     type: REG_DWORD

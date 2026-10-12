@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.win19cis_level_2 }}
+{{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_10_57_3_10_1 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MaxIdleTime:
@@ -9,9 +9,9 @@ registry:
     value: {{ .Vars.win19cis_idle_rdp_session_disconnect_time }}
     type: REG_DWORD
     meta:
-      domaincontroller: 2
-      memberserver: 2
-      server: 2
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
       CIS_ID:
         - 18.10.57.3.10.1
       NIST800-53R5:

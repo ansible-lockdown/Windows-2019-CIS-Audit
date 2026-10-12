@@ -3,12 +3,12 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_15 }}
 file:
-  win19cis_2_2_15_secreatetokenprivilege:
-    title: "2.2.15 | Ensure 'Create a token object' is set to 'No One' | SeCreateTokenPrivilege"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateTokenPrivilege'
+  win19cis_2_2_15_secreateglobalprivilege:
+    title: "2.2.15 | Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' | SeCreateGlobalPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateGlobalPrivilege'
     exists: true
     contents:
-      - '/^NONE$/'
+      - '/^S-1-5-19,S-1-5-20,S-1-5-32-544,S-1-5-6$/'
     meta:
       domaincontroller: 1
       memberserver: 1

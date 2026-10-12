@@ -3,12 +3,12 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_16 }}
 file:
-  win19cis_2_2_16_secreateglobalprivilege:
-    title: "2.2.16 | Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' | SeCreateGlobalPrivilege"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateGlobalPrivilege'
+  win19cis_2_2_16_secreatepermanentprivilege:
+    title: "2.2.16 | Ensure 'Create permanent shared objects' is set to 'No One' | SeCreatePermanentPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreatePermanentPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-19,S-1-5-20,S-1-5-32-544,S-1-5-6$/'
+      - '/^NONE$/'
     meta:
       domaincontroller: 1
       memberserver: 1

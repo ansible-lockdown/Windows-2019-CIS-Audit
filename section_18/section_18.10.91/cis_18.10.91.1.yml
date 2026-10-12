@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_91_1 }}
+    {{ if not .Vars.win19cis_win_skip_for_test }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Winrm\Service\Winrs\AllowRemoteShellAccess:
+    title: "18.10.91.1 | Ensure 'Allow Remote Shell Access' is set to 'Disabled' | AllowRemoteShellAccess"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.91.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+    {{ end }}
+  {{ end }}
+{{ end }}

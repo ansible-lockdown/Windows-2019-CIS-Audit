@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_18_9_19_4 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\NoBackgroundPolicy:
-    title: "18.9.19.4 | Ensure 'Configure security policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE' | NoBackgroundPolicy"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\System\EnableCdp:
+    title: "18.9.19.4 | Ensure 'Continue experiences on this device' is set to 'Disabled' | EnableCdp"
     exists: true
     value: 0
     type: REG_DWORD
@@ -15,15 +15,7 @@ registry:
       CIS_ID:
         - 18.9.19.4
       NIST800-53R5:
-        - CM-1
-        - CM-2
-        - AC-2
         - CM-6
         - CM-7
-        - CM-7(1)
-        - CM-9
-        - SA-3
-        - SA-8
-        - SA-10
   {{ end }}
 {{ end }}

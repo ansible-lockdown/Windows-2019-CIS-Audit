@@ -1,23 +1,21 @@
 ---
 
-{{ if .Vars.win19cis_level_1 }}
+{{ if .Vars.win19cis_level_2 }}
   {{ if .Vars.win19cis_rule_18_10_16_5 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\EnableOneSettingsAuditing:
-    title: "18.10.16.5 | Ensure 'Enable OneSettings Auditing' is set to 'Enabled' | EnableOneSettingsAuditing"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\LimitDiagnosticLogCollection:
+    title: "18.10.16.5 | Ensure 'Limit Diagnostic Log Collection' is set to 'Enabled' | LimitDiagnosticLogCollection"
     exists: true
     value: 1
     type: REG_DWORD
     meta:
-      domaincontroller: 1
-      memberserver: 1
-      server: 1
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
       CIS_ID:
         - 18.10.16.5
       NIST800-53R5:
-        - AU-3
-        - AU-3(1)
-        - AU-7
-        - AU-12
+        - CM-6
+        - CM-7
   {{ end }}
 {{ end }}

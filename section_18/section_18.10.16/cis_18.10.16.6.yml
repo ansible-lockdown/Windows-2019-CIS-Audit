@@ -1,21 +1,20 @@
 ---
 
-{{ if .Vars.win19cis_level_1 }}
+{{ if .Vars.win19cis_level_2 }}
   {{ if .Vars.win19cis_rule_18_10_16_6 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\LimitDiagnosticLogCollection:
-    title: "18.10.16.6 | Ensure 'Limit Diagnostic Log Collection' is set to 'Enabled' | LimitDiagnosticLogCollection"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\LimitDumpCollection:
+    title: "18.10.16.6 | Ensure 'Limit Dump Collection' is set to 'Enabled' | LimitDumpCollection"
     exists: true
     value: 1
     type: REG_DWORD
     meta:
-      domaincontroller: 1
-      memberserver: 1
-      server: 1
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
       CIS_ID:
         - 18.10.16.6
       NIST800-53R5:
-        - CM-6
-        - CM-7
+        - AU-2
   {{ end }}
 {{ end }}

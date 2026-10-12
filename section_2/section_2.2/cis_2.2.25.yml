@@ -1,17 +1,18 @@
 ---
 
-{{ if .Vars.win19cis_level_1 }}
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_25 }}
+    {{ if not .Vars.win19cis_win_skip_for_test }}
+      {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
 file:
-  win19cis_2_2_25_sedenyinteractivelogonright:
-    title: "2.2.25 | Ensure 'Deny log on locally' to include 'Guests' | SeDenyInteractiveLogonRight"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyInteractiveLogonRight'
+  win19cis_2_2_25_sedenyremoteinteractivelogonright:
+    title: "2.2.25 | Ensure 'Deny log on through Remote Desktop Services' to include 'Guests' (DC only) | SeDenyRemoteInteractiveLogonRight"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyRemoteInteractiveLogonRight'
     exists: true
     contents:
       - '/^(.*,)?S-1-5-32-546(,.*)?$/'
     meta:
       domaincontroller: 1
-      memberserver: 1
       server: 1
       CIS_ID:
         - 2.2.25
@@ -22,5 +23,7 @@ file:
         - AC-6(1)
         - AC-6(7)
         - AU-9(4)
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}

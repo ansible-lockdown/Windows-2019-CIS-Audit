@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Based on CIS Microsoft Windows Server 2019 Benchmark v4.0.0
+### Based on CIS Microsoft Windows Server 2019 Benchmark v5.0.0
 
 [Centre For Internet Security]
 
@@ -23,33 +23,34 @@ The content is generated from `Private-Windows-2019-CIS`, so the audit asserts
 what the remediation role actually does rather than a separately maintained
 restatement of it. Each spec is the Windows-2025-CIS-Audit spec for the control
 whose remediation task is identical in the 2019 role, renumbered, retitled and
-gated for the 2019 benchmark; 2.2.31, 18.4.4 and 18.4.6 differ from their
+gated for the 2019 benchmark; 2.2.30, 2.2.32, 2.2.33 and 18.4.6 differ from their
 Windows-2025-CIS-Audit counterparts and are finished by hand. Files carry a
 manifest (`.audit-generated.json`).
 
 ## Server profiles
 
-A Server benchmark splits by host role as well as by level. Of the 433
-recommendations, 371 apply to both a domain controller and a member server, 28
-are DC only and 34 are MS only. `win19cis_system_role` selects which, and
+A Server benchmark splits by host role as well as by level. Of the 400
+recommendations, 337 apply to both a domain controller and a member server, 28
+are DC only and 35 are MS only. `win19cis_system_role` selects which, and
 `run_audit.ps1` derives it from `Win32_ComputerSystem.DomainRole` rather than
 asking for it, so it cannot silently disagree with the host.
 
-The two axes do not factor. Control 18.7.1 is Level 1 on a domain controller and
-Level 2 on a member server, so no pair of role and level booleans can express
-it. The generated gates use the cross product, and collapse to a bare level gate
-for the 368 controls that apply identically to both roles.
+The two axes do not always factor. In v4.0.0, control 18.7.1 was Level 1 on a
+domain controller and Level 2 on a member server, so no pair of role and level
+booleans could express it; v5.0.0 makes it Level 1 on both. The generated gates
+use the cross product, and collapse to a bare level gate for the controls that
+apply identically to both roles.
 
 CIS treats any server that is not a domain controller as a Member Server,
-standalone included. The audit follows the remediation role: 18 of the MS only
+standalone included. The audit follows the remediation role: 19 of the MS only
 controls are asserted on any server that is not a domain controller. The ones
-that would cut off remote administration of a standalone server (2.2.22, 2.2.27,
+that would cut off remote administration of a standalone server (2.2.21, 2.2.26,
 18.4.1) or need a domain (LAPS, the Netlogon secure channel, cached domain logons)
 are asserted on a member server only.
 
 Next Generation Windows Security (NGWS) is an optional CIS profile. Its seven
-controls (18.9.5.x Device Guard and Credential Guard)
-are asserted only when `win19cis_ngws` is true, which defaults to false. The
+controls (18.9.5.x Device Guard and Credential Guard) are asserted only when
+`win19cis_ngws` is true, which defaults to false. The
 remediation role applies them on the same switch and passes its value to the
 audit, so the two agree.
 
@@ -75,9 +76,18 @@ Two consequences worth stating plainly, both proven against live hosts:
   2.3.5.4 applies and is then reverted at the next policy refresh. It is
   expected to fail on a DC hardened by the remediation role; set it in the
   Default Domain Controllers Policy instead.
-- **2.2.31 asserts the benchmark value.** Generate security audits is expected to
-  hold `LOCAL SERVICE, NETWORK SERVICE`, the CIS v4.0.0 value the remediation
+
+Two more follow from the 2019 benchmark values:
+
+- **2.2.30 asserts the benchmark value.** Generate security audits is expected to
+  hold `LOCAL SERVICE, NETWORK SERVICE`, the CIS v5.0.0 value the remediation
   role applies.
+- **2.2.32 and 2.2.33 follow the Print Spooler account.** CIS v5.0.0 gives
+  Impersonate a client after authentication a second value that adds
+  `RESTRICTED SERVICES\PrintSpoolerService`. The remediation role reads the
+  current holders and applies 2.2.33 where that account already holds the right,
+  2.2.32 where it does not. A gossfile cannot see that, so both assert the base
+  holders and match the Print Spooler account as an optional member.
 
 Controls that cannot be asserted are recorded in `coverage.json` with a reason
 code rather than being given an assertion that always passes. The table below is
@@ -153,7 +163,7 @@ rights that would otherwise sever the control connection. Those show as failures
 until the role is run with `win_skip_for_test: false`.
 
 Some controls name a principal that only exists when an optional feature is
-installed - Hyper-V for 2.2.19, IIS for 2.2.33, Exchange for 2.2.38. The
+installed - Hyper-V for 2.2.18, IIS for 2.2.32, Exchange for 2.2.38. The
 feature-dependent principal is matched as an optional group, so these pass on a
 host with the feature and on one without it. That is deliberately lenient in one
 direction: a host that grants the principal without having the feature also
@@ -165,13 +175,13 @@ version can assert the exact membership per branch.
 | Section | In benchmark | Asserted | Coverage |
 | --- | --- | --- | --- |
 | 1 | 10 | 10 | 100% |
-| 2 | 121 | 119 | 98% |
+| 2 | 119 | 117 | 98% |
 | 5 | 2 | 2 | 100% |
 | 9 | 23 | 23 | 100% |
 | 17 | 34 | 34 | 100% |
-| 18 | 231 | 231 | 100% |
-| 19 | 12 | 12 | 100% |
-| **All** | **433** | **431** | **99.5%** |
+| 18 | 201 | 201 | 100% |
+| 19 | 11 | 11 | 100% |
+| **All** | **400** | **398** | **99.5%** |
 
 ### Not asserted
 
@@ -188,7 +198,7 @@ an account has been renamed, what a site variable was set to. Each
 asserts the part that holds on every host; the feature-dependent
 part is matched optionally rather than required.
 
-2.2.19, 2.2.33, 2.2.38, 2.3.1.3, 2.3.1.4
+2.2.18, 2.2.32, 2.2.33, 2.2.38, 2.3.1.3, 2.3.1.4
 
 <!-- END COVERAGE -->
 

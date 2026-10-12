@@ -1,17 +1,17 @@
 ---
 
-{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_18 }}
-    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
 file:
   win19cis_2_2_18_secreatesymboliclinkprivilege:
-    title: "2.2.18 | Ensure 'Create symbolic links' is set to 'Administrators' (DC only) | SeCreateSymbolicLinkPrivilege"
+    title: "2.2.18 | Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\\Virtual Machines' (MS only) | SeCreateSymbolicLinkPrivilege"
     path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateSymbolicLinkPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-32-544$/'
+      - '/^S-1-5-32-544(,S-1-5-83-0)?$/'
     meta:
-      domaincontroller: 1
+      memberserver: 1
       server: 1
       CIS_ID:
         - 2.2.18

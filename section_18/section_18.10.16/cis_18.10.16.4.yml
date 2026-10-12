@@ -1,20 +1,23 @@
 ---
 
-{{ if .Vars.win19cis_level_1 }}
+{{ if .Vars.win19cis_level_2 }}
   {{ if .Vars.win19cis_rule_18_10_16_4 }}
 registry:
-  HKLM\SOFTWARE\Policies\Microsoft\Windows\Datacollection\DoNotShowFeedbackNotifications:
-    title: "18.10.16.4 | Ensure 'Do not show feedback notifications' is set to 'Enabled' | DoNotShowFeedbackNotifications"
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection\EnableOneSettingsAuditing:
+    title: "18.10.16.4 | Ensure 'Enable OneSettings Auditing' is set to 'Enabled' | EnableOneSettingsAuditing"
     exists: true
     value: 1
     type: REG_DWORD
     meta:
-      domaincontroller: 1
-      memberserver: 1
-      server: 1
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
       CIS_ID:
         - 18.10.16.4
       NIST800-53R5:
-        - SI-4
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
   {{ end }}
 {{ end }}

@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_3_9_3 }}
 registry:
-  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\EnableSecuritySignature:
-    title: "2.3.9.3 | Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set to 'Enabled' | EnableSecuritySignature"
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\EnableForcedLogoff:
+    title: "2.3.9.3 | Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled' | EnableForcedLogoff"
     exists: true
     value: 1
     type: REG_DWORD
@@ -15,10 +15,6 @@ registry:
       CIS_ID:
         - 2.3.9.3
       NIST800-53R5:
-        - AC-17(2)
-        - IA-5
-        - IA-5(1)
-        - SC-8
-        - SC-8(1)
+        - AC-2(12)
   {{ end }}
 {{ end }}

@@ -3,9 +3,9 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_23 }}
 file:
-  win19cis_2_2_23_sedenybatchlogonright:
-    title: "2.2.23 | Ensure 'Deny log on as a batch job' to include 'Guests' | SeDenyBatchLogonRight"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyBatchLogonRight'
+  win19cis_2_2_23_sedenyservicelogonright:
+    title: "2.2.23 | Ensure 'Deny log on as a service' to include 'Guests' | SeDenyServiceLogonRight"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeDenyServiceLogonRight'
     exists: true
     contents:
       - '/^(.*,)?S-1-5-32-546(,.*)?$/'

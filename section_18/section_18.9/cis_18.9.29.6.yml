@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_29_6 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\System\AllowDomainPINLogon:
+    title: "18.9.29.6 | Ensure 'Turn on convenience PIN sign-in' is set to 'Disabled' | AllowDomainPINLogon"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.29.6
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

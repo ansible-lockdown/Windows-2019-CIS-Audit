@@ -3,12 +3,12 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_30 }}
 file:
-  win19cis_2_2_30_seremoteshutdownprivilege:
-    title: "2.2.30 | Ensure 'Force shutdown from a remote system' is set to 'Administrators' | SeRemoteShutdownPrivilege"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeRemoteShutdownPrivilege'
+  win19cis_2_2_30_seauditprivilege:
+    title: "2.2.30 | Ensure 'Generate security audits' is set to 'LOCAL SERVICE, NETWORK SERVICE' | SeAuditPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeAuditPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-32-544$/'
+      - '/^S-1-5-19,S-1-5-20$/'
     meta:
       domaincontroller: 1
       memberserver: 1

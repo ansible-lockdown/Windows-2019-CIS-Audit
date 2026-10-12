@@ -1,17 +1,17 @@
 ---
 
-{{ if .Vars.win19cis_level_1 }}
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_17 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
 file:
-  win19cis_2_2_17_secreatepermanentprivilege:
-    title: "2.2.17 | Ensure 'Create permanent shared objects' is set to 'No One' | SeCreatePermanentPrivilege"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreatePermanentPrivilege'
+  win19cis_2_2_17_secreatesymboliclinkprivilege:
+    title: "2.2.17 | Ensure 'Create symbolic links' is set to 'Administrators' (DC only) | SeCreateSymbolicLinkPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateSymbolicLinkPrivilege'
     exists: true
     contents:
-      - '/^NONE$/'
+      - '/^S-1-5-32-544$/'
     meta:
       domaincontroller: 1
-      memberserver: 1
       server: 1
       CIS_ID:
         - 2.2.17
@@ -22,5 +22,6 @@ file:
         - AC-6(1)
         - AC-6(7)
         - AU-9(4)
+    {{ end }}
   {{ end }}
 {{ end }}

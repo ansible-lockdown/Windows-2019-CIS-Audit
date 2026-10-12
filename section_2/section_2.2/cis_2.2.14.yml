@@ -3,12 +3,12 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_14 }}
 file:
-  win19cis_2_2_14_secreatepagefileprivilege:
-    title: "2.2.14 | Ensure 'Create a pagefile' is set to 'Administrators' | SeCreatePagefilePrivilege"
-    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreatePagefilePrivilege'
+  win19cis_2_2_14_secreatetokenprivilege:
+    title: "2.2.14 | Ensure 'Create a token object' is set to 'No One' | SeCreateTokenPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeCreateTokenPrivilege'
     exists: true
     contents:
-      - '/^S-1-5-32-544$/'
+      - '/^NONE$/'
     meta:
       domaincontroller: 1
       memberserver: 1

@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_18_9_7_2 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\Device Metadata\PreventDeviceMetadataFromNetwork:
-    title: "18.9.7.2 | Ensure 'Prevent device metadata retrieval from the Internet' is set to 'Enabled' | PreventDeviceMetadataFromNetwork"
+    title: "18.9.7.2 | Ensure 'Prevent automatic download of applications associated with device metadata' is set to 'Enabled' | PreventDeviceMetadataFromNetwork"
     exists: true
     value: 1
     type: REG_DWORD
@@ -14,9 +14,5 @@ registry:
       server: 1
       CIS_ID:
         - 18.9.7.2
-      NIST800-53R5:
-        - CM-7(5)
-        - CM-10
-        - SI-16
   {{ end }}
 {{ end }}
