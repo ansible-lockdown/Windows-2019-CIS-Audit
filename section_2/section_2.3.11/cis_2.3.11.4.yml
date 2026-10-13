@@ -1,0 +1,46 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_11_4 }}
+    {{ if .Vars.win19cis_legacy_rc4_hmac_md5_support }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes:
+    title: "2.3.11.4 | Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types' | SupportedEncryptionTypes"
+    exists: true
+    value: 2147483644
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.4
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+    {{ end }}
+    {{ if not .Vars.win19cis_legacy_rc4_hmac_md5_support }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes:
+    title: "2.3.11.4 | Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types' | SupportedEncryptionTypes"
+    exists: true
+    value: 2147483640
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.4
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+    {{ end }}
+  {{ end }}
+{{ end }}

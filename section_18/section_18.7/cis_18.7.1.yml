@@ -1,0 +1,29 @@
+---
+
+{{ if or (and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1) (and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_2) }}
+  {{ if .Vars.win19cis_rule_18_7_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\RegisterSpoolerRemoteRpcEndPoint:
+    title: "18.7.1 | Ensure 'Allow Print Spooler to accept client connections' is set to 'Disabled' | RegisterSpoolerRemoteRpcEndPoint"
+    exists: true
+    value: 2
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 2
+      server: 1
+      CIS_ID:
+        - 18.7.1
+      NIST800-53R5:
+        - CM-1
+        - CM-2
+        - AC-2
+        - CM-6
+        - CM-7
+        - CM-7(1)
+        - CM-9
+        - SA-3
+        - SA-8
+        - SA-10
+  {{ end }}
+{{ end }}

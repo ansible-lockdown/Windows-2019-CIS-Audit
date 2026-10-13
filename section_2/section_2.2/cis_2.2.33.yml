@@ -1,0 +1,27 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_33 }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_2_2_33_seimpersonateprivilege:
+    title: "2.2.33 | Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only) | SeImpersonatePrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeImpersonatePrivilege'
+    exists: true
+    contents:
+      - '/^S-1-5-19,S-1-5-20,S-1-5-32-544(,S-1-5-32-568)?,S-1-5-6$/'
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.33
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_6_5 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\MaximumPasswordAge:
+    title: "2.3.6.5 | Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0' | MaximumPasswordAge"
+    exists: true
+    value: {{ .Vars.win19cis_domain_member_maximum_password_age }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.6.5
+      NIST800-53R5:
+        - IA-5(1)
+  {{ end }}
+{{ end }}

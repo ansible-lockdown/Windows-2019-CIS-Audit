@@ -1,0 +1,27 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_2 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_2_2_2_senetworklogonright:
+    title: "2.2.2 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only) | SeNetworkLogonRight"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeNetworkLogonRight'
+    exists: true
+    contents:
+      - '/^S-1-5-11,S-1-5-32-544,S-1-5-9$/'
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.2.2
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+    {{ end }}
+  {{ end }}
+{{ end }}

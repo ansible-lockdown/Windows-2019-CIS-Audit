@@ -1,0 +1,30 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_5_5 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange:
+    title: "2.3.5.5 | Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only) | RefusePasswordChange"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.3.5.5
+      NIST800-53R5:
+        - CM-1
+        - CM-2
+        - AC-2
+        - CM-6
+        - CM-7
+        - CM-7(1)
+        - CM-9
+        - SA-3
+        - SA-8
+        - SA-10
+    {{ end }}
+  {{ end }}
+{{ end }}

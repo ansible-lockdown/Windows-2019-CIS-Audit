@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_57_3_9_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fEncryptRPCTraffic:
+    title: "18.10.57.3.9.2 | Ensure 'Require secure RPC communication' is set to 'Enabled' | fEncryptRPCTraffic"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.57.3.9.2
+      NIST800-53R5:
+        - SC-7(8)
+  {{ end }}
+{{ end }}

@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_57_3_11_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\DeleteTempDirsOnExit:
+    title: "18.10.57.3.11.1 | Ensure 'Do not delete temp folders upon exit' is set to 'Disabled' | DeleteTempDirsOnExit"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.57.3.11.1
+      NIST800-53R5:
+        - AU-11
+        - SI-12
+  {{ end }}
+{{ end }}

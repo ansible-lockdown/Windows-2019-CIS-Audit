@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_5_12 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel:
+    title: "18.5.12 | Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less' | WarningLevel"
+    exists: true
+    value: {{ .Vars.win19cis_log_threshold_audit_event }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.5.12
+      NIST800-53R5:
+        - AU-4
+  {{ end }}
+{{ end }}

@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_7_9 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption:
+    title: "2.3.7.9 | Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher | ScRemoveOption"
+    exists: true
+    value: '{{ .Vars.win19cis_sc_remove_option }}'
+    type: REG_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.7.9
+      NIST800-53R5:
+        - AC-2(5)
+        - AC-11
+        - AC-11(1)
+        - AC-12
+  {{ end }}
+{{ end }}

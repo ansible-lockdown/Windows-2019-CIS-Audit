@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_37_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Locationandsensors\DisableLocation:
+    title: "18.10.37.1 | Ensure 'Turn off location' is set to 'Enabled' | DisableLocation"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.37.1
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

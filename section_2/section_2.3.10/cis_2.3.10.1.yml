@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_1 }}
+file:
+  win19cis_2_3_10_1_lsaanonymousnamelookup:
+    title: "2.3.10.1 | Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled' | LSAAnonymousNameLookup"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.LSAAnonymousNameLookup'
+    exists: true
+    contents:
+      - '/^0$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.1
+      NIST800-53R5:
+        - AC-6(10)
+        - IA-2(2)
+  {{ end }}
+{{ end }}

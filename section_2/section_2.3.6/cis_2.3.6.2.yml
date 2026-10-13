@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_6_2 }}
+    {{ if ne .Vars.win19cis_system_role "standalone" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel:
+    title: "2.3.6.2 | Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled' | SealSecureChannel"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.6.2
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+    {{ end }}
+  {{ end }}
+{{ end }}

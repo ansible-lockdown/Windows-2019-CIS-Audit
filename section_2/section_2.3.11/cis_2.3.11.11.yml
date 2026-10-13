@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_11_11 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\AuditReceivingNTLMTraffic:
+    title: "2.3.11.11 | Ensure 'Network security: Restrict NTLM: Audit Incoming NTLM Traffic' is set to 'Enable auditing for all accounts' | AuditReceivingNTLMTraffic"
+    exists: true
+    value: 2
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.11
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

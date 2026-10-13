@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_93_2_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU\ScheduledInstallDay:
+    title: "18.10.93.2.2 | Ensure 'Configure Automatic Updates: Scheduled install day' is set to '0 - Every day' | ScheduledInstallDay"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.93.2.2
+      NIST800-53R5:
+        - RA-5
+        - SI-2
+        - SI-2(2)
+  {{ end }}
+{{ end }}

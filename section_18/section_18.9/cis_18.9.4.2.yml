@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_4_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation\AllowProtectedCreds:
+    title: "18.9.4.2 | Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled' | AllowProtectedCreds"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.4.2
+      NIST800-53R5:
+        - IA-5
+  {{ end }}
+{{ end }}

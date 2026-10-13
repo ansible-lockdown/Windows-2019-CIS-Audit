@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_18_5 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\AppInstaller\EnableMSAppInstallerProtocol:
+    title: "18.10.18.5 | Ensure 'Enable App Installer ms-appinstaller protocol' is set to 'Disabled' | EnableMSAppInstallerProtocol"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.18.5
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

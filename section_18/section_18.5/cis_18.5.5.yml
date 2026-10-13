@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_5_5 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime:
+    title: "18.5.5 | Ensure 'MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds' is set to 'Enabled: 300,000 or 5 minutes' | KeepAliveTime"
+    exists: true
+    value: 300000
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.5.5
+      NIST800-53R5:
+        - CM-1
+        - CM-2
+        - AC-2
+        - CM-6
+        - CM-7
+        - CM-7(1)
+        - CM-9
+        - SA-3
+        - SA-8
+        - SA-10
+  {{ end }}
+{{ end }}

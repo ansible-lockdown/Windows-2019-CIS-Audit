@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_2_1 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy:
+    title: "2.3.2.1 | Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled' | SCENoApplyLegacyAuditPolicy"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.2.1
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

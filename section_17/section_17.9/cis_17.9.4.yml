@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_17_9_4 }}
+file:
+  win19cis_17_9_4_0cce9211_69ae_11d9_bed3_505054503030:
+    title: "17.9.4 | Ensure 'Audit Security System Extension' is set to include 'Success' | {0cce9211-69ae-11d9-bed3-505054503030}"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.9.4'
+    exists: true
+    contents:
+      - '/^[13]$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 17.9.4
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

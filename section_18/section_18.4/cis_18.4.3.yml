@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_4_3 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\SMB1:
+    title: "18.4.3 | Ensure 'Configure SMB v1 server' is set to 'Disabled' | SMB1"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.3
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_1_1_4 }}
+command:
+  win19cis_1_1_4_minimumpasswordlength:
+    title: "1.1.4 | Ensure 'Minimum password length' is set to '14 or more character(s)' | MinimumPasswordLength"
+    exec: |-
+      powershell -NoProfile -NonInteractive -Command "$p = Join-Path '{{ .Vars.win19cis_snapshot_dir }}' 'SystemAccess.MinimumPasswordLength'; if (-not (Test-Path -LiteralPath $p)) { 'NONCOMPLIANT not_collected' } else { $r = (Get-Content -LiteralPath $p -Raw).Trim(); if ($r -notmatch '^[0-9]+$') { 'NONCOMPLIANT actual=' + $r } else { $v = [int]$r; if ($v -ge {{ .Vars.win19cis_minimum_password_length }}) { 'COMPLIANT' } else { 'NONCOMPLIANT actual=' + $v } } }"
+    exit-status: 0
+    stdout:
+      - '/^COMPLIANT$/'
+    stderr:
+      have-len: 0
+    timeout: {{ .Vars.timeout_ms }}
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 1.1.4
+      NIST800-53R5:
+        - IA-5(1)
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_58_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds\AllowBasicAuthInClear:
+    title: "18.10.58.2 | Ensure 'Turn on Basic feed authentication over HTTP' is set to 'Disabled' | AllowBasicAuthInClear"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.58.2
+      NIST800-53R5:
+        - AC-17
+  {{ end }}
+{{ end }}

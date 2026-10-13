@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_1_1_1 }}
+command:
+  win19cis_1_1_1_passwordhistorysize:
+    title: "1.1.1 | Ensure 'Enforce password history' is set to '24 or more password(s)' | PasswordHistorySize"
+    exec: |-
+      powershell -NoProfile -NonInteractive -Command "$p = Join-Path '{{ .Vars.win19cis_snapshot_dir }}' 'SystemAccess.PasswordHistorySize'; if (-not (Test-Path -LiteralPath $p)) { 'NONCOMPLIANT not_collected' } else { $r = (Get-Content -LiteralPath $p -Raw).Trim(); if ($r -notmatch '^[0-9]+$') { 'NONCOMPLIANT actual=' + $r } else { $v = [int]$r; if ($v -ge {{ .Vars.win19cis_max_passwords_saved }}) { 'COMPLIANT' } else { 'NONCOMPLIANT actual=' + $v } } }"
+    exit-status: 0
+    stdout:
+      - '/^COMPLIANT$/'
+    stderr:
+      have-len: 0
+    timeout: {{ .Vars.timeout_ms }}
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 1.1.1
+      NIST800-53R5:
+        - IA-5(1)
+  {{ end }}
+{{ end }}

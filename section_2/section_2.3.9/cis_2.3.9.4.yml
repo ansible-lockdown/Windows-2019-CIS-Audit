@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_9_4 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\EnableForcedLogoff:
+    title: "2.3.9.4 | Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled' | EnableForcedLogoff"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.9.4
+      NIST800-53R5:
+        - AC-2(12)
+  {{ end }}
+{{ end }}

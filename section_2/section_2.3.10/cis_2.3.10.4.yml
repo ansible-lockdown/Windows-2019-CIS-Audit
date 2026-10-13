@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_2_3_10_4 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\DisableDomainCreds:
+    title: "2.3.10.4 | Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled' | DisableDomainCreds"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 2.3.10.4
+      NIST800-53R5:
+        - IA-5(1)(c)
+  {{ end }}
+{{ end }}

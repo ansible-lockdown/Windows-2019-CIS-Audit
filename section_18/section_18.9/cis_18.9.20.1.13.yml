@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_20_1_13 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting\Disabled:
+    title: "18.9.20.1.13 | Ensure 'Turn off Windows Error Reporting' is set to 'Enabled' | Disabled"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.20.1.13
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  HKLM\SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting\DoReport:
+    title: "18.9.20.1.13 | Ensure 'Turn off Windows Error Reporting' is set to 'Enabled' | DoReport"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.20.1.13
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

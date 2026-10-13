@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_12 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\NullSessionShares:
+    title: "2.3.10.12 | Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None' | NullSessionShares"
+    exists: true
+    value: ""
+    type: REG_MULTI_SZ
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.12
+      NIST800-53R5:
+        - AC-3
+  {{ end }}
+{{ end }}

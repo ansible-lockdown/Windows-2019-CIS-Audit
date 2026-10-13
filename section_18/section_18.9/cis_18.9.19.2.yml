@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_19_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}\NoBackgroundPolicy:
+    title: "18.9.19.2 | Ensure 'Configure registry policy processing: Do not apply during periodic background processing' is set to 'Enabled: FALSE' | NoBackgroundPolicy"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.19.2
+      NIST800-53R5:
+        - CM-1
+        - CM-2
+        - AC-2
+        - CM-6
+        - CM-7
+        - CM-7(1)
+        - CM-9
+        - SA-3
+        - SA-8
+        - SA-10
+  {{ end }}
+{{ end }}

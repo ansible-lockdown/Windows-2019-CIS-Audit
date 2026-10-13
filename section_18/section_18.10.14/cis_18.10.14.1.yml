@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_14_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Connect\RequirePinForPairing:
+    title: "18.10.14.1 | Ensure 'Require pin for pairing' is set to 'Enabled: First Time' OR 'Enabled: Always' | RequirePinForPairing"
+    exists: true
+    value: {{ .Vars.win19cis_require_pin_for_pairing }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.14.1
+      NIST800-53R5:
+        - IA-5c
+  {{ end }}
+{{ end }}

@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_9_2_7 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging\LogSuccessfulConnections:
+    title: "9.2.7 | Ensure 'Windows Firewall: Private: Logging: Log successful connections' is set to 'Yes' | LogSuccessfulConnections"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 9.2.7
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+        - SC-7
+        - SC-7(5)
+  {{ end }}
+{{ end }}

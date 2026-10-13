@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_11_10 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Msv1_0\NTLMMinServerSec:
+    title: "2.3.11.10 | Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption' | NTLMMinServerSec"
+    exists: true
+    value: 537395200
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.10
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+  {{ end }}
+{{ end }}

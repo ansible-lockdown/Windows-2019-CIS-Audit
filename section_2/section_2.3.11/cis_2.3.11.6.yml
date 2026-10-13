@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_11_6 }}
+file:
+  win19cis_2_3_11_6_forcelogoffwhenhourexpire:
+    title: "2.3.11.6 | Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled' | ForceLogoffWhenHourExpire"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.ForceLogoffWhenHourExpire'
+    exists: true
+    contents:
+      - '/^1$/'
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.11.6
+      NIST800-53R5:
+        - AC-2(12)
+  {{ end }}
+{{ end }}

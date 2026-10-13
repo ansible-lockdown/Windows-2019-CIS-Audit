@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_9_3_1 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\ProcessCreationIncludeCmdLine_Enabled:
+    title: "18.9.3.1 | Ensure 'Include command line in process creation events' is set to 'Enabled' | ProcessCreationIncludeCmdLine_Enabled"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.3.1
+      NIST800-53R5:
+        - AU-2
+  {{ end }}
+{{ end }}

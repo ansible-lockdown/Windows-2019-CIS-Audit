@@ -1,0 +1,37 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_9_1_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall:
+    title: "9.1.1 | Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)' | EnableFirewall"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 9.1.1
+      NIST800-53R5:
+        - SC-7
+        - SC-7(5)
+file:
+  win19cis_9_1_1_effective:
+    title: "9.1.1 | Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)' | effective"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\Firewall.Domain.Enabled'
+    exists: true
+    contents:
+      - '/^True$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 9.1.1
+      NIST800-53R5:
+        - SC-7
+        - SC-7(5)
+  {{ end }}
+{{ end }}

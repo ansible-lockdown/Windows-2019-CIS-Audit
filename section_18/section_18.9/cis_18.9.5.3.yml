@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_ngws }}
+  {{ if .Vars.win19cis_rule_18_9_5_3 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\HypervisorEnforcedCodeIntegrity:
+    title: "18.9.5.3 | (NG) Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' | HypervisorEnforcedCodeIntegrity"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.9.5.3
+      NIST800-53R5:
+        - SI-16
+  {{ end }}
+{{ end }}

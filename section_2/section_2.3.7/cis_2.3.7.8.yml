@@ -1,0 +1,24 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_7_8 }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon:
+    title: "2.3.7.8 | Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only) | ForceUnlockLogon"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.7.8
+      NIST800-53R5:
+        - AC-2(5)
+        - AC-11
+        - AC-11(1)
+        - AC-12
+    {{ end }}
+  {{ end }}
+{{ end }}

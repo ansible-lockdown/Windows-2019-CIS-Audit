@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_1_4 }}
+file:
+  win19cis_2_3_1_4_newguestname:
+    title: "2.3.1.4 | Configure 'Accounts: Rename guest account' | NewGuestName"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.NewGuestName'
+    exists: true
+    contents:
+      - '/^.+$/'
+      - '!/^Guest$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.1.4
+      NIST800-53R5:
+        - IA-5
+  {{ end }}
+{{ end }}

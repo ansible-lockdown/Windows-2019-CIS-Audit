@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_17_6_4 }}
+file:
+  win19cis_17_6_4_0cce9245_69ae_11d9_bed3_505054503030:
+    title: "17.6.4 | Ensure 'Audit Removable Storage' is set to 'Success and Failure' | {0cce9245-69ae-11d9-bed3-505054503030}"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.6.4'
+    exists: true
+    contents:
+      - '/^3$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 17.6.4
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

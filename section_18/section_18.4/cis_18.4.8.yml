@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_4_8 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\Wdigest\UseLogonCredential:
+    title: "18.4.8 | Ensure 'WDigest Authentication' is set to 'Disabled' | UseLogonCredential"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.4.8
+      NIST800-53R5:
+        - IA-5(1)
+        - SC-28
+        - SC-28(1)
+  {{ end }}
+{{ end }}

@@ -1,0 +1,25 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_5_4 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\LDAPServerIntegrity:
+    title: "2.3.5.4 | Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only) | LDAPServerIntegrity"
+    exists: true
+    value: 2
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.3.5.4
+      NIST800-53R5:
+        - AC-17(2)
+        - IA-5
+        - IA-5(1)
+        - SC-8
+        - SC-8(1)
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_31_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\System\UploadUserActivities:
+    title: "18.9.31.2 | Ensure 'Allow upload of User Activities' is set to 'Disabled' | UploadUserActivities"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.31.2
+      NIST800-53R5:
+        - SI-4
+  {{ end }}
+{{ end }}

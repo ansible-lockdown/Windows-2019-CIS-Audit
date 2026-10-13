@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_6_21_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy\fMinimizeConnections:
+    title: "18.6.21.1 | Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled: 3 = Prevent Wi-Fi when on Ethernet' | fMinimizeConnections"
+    exists: true
+    value: 3
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.6.21.1
+      NIST800-53R5:
+        - CM-1
+        - CM-2
+        - AC-2
+        - CM-6
+        - CM-7
+        - CM-7(1)
+        - CM-9
+        - SA-3
+        - SA-8
+        - SA-10
+  {{ end }}
+{{ end }}

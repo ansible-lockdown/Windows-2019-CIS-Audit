@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_17_8_1 }}
+file:
+  win19cis_17_8_1_0cce9228_69ae_11d9_bed3_505054503030:
+    title: "17.8.1 | Ensure 'Audit Sensitive Privilege Use' is set to 'Success and Failure' | {0cce9228-69ae-11d9-bed3-505054503030}"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.8.1'
+    exists: true
+    contents:
+      - '/^3$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 17.8.1
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

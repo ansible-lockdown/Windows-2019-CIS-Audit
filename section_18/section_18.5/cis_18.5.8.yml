@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_5_8 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\SafeDllSearchMode:
+    title: "18.5.8 | Ensure 'MSS: (SafeDllSearchMode) Enable Safe DLL search mode' is set to 'Enabled' | SafeDllSearchMode"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.5.8
+      NIST800-53R5:
+        - SI-16
+  {{ end }}
+{{ end }}

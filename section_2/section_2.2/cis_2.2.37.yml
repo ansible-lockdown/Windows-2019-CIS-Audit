@@ -1,0 +1,27 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_2_2_37 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+file:
+  win19cis_2_2_37_sebatchlogonright:
+    title: "2.2.37 | Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only) | SeBatchLogonRight"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeBatchLogonRight'
+    exists: true
+    contents:
+      - '/^S-1-5-32-544$/'
+    meta:
+      domaincontroller: 2
+      server: 2
+      CIS_ID:
+        - 2.2.37
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_10_59_4 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search\EnableDynamicContentInWSB:
+    title: "18.10.59.4 | Ensure 'Allow search highlights' is set to 'Disabled' | EnableDynamicContentInWSB"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.10.59.4
+      NIST800-53R5:
+        - CM-6
+        - CM-7
+  {{ end }}
+{{ end }}

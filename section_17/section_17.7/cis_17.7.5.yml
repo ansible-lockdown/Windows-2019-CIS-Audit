@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_17_7_5 }}
+file:
+  win19cis_17_7_5_0cce9234_69ae_11d9_bed3_505054503030:
+    title: "17.7.5 | Ensure 'Audit Other Policy Change Events' is set to include 'Failure' | {0cce9234-69ae-11d9-bed3-505054503030}"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.7.5'
+    exists: true
+    contents:
+      - '/^[23]$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 17.7.5
+      NIST800-53R5:
+        - AU-3
+        - AU-3(1)
+        - AU-7
+        - AU-12
+  {{ end }}
+{{ end }}

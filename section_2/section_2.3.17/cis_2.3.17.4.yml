@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_17_4 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableInstallerDetection:
+    title: "2.3.17.4 | Ensure 'User Account Control: Detect application installations and prompt for elevation' is set to 'Enabled' | EnableInstallerDetection"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.17.4
+      NIST800-53R5:
+        - AC-6(8)
+  {{ end }}
+{{ end }}

@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_2_47 }}
+file:
+  win19cis_2_2_47_seshutdownprivilege:
+    title: "2.2.47 | Ensure 'Shut down the system' is set to 'Administrators' | SeShutdownPrivilege"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeShutdownPrivilege'
+    exists: true
+    contents:
+      - '/^S-1-5-32-544$/'
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.2.47
+      NIST800-53R5:
+        - AC-2
+        - AC-3
+        - AC-6
+        - AC-6(1)
+        - AC-6(7)
+        - AU-9(4)
+  {{ end }}
+{{ end }}

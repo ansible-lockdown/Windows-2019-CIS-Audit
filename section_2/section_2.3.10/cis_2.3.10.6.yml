@@ -1,0 +1,21 @@
+---
+
+{{ if and (eq .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_6 }}
+    {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\NullSessionPipes:
+    title: "2.3.10.6 | Ensure 'Network access: Named Pipes that can be accessed anonymously' is configured (DC only) | NullSessionPipes"
+    exists: true
+    value: "LSARPC\nNETLOGON\nSAMR"
+    type: REG_MULTI_SZ
+    meta:
+      domaincontroller: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.6
+      NIST800-53R5:
+        - IA-2(2)
+    {{ end }}
+  {{ end }}
+{{ end }}

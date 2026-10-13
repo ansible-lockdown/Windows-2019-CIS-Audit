@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_18_10_93_1_1 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAutoRebootWithLoggedOnUsers:
+    title: "18.10.93.1.1 | Ensure 'No auto-restart with logged on users for scheduled automatic updates installations' is set to 'Disabled' | NoAutoRebootWithLoggedOnUsers"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 18.10.93.1.1
+      NIST800-53R5:
+        - RA-5
+        - SI-2
+        - SI-2(2)
+  {{ end }}
+{{ end }}

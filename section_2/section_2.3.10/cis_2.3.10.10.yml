@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_10_10 }}
+registry:
+  HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\RestrictNullSessAccess:
+    title: "2.3.10.10 | Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled' | RestrictNullSessAccess"
+    exists: true
+    value: 1
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.10.10
+      NIST800-53R5:
+        - AC-6(10)
+  {{ end }}
+{{ end }}

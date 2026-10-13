@@ -1,0 +1,23 @@
+---
+
+{{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_1_2_3 }}
+file:
+  win19cis_1_2_3_allowadministratorlockout:
+    title: "1.2.3 | Ensure 'Allow Administrator account lockout' is set to 'Enabled' (MS only) | AllowAdministratorLockout"
+    path: '{{ .Vars.win19cis_snapshot_dir }}\SystemAccess.AllowAdministratorLockout'
+    exists: true
+    contents:
+      - '/^{{ .Vars.win19cis_allow_admin_account_lockout }}$/'
+    skip: {{ if eq .Vars.win19cis_system_role "standalone" }}false{{ else }}true{{ end }}
+    meta:
+      skip_reason: "domain scoped - on a domain joined host the Default Domain Policy sets this [System Access] value, so the role does not apply it"
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 1.2.3
+      NIST800-53R5:
+        - AC-7
+        - AC-19
+  {{ end }}
+{{ end }}

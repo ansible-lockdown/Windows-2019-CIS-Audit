@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_2 }}
+  {{ if .Vars.win19cis_rule_18_9_33_6_2 }}
+registry:
+  HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9\ACSettingIndex:
+    title: "18.9.33.6.2 | Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled' | ACSettingIndex"
+    exists: true
+    value: 0
+    type: REG_DWORD
+    meta:
+      domaincontroller: 2
+      memberserver: 2
+      server: 2
+      CIS_ID:
+        - 18.9.33.6.2
+      NIST800-53R5:
+        - SI-4
+  {{ end }}
+{{ end }}

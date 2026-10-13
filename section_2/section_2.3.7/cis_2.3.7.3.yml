@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_7_3 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs:
+    title: "2.3.7.3 | Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0' | InactivityTimeoutSecs"
+    exists: true
+    value: {{ .Vars.win19cis_inactivity_timeout_seconds }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.7.3
+      NIST800-53R5:
+        - AC-2(5)
+        - AC-11
+        - AC-11(1)
+        - AC-12
+  {{ end }}
+{{ end }}

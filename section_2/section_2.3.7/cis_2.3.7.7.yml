@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.win19cis_level_1 }}
+  {{ if .Vars.win19cis_rule_2_3_7_7 }}
+registry:
+  HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning:
+    title: "2.3.7.7 | Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days' | PasswordExpiryWarning"
+    exists: true
+    value: {{ .Vars.win19cis_password_expiry_warning_days }}
+    type: REG_DWORD
+    meta:
+      domaincontroller: 1
+      memberserver: 1
+      server: 1
+      CIS_ID:
+        - 2.3.7.7
+      NIST800-53R5:
+        - IA-5(1)
+  {{ end }}
+{{ end }}
