@@ -1,6 +1,11 @@
 # Changes to Windows-2019-CIS-Audit
 
 ## Based on CIS Benchmark v5.0.0
+## October 2026 - spec folders
+
+- spec folders follow the role's task files, as Windows-2022-CIS-Audit does, e.g. section_1/section_1.1 -> section_1/section_1.1.x
+
+## Based on CIS Benchmark v5.0.0
 ## October 2026 - generated from the remediation role
 
 - Specs generated from Private-Windows-2019-CIS in the Windows-2025-CIS-Audit layout, Goss format, run with syver
