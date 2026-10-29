@@ -4,11 +4,14 @@
 ## October 2026 - spec folders
 
 - spec folders follow the role's task files, as Windows-2022-CIS-Audit does, e.g. section_1/section_1.1 -> section_1/section_1.1.x
+- README and Changelog name the public Windows-2019-CIS role
+- run_audit.ps1 secedit note describes what Server 2019 does, was a Server 2025 note
+- README: the remediation role warns on 2.3.5.4 on a domain controller rather than writing it
 
 ## Based on CIS Benchmark v4.0.0
 ## October 2026 - generated from the remediation role
 
-- Specs generated from Private-Windows-2019-CIS in the Windows-2025-CIS-Audit layout, Goss format, run with syver
+- Specs generated from Windows-2019-CIS in the Windows-2025-CIS-Audit layout, Goss format, run with syver
   - Each spec is the Windows-2025-CIS-Audit spec for the control whose remediation task is identical, renumbered, retitled and gated for CIS v4.0.0
   - 431 of the 433 recommendations asserted; 2.2.34 and 2.3.10.9 have no assertable state
 - 2.2.31 asserts LOCAL SERVICE, NETWORK SERVICE, the v4.0.0 value the role sets
