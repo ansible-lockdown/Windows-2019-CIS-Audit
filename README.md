@@ -19,7 +19,7 @@ domain controller.
 It is configured in a directory structure level, one file per control, matching
 the layout of the Linux audit repositories.
 
-The content is generated from `Private-Windows-2019-CIS`, so the audit asserts
+The content is generated from `Windows-2019-CIS`, so the audit asserts
 what the remediation role actually does rather than a separately maintained
 restatement of it. Each spec is the Windows-2025-CIS-Audit spec for the control
 whose remediation task is identical in the 2019 role, renumbered, retitled and
@@ -72,10 +72,10 @@ Two consequences worth stating plainly, both proven against live hosts:
   reason in `meta.skip_reason`, so the count still adds up. To meet CIS section 1 on a member server, set it in the Default Domain
   Policy. 2.3.11.6 (`ForceLogoffWhenHourExpire`) is also a `[System Access]`
   value the Default Domain Policy sets, so it is skipped the same way.
-- **Group Policy outranks a registry write on a domain controller.** Control
-  2.3.5.4 applies and is then reverted at the next policy refresh. It is
-  expected to fail on a DC hardened by the remediation role; set it in the
-  Default Domain Controllers Policy instead.
+- **Group Policy outranks a registry write on a domain controller.** The
+  Default Domain Controllers Policy pins 2.3.5.4 to 1, so the remediation role
+  warns instead of writing it. It is expected to fail on a DC until it is set
+  to 'Require signing' in that policy.
 
 Two more follow from the 2019 benchmark values:
 

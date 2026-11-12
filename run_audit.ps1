@@ -177,11 +177,11 @@ function New-PolicySnapshot {
     # ---- secedit: System Access and Privilege Rights, in one export ----
     # The .inf is UTF-16LE with a BOM. Get-Content follows the BOM, so the
     # encoding is handled once here rather than in every check.
-    # The target must NOT already exist. secedit exporting over an existing file
-    # omits the [Unicode] header, after which Get-Content reads the UTF-16 export
-    # as single-byte characters and nothing matches - while secedit still exits
-    # 0. Host-proven on Server 2025; it is what silently broke the role's own
-    # 2.2.31 guard. $PID keeps the name unique; the remove is belt and braces.
+    # The target must NOT already exist. Over an existing file that is not a
+    # UTF-16 export, secedit drops the [Unicode] header, writes single-byte text
+    # and leaves in place any section it does not export - and still exits 0.
+    # Host-proven on Server 2019. $PID keeps the name unique; the remove is belt
+    # and braces.
     $inf = Join-Path $env:TEMP "win19cis_secedit_$PID.inf"
     if (Test-Path -LiteralPath $inf) { Remove-Item -LiteralPath $inf -Force }
     & secedit /export /areas SECURITYPOLICY USER_RIGHTS /cfg $inf /quiet | Out-Null
