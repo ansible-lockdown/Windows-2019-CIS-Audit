@@ -1,5 +1,19 @@
 # Changes to Windows-2019-CIS-Audit
 
+## CIS Benchmark 5.0.0
+## November 2026 - syver
+
+- run_audit.ps1 minimum raised to syver 0.16.0
+- goss.yml renamed syver.yml, gossfile key renamed syverfile
+- skip reasons moved from meta.skip_reason to the skip-reason attribute
+- 13 win_skip_for_test controls reported as skipped with a reason
+- 2.2.30 reported as skipped on IIS and ADFS hosts unless overridden
+- 2.3.5.2 asserts VulnerableChannelAllowList is absent
+- 2.3.5.4 no longer asserted, the role does not write it
+- run_audit.ps1 reads audit policy by GUID from auditpol /backup, any display language
+- .gitignore secret patterns
+- README: syver.yml, skip-reason and win_skip_for_test reporting
+
 ## Based on CIS Benchmark v5.0.0
 ## October 2026 - spec folders
 

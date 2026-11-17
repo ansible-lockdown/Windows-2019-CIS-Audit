@@ -69,24 +69,27 @@ Two consequences worth stating plainly, both proven against live hosts:
   Domain Policy overwrites local `[System Access]` at every refresh, so the ten
   secedit backed section 1 controls cannot hold locally there. The remediation
   role skips them and warns; this audit reports them as skipped, with the
-  reason in `meta.skip_reason`, so the count still adds up. To meet CIS section 1 on a member server, set it in the Default Domain
-  Policy. 2.3.11.6 (`ForceLogoffWhenHourExpire`) is also a `[System Access]`
+  reason in `skip-reason`, so the count still adds up. To meet CIS section 1 on
+  a member server, set it in the Default Domain Policy. 2.3.11.6 (`ForceLogoffWhenHourExpire`) is also a `[System Access]`
   value the Default Domain Policy sets, so it is skipped the same way.
 - **Group Policy outranks a registry write on a domain controller.** The
   Default Domain Controllers Policy pins 2.3.5.4 to 1, so the remediation role
-  warns instead of writing it. It is expected to fail on a DC until it is set
-  to 'Require signing' in that policy.
+  warns instead of writing it, and this audit does not assert it (listed under
+  Not asserted below). Set it to 'Require signing' in that policy.
 
 Two more follow from the 2019 benchmark values:
 
 - **2.2.30 asserts the benchmark value.** Generate security audits is expected to
   hold `LOCAL SERVICE, NETWORK SERVICE`, the CIS v5.0.0 value the remediation
-  role applies.
+  role applies. CIS requires an exception on an IIS or ADFS host, so there the
+  role leaves the right alone and this audit reports 2.2.30 as skipped, with the
+  reason in `skip-reason`, unless `win19cis_apply_generate_security_audits_on_iis_adfs`
+  is set.
 - **2.2.32 and 2.2.33 follow the Print Spooler account.** CIS v5.0.0 gives
   Impersonate a client after authentication a second value that adds
   `RESTRICTED SERVICES\PrintSpoolerService`. The remediation role reads the
   current holders and applies 2.2.33 where that account already holds the right,
-  2.2.32 where it does not. A gossfile cannot see that, so both assert the base
+  2.2.32 where it does not. A spec file cannot see that, so both assert the base
   holders and match the Print Spooler account as an optional member.
 
 Controls that cannot be asserted are recorded in `coverage.json` with a reason
@@ -97,7 +100,7 @@ generated from that file, so it cannot overstate what is checked.
 
 Alongside the `section_*` directories, these are generated with the specs:
 
-**`goss.yml`** - the gossfile, and the entry point syver is pointed at. It lists
+**`syver.yml`** - the entry point syver is pointed at (`AUDIT_FILE`). It lists
 which section directories to load, gated per section, and holds the snapshot
 canaries and the run metadata.
 
@@ -109,7 +112,7 @@ checks on a given host.
 **`collector_targets.json`** - the shopping list for `run_audit.ps1`. It names
 the secedit keys, privilege rights, auditpol subcategories, services, firewall
 profiles and per-user hives to snapshot. Most of this benchmark is not readable
-by a goss resource, so the collector gathers it once and the specs match against
+by a syver resource, so the collector gathers it once and the specs match against
 the result; generating this list beside the specs is what stops the set
 collected and the set asserted drifting apart.
 
@@ -126,12 +129,16 @@ The content is Goss format, the same as every other Ansible-Lockdown audit
 repository. It is run with [syver](https://github.com/krameff/syver), the Goss
 fork that adds Windows support.
 
-Two things about syver on Windows:
+Three things about syver on Windows:
 
 - It refuses to run without `--use-alpha=1`. `run_audit.ps1` passes it.
-- From 0.11.0, a check it cannot run is reported as an ERROR rather than being
-  allowed to pass quietly. That behaviour is what makes a green run mean
-  something, so 0.11.0 is the minimum worth trusting.
+- A check it cannot run is reported as an ERROR rather than being allowed to
+  pass quietly. That behaviour is what makes a green run mean something.
+- **syver 0.16.0 is the minimum, and `run_audit.ps1` enforces it.** Every
+  deliberate skip carries a `skip-reason:` attribute, which older releases
+  reject as unknown, aborting the whole run. syver prints the reason on each
+  skipped result: `(reason)` after `skipped` in the documentation format, a
+  `skip-reason` field on the result in JSON.
 
 ## Running it
 
@@ -156,11 +163,12 @@ behind takes out every assertion.
 
 ## Expected failures
 
-A control the remediation role deliberately skips will fail here, and that is
-correct. `win_skip_for_test` in the role skips the WinRM block, RDP deny logon,
-the public firewall profile, the administrator rename, and the two network logon
-rights that would otherwise sever the control connection. Those show as failures
-until the role is run with `win_skip_for_test: false`.
+`win_skip_for_test` in the role (default true) skips the WinRM block, RDP deny
+logon, the public firewall profile, the administrator rename, and the two network
+logon rights that would otherwise sever the control connection. The audit follows
+the same switch: those controls are reported as skipped, with the reason in
+`skip-reason`, until the role is run with `win_skip_for_test: false`. The number
+of checks is the same either way.
 
 Some controls name a principal that only exists when an optional feature is
 installed - Hyper-V for 2.2.18, IIS for 2.2.32, Exchange for 2.2.38. The
@@ -175,19 +183,20 @@ version can assert the exact membership per branch.
 | Section | In benchmark | Asserted | Coverage |
 | --- | --- | --- | --- |
 | 1 | 10 | 10 | 100% |
-| 2 | 119 | 117 | 98% |
+| 2 | 119 | 116 | 97% |
 | 5 | 2 | 2 | 100% |
 | 9 | 23 | 23 | 100% |
 | 17 | 34 | 34 | 100% |
 | 18 | 201 | 201 | 100% |
 | 19 | 11 | 11 | 100% |
-| **All** | **400** | **398** | **99.5%** |
+| **All** | **400** | **397** | **99.2%** |
 
 ### Not asserted
 
 | Rule | Title | Reason |
 | --- | --- | --- |
 | 2.2.34 | Ensure 'Increase scheduling priority' is set to 'Administrators, Window Manager\Window Manager Group' | NO_ASSERTABLE_STATE |
+| 2.3.5.4 | Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only) | NO_ASSERTABLE_STATE |
 | 2.3.10.9 | Ensure 'Network access: Remotely accessible registry paths and sub-paths' is configured | NO_ASSERTABLE_STATE |
 
 ### Controls that branch on state discovered at run time
