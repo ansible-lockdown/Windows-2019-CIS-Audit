@@ -1,3 +1,14 @@
+# Secrets and keys
+*.vault
+*vault_pass*
+.vault_pass
+*.key
+*.pem
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.credentials
 .env
 *.log
 *.retry
