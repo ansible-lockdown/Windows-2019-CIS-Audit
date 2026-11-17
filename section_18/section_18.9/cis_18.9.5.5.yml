@@ -5,7 +5,7 @@
     {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\LsaCfgFlags:
-    title: "18.9.5.5 | (NG) Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Enabled with UEFI lock' (MS Only) | LsaCfgFlags"
+    title: "18.9.5.5 | Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Enabled with UEFI lock' (MS Only) | LsaCfgFlags"
     exists: true
     value: 1
     type: REG_DWORD

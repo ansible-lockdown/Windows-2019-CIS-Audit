@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_9_3 }}
 file:
-  win19cis_17_9_3_0cce9210_69ae_11d9_bed3_505054503030:
-    title: "17.9.3 | Ensure 'Audit Security State Change' is set to include 'Success' | {0cce9210-69ae-11d9-bed3-505054503030}"
+  win19cis_17_9_3_security_state_change:
+    title: "17.9.3 | Ensure 'Audit Security State Change' is set to include 'Success' | Security State Change"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.9.3'
     exists: true
     contents:

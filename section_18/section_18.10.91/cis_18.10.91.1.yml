@@ -2,13 +2,14 @@
 
 {{ if .Vars.win19cis_level_2 }}
   {{ if .Vars.win19cis_rule_18_10_91_1 }}
-    {{ if not .Vars.win19cis_win_skip_for_test }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\Winrm\Service\Winrs\AllowRemoteShellAccess:
     title: "18.10.91.1 | Ensure 'Allow Remote Shell Access' is set to 'Disabled' | AllowRemoteShellAccess"
     exists: true
     value: 0
     type: REG_DWORD
+    skip: {{ if not .Vars.win19cis_win_skip_for_test }}false{{ else }}true{{ end }}
+    skip-reason: "win_skip_for_test is set - the role leaves this control alone so the managing connection survives; set win_skip_for_test: false to apply it"
     meta:
       domaincontroller: 2
       memberserver: 2
@@ -18,6 +19,5 @@ registry:
       NIST800-53R5:
         - CM-6
         - CM-7
-    {{ end }}
   {{ end }}
 {{ end }}

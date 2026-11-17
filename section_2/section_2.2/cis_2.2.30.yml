@@ -9,6 +9,8 @@ file:
     exists: true
     contents:
       - '/^S-1-5-19,S-1-5-20$/'
+    skip: {{ if or (not (or .Vars.win19cis_iis_and_web_services_installed .Vars.win19cis_adfs_installed)) .Vars.win19cis_apply_generate_security_audits_on_iis_adfs }}false{{ else }}true{{ end }}
+    skip-reason: "IIS or ADFS installed - CIS requires an exception for this right on these hosts, so the role does not apply it"
     meta:
       domaincontroller: 1
       memberserver: 1

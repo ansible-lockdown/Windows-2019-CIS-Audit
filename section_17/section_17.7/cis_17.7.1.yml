@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_7_1 }}
 file:
-  win19cis_17_7_1_0cce922f_69ae_11d9_bed3_505054503030:
-    title: "17.7.1 | Ensure 'Audit Audit Policy Change' is set to include 'Success' | {0cce922f-69ae-11d9-bed3-505054503030}"
+  win19cis_17_7_1_audit_policy_change:
+    title: "17.7.1 | Ensure 'Audit Audit Policy Change' is set to include 'Success' | Audit Policy Change"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.7.1'
     exists: true
     contents:

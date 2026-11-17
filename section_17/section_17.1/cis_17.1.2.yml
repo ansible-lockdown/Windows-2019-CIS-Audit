@@ -4,8 +4,8 @@
   {{ if .Vars.win19cis_rule_17_1_2 }}
     {{ if eq .Vars.win19cis_system_role "domaincontroller" }}
 file:
-  win19cis_17_1_2_0cce9242_69ae_11d9_bed3_505054503030:
-    title: "17.1.2 | Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only) | {0cce9242-69ae-11d9-bed3-505054503030}"
+  win19cis_17_1_2_kerberos_authentication_service:
+    title: "17.1.2 | Ensure 'Audit Kerberos Authentication Service' is set to 'Success and Failure' (DC Only) | Kerberos Authentication Service"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.1.2'
     exists: true
     contents:

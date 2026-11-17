@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_18_9_29_3 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\System\DontEnumerateConnectedUsers:
-    title: "18.9.29.3 | Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled' | DontEnumerateConnectedUsers"
+    title: "18.9.29.3 | Ensure 'Do not enumerate connected users on domain- joined computers' is set to 'Enabled' | DontEnumerateConnectedUsers"
     exists: true
     value: 1
     type: REG_DWORD

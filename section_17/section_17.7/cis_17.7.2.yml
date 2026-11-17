@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_7_2 }}
 file:
-  win19cis_17_7_2_0cce9230_69ae_11d9_bed3_505054503030:
-    title: "17.7.2 | Ensure 'Audit Authentication Policy Change' is set to include 'Success' | {0cce9230-69ae-11d9-bed3-505054503030}"
+  win19cis_17_7_2_authentication_policy_change:
+    title: "17.7.2 | Ensure 'Audit Authentication Policy Change' is set to include 'Success' | Authentication Policy Change"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.7.2'
     exists: true
     contents:

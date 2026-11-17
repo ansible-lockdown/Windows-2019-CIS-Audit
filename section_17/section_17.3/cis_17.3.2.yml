@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_3_2 }}
 file:
-  win19cis_17_3_2_0cce922b_69ae_11d9_bed3_505054503030:
-    title: "17.3.2 | Ensure 'Audit Process Creation' is set to include 'Success' | {0cce922b-69ae-11d9-bed3-505054503030}"
+  win19cis_17_3_2_process_creation:
+    title: "17.3.2 | Ensure 'Audit Process Creation' is set to include 'Success' | Process Creation"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.3.2'
     exists: true
     contents:
