@@ -201,8 +201,8 @@ version can assert the exact membership per branch.
 
 ### Controls that branch on state discovered at run time
 
-These pick *which* value is correct from something a gossfile
-template cannot see - whether Hyper-V or IIS is installed, whether
+These pick *which* value is correct from something a spec file
+cannot see - whether Hyper-V or IIS is installed, whether
 an account has been renamed, what a site variable was set to. Each
 asserts the part that holds on every host; the feature-dependent
 part is matched optionally rather than required.
