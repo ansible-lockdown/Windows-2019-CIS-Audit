@@ -13,6 +13,7 @@
 - run_audit.ps1 reads audit policy by GUID from auditpol /backup, any display language
 - .gitignore secret patterns
 - README: syver.yml, skip-reason and win_skip_for_test reporting
+- 18.9.29.3, 18.9.35.6.1, 18.9.35.6.2 titles: stray space after hyphen removed
 
 ## Based on CIS Benchmark v5.0.0
 ## October 2026 - spec folders

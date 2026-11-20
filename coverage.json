@@ -3691,7 +3691,7 @@
   },
   {
     "rule_id": "18.9.29.3",
-    "title": "Ensure 'Do not enumerate connected users on domain- joined computers' is set to 'Enabled'",
+    "title": "Ensure 'Do not enumerate connected users on domain-joined computers' is set to 'Enabled'",
     "emitted": true,
     "gate": "win19cis_level_1",
     "file": "section_18/section_18.9/cis_18.9.29.3.yml",
@@ -3769,7 +3769,7 @@
   },
   {
     "rule_id": "18.9.35.6.1",
-    "title": "Ensure 'Allow network connectivity during connected- standby (on battery)' is set to 'Disabled'",
+    "title": "Ensure 'Allow network connectivity during connected-standby (on battery)' is set to 'Disabled'",
     "emitted": true,
     "gate": "win19cis_level_2",
     "file": "section_18/section_18.9/cis_18.9.35.6.1.yml",
@@ -3782,7 +3782,7 @@
   },
   {
     "rule_id": "18.9.35.6.2",
-    "title": "Ensure 'Allow network connectivity during connected- standby (plugged in)' is set to 'Disabled'",
+    "title": "Ensure 'Allow network connectivity during connected-standby (plugged in)' is set to 'Disabled'",
     "emitted": true,
     "gate": "win19cis_level_2",
     "file": "section_18/section_18.9/cis_18.9.35.6.2.yml",
