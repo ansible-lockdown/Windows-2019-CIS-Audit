@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_9_2 }}
 file:
-  win19cis_17_9_2_0cce9214_69ae_11d9_bed3_505054503030:
-    title: "17.9.2 | Ensure 'Audit Other System Events' is set to 'Success and Failure' | {0cce9214-69ae-11d9-bed3-505054503030}"
+  win19cis_17_9_2_other_system_events:
+    title: "17.9.2 | Ensure 'Audit Other System Events' is set to 'Success and Failure' | Other System Events"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.9.2'
     exists: true
     contents:

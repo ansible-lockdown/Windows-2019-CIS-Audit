@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_5_3 }}
 file:
-  win19cis_17_5_3_0cce9216_69ae_11d9_bed3_505054503030:
-    title: "17.5.3 | Ensure 'Audit Logoff' is set to include 'Success' | {0cce9216-69ae-11d9-bed3-505054503030}"
+  win19cis_17_5_3_logoff:
+    title: "17.5.3 | Ensure 'Audit Logoff' is set to include 'Success' | Logoff"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.5.3'
     exists: true
     contents:

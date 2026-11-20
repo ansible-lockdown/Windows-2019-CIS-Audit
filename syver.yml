@@ -1,4 +1,4 @@
-gossfile:
+syverfile:
 # Section 1
   {{ if .Vars.win19cis_section01 }}
   section_1/*/*.yml: {}

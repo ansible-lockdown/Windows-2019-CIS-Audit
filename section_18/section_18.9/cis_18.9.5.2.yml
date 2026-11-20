@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_18_9_5_2 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\RequirePlatformSecurityFeatures:
-    title: "18.9.5.2 | (NG) Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot' or higher | RequirePlatformSecurityFeatures"
+    title: "18.9.5.2 | Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot' or higher | RequirePlatformSecurityFeatures"
     exists: true
     value: {{ .Vars.win19cis_virtualization_based_security_level }}
     type: REG_DWORD

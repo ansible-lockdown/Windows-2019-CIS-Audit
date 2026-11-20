@@ -2,13 +2,14 @@
 
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_9_3_4 }}
-    {{ if not .Vars.win19cis_win_skip_for_test }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\AllowLocalPolicyMerge:
     title: "9.3.4 | Ensure 'Windows Firewall: Public: Settings: Apply local firewall rules' is set to 'No' | AllowLocalPolicyMerge"
     exists: true
     value: 0
     type: REG_DWORD
+    skip: {{ if not .Vars.win19cis_win_skip_for_test }}false{{ else }}true{{ end }}
+    skip-reason: "win_skip_for_test is set - the role leaves this control alone so the managing connection survives; set win_skip_for_test: false to apply it"
     meta:
       domaincontroller: 1
       memberserver: 1
@@ -18,6 +19,5 @@ registry:
       NIST800-53R5:
         - SC-7
         - SC-7(5)
-    {{ end }}
   {{ end }}
 {{ end }}

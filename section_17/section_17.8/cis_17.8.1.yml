@@ -3,8 +3,8 @@
 {{ if .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_17_8_1 }}
 file:
-  win19cis_17_8_1_0cce9228_69ae_11d9_bed3_505054503030:
-    title: "17.8.1 | Ensure 'Audit Sensitive Privilege Use' is set to 'Success' | {0cce9228-69ae-11d9-bed3-505054503030}"
+  win19cis_17_8_1_sensitive_privilege_use:
+    title: "17.8.1 | Ensure 'Audit Sensitive Privilege Use' is set to 'Success' | Sensitive Privilege Use"
     path: '{{ .Vars.win19cis_snapshot_dir }}\AuditPolicy.17.8.1'
     exists: true
     contents:

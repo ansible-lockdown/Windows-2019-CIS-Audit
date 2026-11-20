@@ -2,15 +2,16 @@
 
 {{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_3 }}
-    {{ if not .Vars.win19cis_win_skip_for_test }}
-      {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
+    {{ if ne .Vars.win19cis_system_role "domaincontroller" }}
 file:
   win19cis_2_2_3_senetworklogonright:
-    title: "2.2.3 | Ensure 'Access this computer from the network'  is set to 'Administrators, Authenticated Users' (MS only) | SeNetworkLogonRight"
+    title: "2.2.3 | Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users' (MS only) | SeNetworkLogonRight"
     path: '{{ .Vars.win19cis_snapshot_dir }}\PrivilegeRights.SeNetworkLogonRight'
     exists: true
     contents:
       - '/^S-1-5-11,S-1-5-32-544$/'
+    skip: {{ if not .Vars.win19cis_win_skip_for_test }}false{{ else }}true{{ end }}
+    skip-reason: "win_skip_for_test is set - the role leaves this control alone so the managing connection survives; set win_skip_for_test: false to apply it"
     meta:
       memberserver: 1
       server: 1
@@ -23,7 +24,6 @@ file:
         - AC-6(1)
         - AC-6(7)
         - AU-9(4)
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

@@ -31,6 +31,8 @@ win19cis_ngws: false
 #  was actually asked to apply.
 win19cis_system_role: 'memberserver'
 win19cis_win_skip_for_test: false
+win19cis_iis_and_web_services_installed: false
+win19cis_adfs_installed: false
 
 
 ##
@@ -109,7 +111,6 @@ win19cis_rule_2_3_4_1: true
 win19cis_rule_2_3_5_1: true
 win19cis_rule_2_3_5_2: true
 win19cis_rule_2_3_5_3: true
-win19cis_rule_2_3_5_4: true
 win19cis_rule_2_3_5_5: true
 win19cis_rule_2_3_6_1: true
 win19cis_rule_2_3_6_2: true
@@ -461,6 +462,7 @@ win19cis_allow_admin_account_lockout: 1
 win19cis_allow_telemetry: 1
 win19cis_allow_windows_ink_workspace: 1
 win19cis_application_max_log_file_size: 32768
+win19cis_apply_generate_security_audits_on_iis_adfs: false
 win19cis_bad_login_lockout_count: 5
 win19cis_cached_logons_count: 1
 win19cis_consent_prompt_behavior_admin: 2

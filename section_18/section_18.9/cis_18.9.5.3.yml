@@ -4,7 +4,7 @@
   {{ if .Vars.win19cis_rule_18_9_5_3 }}
 registry:
   HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\HypervisorEnforcedCodeIntegrity:
-    title: "18.9.5.3 | (NG) Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' | HypervisorEnforcedCodeIntegrity"
+    title: "18.9.5.3 | Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' | HypervisorEnforcedCodeIntegrity"
     exists: true
     value: 1
     type: REG_DWORD

@@ -6,9 +6,7 @@
 registry:
   HKLM\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\VulnerableChannelAllowList:
     title: "2.3.5.2 | Ensure 'Domain controller: Allow vulnerable Netlogon secure channel connections' is set to 'Not Configured' (DC Only) | VulnerableChannelAllowList"
-    exists: true
-    value: 0
-    type: REG_DWORD
+    exists: false
     meta:
       domaincontroller: 1
       server: 1

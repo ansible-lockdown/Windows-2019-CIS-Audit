@@ -2,8 +2,7 @@
 
 {{ if and (ne .Vars.win19cis_system_role "domaincontroller") .Vars.win19cis_level_1 }}
   {{ if .Vars.win19cis_rule_2_2_26 }}
-    {{ if not .Vars.win19cis_win_skip_for_test }}
-      {{ if eq .Vars.win19cis_system_role "memberserver" }}
+    {{ if eq .Vars.win19cis_system_role "memberserver" }}
 file:
   win19cis_2_2_26_sedenyremoteinteractivelogonright:
     title: "2.2.26 | Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only) | SeDenyRemoteInteractiveLogonRight"
@@ -11,6 +10,8 @@ file:
     exists: true
     contents:
       - '/^S-1-5-113,S-1-5-32-546$/'
+    skip: {{ if not .Vars.win19cis_win_skip_for_test }}false{{ else }}true{{ end }}
+    skip-reason: "win_skip_for_test is set - the role leaves this control alone so the managing connection survives; set win_skip_for_test: false to apply it"
     meta:
       memberserver: 1
       server: 1
@@ -23,7 +24,6 @@ file:
         - AC-6(1)
         - AC-6(7)
         - AU-9(4)
-      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}
